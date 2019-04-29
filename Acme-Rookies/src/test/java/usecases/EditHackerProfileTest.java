@@ -12,8 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 
-import domain.Hacker;
-import services.HackerService;
+import domain.Rookie;
+import services.RookieService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
@@ -25,7 +25,7 @@ public class EditHackerProfileTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
 	@Autowired
-	private HackerService hackerService;
+	private RookieService hackerService;
 
 
 	// Test ------------------------------------------------------
@@ -64,7 +64,7 @@ public class EditHackerProfileTest extends AbstractTest {
 			
 			// Authenticate as 'hacker1'
 			super.authenticate("hacker1");
-			Hacker hacker1 = this.hackerService.findByPrincipal();
+			Rookie hacker1 = this.hackerService.findByPrincipal();
 			int version = hacker1.getVersion();
 
 

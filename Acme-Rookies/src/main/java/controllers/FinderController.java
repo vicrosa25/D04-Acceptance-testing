@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.FinderService;
-import services.HackerService;
 import domain.Finder;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
+import services.FinderService;
+import services.RookieService;
 
 @Controller
-@RequestMapping("/finder/hacker")
+@RequestMapping("/finder/rookie")
 public class FinderController extends AbstractController {
 
 	@Autowired
 	private FinderService	finderService;
 
 	@Autowired
-	private HackerService	hackerService;
+	private RookieService	rookieService;
 
 
 	@ExceptionHandler(TypeMismatchException.class)
@@ -43,10 +43,10 @@ public class FinderController extends AbstractController {
 	public ModelAndView clear() {
 		ModelAndView result;
 		try {
-			final Finder clear = this.finderService.clear(this.hackerService.findByPrincipal().getFinder());
+			final Finder clear = this.finderService.clear(this.rookieService.findByPrincipal().getFinder());
 			result = new ModelAndView("position/list");
 			result.addObject("positions", clear.getPositions());
-			result.addObject("requestURI", "finder/hacker/result.do");
+			result.addObject("requestURI", "finder/rookie/result.do");
 
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
@@ -63,8 +63,8 @@ public class FinderController extends AbstractController {
 	public ModelAndView edit() {
 		ModelAndView result;
 
-		final Hacker hacker = this.hackerService.findByPrincipal();
-		final Finder finder = hacker.getFinder();
+		final Rookie rookie = this.rookieService.findByPrincipal();
+		final Finder finder = rookie.getFinder();
 
 		result = this.createEditModelAndView(finder);
 
@@ -91,7 +91,7 @@ public class FinderController extends AbstractController {
 
 				result = new ModelAndView("position/list");
 				result.addObject("positions", saved.getPositions());
-				result.addObject("requestURI", "finder/hacker/result.do");
+				result.addObject("requestURI", "finder/rookie/result.do");
 			} catch (final Throwable oops) {
 				System.out.println(finder);
 				System.out.println(oops.getMessage());
@@ -109,13 +109,13 @@ public class FinderController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			final Hacker hacker = this.hackerService.findByPrincipal();
-			final Finder finder = hacker.getFinder();
+			final Rookie rookie = this.rookieService.findByPrincipal();
+			final Finder finder = rookie.getFinder();
 			final Collection<Position> positions = this.finderService.getResults(finder);
 
 			result = new ModelAndView("position/list");
 			result.addObject("positions", positions);
-			result.addObject("requestURI", "finder/hacker/result.do");
+			result.addObject("requestURI", "finder/rookie/result.do");
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
 			System.out.println(oops.getClass());
@@ -137,7 +137,7 @@ public class FinderController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final Finder finder, final String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("finder/hacker/edit");
+		result = new ModelAndView("finder/rookie/edit");
 		result.addObject("finder", finder);
 		result.addObject("message", message);
 

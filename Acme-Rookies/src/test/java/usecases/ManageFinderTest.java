@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import services.FinderService;
-import services.HackerService;
+import services.RookieService;
 import services.PositionService;
 import utilities.AbstractTest;
 import domain.Finder;
@@ -29,7 +29,7 @@ public class ManageFinderTest extends AbstractTest {
 
 	// Supporting systems ------------------------------------------------------
 	@Autowired
-	private HackerService	hackerService;
+	private RookieService	hackerService;
 	@Autowired
 	private PositionService	positionService;
 

@@ -25,7 +25,7 @@ public class Curricula extends DomainEntity {
 	private Collection<PositionData>		positionData;
 	private Collection<EducationData>		educationData;
 	private Collection<MiscellaneousData>	miscellaneousData;
-	private Hacker							hacker;
+	private Rookie							rookie;
 	private Boolean							applied;
 
 
@@ -37,12 +37,12 @@ public class Curricula extends DomainEntity {
 	//	}
 
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return hacker;
+	public Rookie getRookie() {
+		return rookie;
 	}
 
-	public void setHacker(Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@Valid

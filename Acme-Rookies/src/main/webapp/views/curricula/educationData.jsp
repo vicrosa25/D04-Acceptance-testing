@@ -6,7 +6,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="curricula/educationData/hacker/edit.do" modelAttribute="educationData">
+<form:form action="curricula/educationData/rookie/edit.do" modelAttribute="educationData">
 	
 	<%-- Hidden properties from educationData--%>
 	<form:hidden path="id" />
@@ -35,5 +35,5 @@
 
 	<%-- Buttons --%>
 	<input type="submit" name="save" value="<spring:message code="curricula.save"/>" />
-	<acme:cancel code="curricula.cancel" url="curricula/hacker/display.do?curriculaId=${educationData.curricula.id}" />
+	<acme:cancel code="curricula.cancel" url="curricula/rookie/display.do?curriculaId=${educationData.curricula.id}" />
 </form:form>

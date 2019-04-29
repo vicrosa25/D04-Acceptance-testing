@@ -7,20 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import domain.Hacker;
-import repositories.HackerRepository;
+import domain.Rookie;
+import repositories.RookieRepository;
 
 @Component
 @Transactional
-public class StringToHackerConverter implements Converter<String, Hacker> {
+public class StringToRookieConverter implements Converter<String, Rookie> {
 
 	@Autowired
-	HackerRepository hackerRepository;
+	RookieRepository hackerRepository;
 
 
 	@Override
-	public Hacker convert(String text) {
-		Hacker result;
+	public Rookie convert(String text) {
+		Rookie result;
 		int id;
 
 		try {

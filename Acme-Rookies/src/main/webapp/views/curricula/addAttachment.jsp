@@ -6,7 +6,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="curricula/miscellaneousData/hacker/addAttachment.do" modelAttribute="url">	
+<form:form action="curricula/miscellaneousData/rookie/addAttachment.do" modelAttribute="url">	
 		<%-- Hidden properties--%>
 		<form:hidden path="targetId" />
 

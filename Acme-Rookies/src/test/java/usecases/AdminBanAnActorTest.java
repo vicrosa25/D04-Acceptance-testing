@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import domain.Hacker;
+import domain.Rookie;
 import services.AdministratorService;
-import services.HackerService;
+import services.RookieService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
@@ -25,7 +25,7 @@ public class AdminBanAnActorTest extends AbstractTest {
 	private AdministratorService 	administratorService;
 	
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			hackerService;
 	
 	
 	// Tests -----------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class AdminBanAnActorTest extends AbstractTest {
 	 **/
 	@Test
 	public void banActorPositive(){
-		Hacker hacker;
+		Rookie hacker;
 		super.authenticate("admin");
 		
 		hacker = this.hackerService.findOne(super.getEntityId("hacker2"));
@@ -65,7 +65,7 @@ public class AdminBanAnActorTest extends AbstractTest {
 	 **/
 	@Test(expected = IllegalArgumentException.class)
 	public void banActorNegative(){
-		Hacker hacker;
+		Rookie hacker;
 		super.authenticate("hacker1");
 		
 		hacker = this.hackerService.findOne(super.getEntityId("hacker2"));

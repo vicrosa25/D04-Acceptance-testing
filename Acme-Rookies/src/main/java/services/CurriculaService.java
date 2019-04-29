@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.CurriculaRepository;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rookie;
+import repositories.CurriculaRepository;
 
 @Service
 @Transactional
@@ -27,7 +27,7 @@ public class CurriculaService {
 
 	// Supporting services
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService				rookieService;
 
 	@Autowired
 	private PersonalDataService			personalDataService;
@@ -62,14 +62,14 @@ public class CurriculaService {
 
 	public Curricula save(final Curricula curricula) {
 		Assert.notNull(curricula);
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 
 		//Check the owner is the principal, if it has no owner, assign the principal.
 		if (curricula.getId() != 0) {
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
 		} else {
 			curricula.setApplied(false);
-			curricula.setHacker(principal);
+			curricula.setRookie(principal);
 		}
 		final Curricula result = this.curriculaRepository.save(curricula);
 
@@ -78,7 +78,7 @@ public class CurriculaService {
 
 	public void delete(final Curricula curricula) {
 		Assert.notNull(curricula);
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 		Assert.isTrue(principal.getCurriculas().contains(curricula));
 
 		if (curricula.getPersonalData() != null) {
@@ -106,7 +106,7 @@ public class CurriculaService {
 			position.remove();
 		}
 
-		curricula.getHacker().getCurriculas().remove(curricula);
+		curricula.getRookie().getCurriculas().remove(curricula);
 
 		this.curriculaRepository.delete(curricula);
 	}
@@ -118,12 +118,12 @@ public class CurriculaService {
 
 	public Curricula copyCurricula(Curricula curricula) {
 		Curricula result = this.create();
-		result.setHacker(this.hackerService.findByPrincipal());
+		result.setRookie(this.rookieService.findByPrincipal());
 		result.setTitle(curricula.getTitle());
 		result.setApplied(true);
 		
 		result = this.curriculaRepository.save(result);
-		curricula.getHacker().getCurriculas().add(result);
+		curricula.getRookie().getCurriculas().add(result);
 		
 		if(curricula.getPersonalData()!=null){
 			PersonalData copy = new PersonalData();
@@ -174,7 +174,7 @@ public class CurriculaService {
 	}
 
 	public Collection<Curricula> findAllPrincipalNotApplied() {
-		Collection<Curricula> result = this.curriculaRepository.findAllNoApplied(this.hackerService.findByPrincipal().getId());
+		Collection<Curricula> result = this.curriculaRepository.findAllNoApplied(this.rookieService.findByPrincipal().getId());
 		Assert.notNull(result);
 
 		return result;

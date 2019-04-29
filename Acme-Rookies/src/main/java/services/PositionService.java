@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import repositories.PositionRepository;
 import domain.Actor;
 import domain.Application;
 import domain.Company;
@@ -22,6 +21,7 @@ import domain.Finder;
 import domain.Message;
 import domain.Position;
 import domain.Problem;
+import repositories.PositionRepository;
 
 @Service
 @Transactional
@@ -42,7 +42,7 @@ public class PositionService {
 	private FinderService		finderService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookieService		rookieService;
 
 	@Autowired
 	private MessageService		messageService;
@@ -218,7 +218,7 @@ public class PositionService {
 		for (Finder finder : this.finderService.findAll()) {
 			finder = this.finderService.updateResults(finder);
 			if (finder.getPositions().contains(position))
-				recipients.add(this.hackerService.findByFinder(finder));
+				recipients.add(this.rookieService.findByFinder(finder));
 		}
 		if (!recipients.isEmpty()) {
 			final Message notification = this.messageService.create();

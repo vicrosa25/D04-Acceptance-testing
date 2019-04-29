@@ -44,9 +44,9 @@
 	
 	<jstl:if test="${requestUri == 'application/company/list.do'}">
 	
-	<!-- hacker -->
-	<spring:message code="application.hacker" var="hackerHeader" />
-	<display:column property="hacker.name" title="${hackerHeader}" sortable="false"/>
+	<!-- rookie -->
+	<spring:message code="application.rookie" var="rookieHeader" />
+	<display:column property="rookie.name" title="${rookieHeader}" sortable="false"/>
 	
 	
 	<!-- Aceptar -->	
@@ -73,7 +73,7 @@
 
 <!-- Create Application -->
 <security:authorize access="hasRole('HACKER')">
-<a href=application/hacker/create.do><spring:message code="application.create" /></a>
+<a href=application/rookie/create.do><spring:message code="application.create" /></a>
 </security:authorize>
 
 

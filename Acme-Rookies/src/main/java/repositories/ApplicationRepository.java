@@ -12,8 +12,8 @@ import domain.Application;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 	
-	@Query("Select h.applications from Hacker h where h.id = ?1")
-	Collection<Application> findByHacker(int hackerId);
+	@Query("Select h.applications from Rookie h where h.id = ?1")
+	Collection<Application> findByRookie(int rookieId);
 
 	@Query("select a from Application a where a.problem.id = ?1")
 	Collection<Application> findByProblem(int problemId);

@@ -1,5 +1,5 @@
 #./src/main/resources/Entities.map
-#Mon Apr 29 18:09:35 CEST 2019
+#Mon Apr 29 19:42:00 CEST 2019
 problem7=289
 problem6=288
 problem5=287
@@ -29,13 +29,13 @@ applied1=302
 configurations=299
 educationData1=309
 admin=270
+rookie2=301
+rookie1=300
 positionData1=308
 company2=276
 company1=274
 userAccount5=269
-hacker2=301
 userAccount4=268
-hacker1=300
 userAccount3=267
 userAccount2=266
 userAccount1=265

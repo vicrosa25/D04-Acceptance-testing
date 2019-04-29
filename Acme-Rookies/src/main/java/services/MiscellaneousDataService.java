@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.MiscellaneousDataRepository;
-import domain.Hacker;
 import domain.MiscellaneousData;
+import domain.Rookie;
+import repositories.MiscellaneousDataRepository;
 
 @Service
 @Transactional
@@ -22,7 +22,7 @@ public class MiscellaneousDataService {
 
 	// Supporting services
 	@Autowired
-	private HackerService				hackerService;
+	private RookieService				rookieService;
 
 
 	// CRUD methods
@@ -48,7 +48,7 @@ public class MiscellaneousDataService {
 
 	public MiscellaneousData save(final MiscellaneousData miscellaneousData) {
 		boolean nuevo = false;
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 		Assert.notNull(miscellaneousData);
 		Assert.isTrue(principal.getCurriculas().contains(miscellaneousData.getCurricula()));
 
@@ -64,7 +64,7 @@ public class MiscellaneousDataService {
 
 	public void delete(final MiscellaneousData miscellaneousData) {
 		Assert.notNull(miscellaneousData);
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 		Assert.isTrue(principal.getCurriculas().contains(miscellaneousData.getCurricula()));
 
 		miscellaneousData.getCurricula().getMiscellaneousData().remove(miscellaneousData);

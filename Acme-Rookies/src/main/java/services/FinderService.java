@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.FinderRepository;
 import domain.Finder;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
+import repositories.FinderRepository;
 
 @Service
 @Transactional
@@ -27,7 +27,7 @@ public class FinderService {
 
 	// Other services
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private PositionService			positionService;
@@ -63,7 +63,7 @@ public class FinderService {
 
 	public Finder save(final Finder finder) {
 		Assert.notNull(finder);
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 		Assert.isTrue(principal.getFinder().getId() == finder.getId());
 
 		final Finder result = this.finderRepository.save(finder);
@@ -73,7 +73,7 @@ public class FinderService {
 
 	public void delete(final Finder finder) {
 		Assert.notNull(finder);
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rookie principal = this.rookieService.findByPrincipal();
 		Assert.isTrue(principal.getFinder().getId() == finder.getId());
 
 		this.finderRepository.delete(finder);
@@ -136,7 +136,7 @@ public class FinderService {
 
 	public Finder clear(final Finder finder) {
 		Assert.notNull(finder);
-		Assert.isTrue(this.hackerService.findByPrincipal().getFinder() == finder);
+		Assert.isTrue(this.rookieService.findByPrincipal().getFinder() == finder);
 
 		finder.setDeadline(null);
 		finder.setKeyword(null);

@@ -37,12 +37,12 @@
 <br>
 <br>
 
-<form:form action="application/hacker/update.do" modelAttribute="application">
+<form:form action="application/rookie/update.do" modelAttribute="application">
 
 	<%-- Hidden properties --%>
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="hacker" />
+	<form:hidden path="rookie" />
 	<form:hidden path="status" />
 	<form:hidden path="position" />
 	<form:hidden path="problem" />

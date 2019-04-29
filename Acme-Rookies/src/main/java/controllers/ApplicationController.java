@@ -22,14 +22,14 @@ import domain.Actor;
 import domain.Application;
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
 import services.ActorService;
 import services.ApplicationService;
 import services.CompanyService;
 import services.CurriculaService;
-import services.HackerService;
 import services.PositionService;
+import services.RookieService;
 
 @Controller
 @RequestMapping("/application")
@@ -42,7 +42,7 @@ public class ApplicationController extends AbstractController {
 	private ActorService		actorService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookieService		rookieService;
 
 	@Autowired
 	private CompanyService		companyService;
@@ -60,17 +60,17 @@ public class ApplicationController extends AbstractController {
 	}
 
 	/*********************
-	 * List Hacker Apps
+	 * List Rookie Apps
 	 *********************/
-	@RequestMapping(value = "/hacker/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Application> apps;
 
 		try {
-			apps = this.applicationService.findByHacker();
-			result = new ModelAndView("application/hacker/list");
-			result.addObject("requestUri", "application/hacker/list.do");
+			apps = this.applicationService.findByRookie();
+			result = new ModelAndView("application/rookie/list");
+			result.addObject("requestUri", "application/rookie/list.do");
 			result.addObject("apps", apps);
 		} catch (final Throwable oops) {
 			result = this.forbiddenOpperation();
@@ -87,7 +87,7 @@ public class ApplicationController extends AbstractController {
 		ModelAndView result;
 		Application application;
 		Actor principal;
-		Hacker hacker;
+		Rookie rookie;
 		Company company;
 
 		try {
@@ -95,11 +95,11 @@ public class ApplicationController extends AbstractController {
 			principal = this.actorService.findByPrincipal();
 			result = new ModelAndView("application/display");
 
-			// Check the principal is an Hacker and owns app
-			if (principal instanceof Hacker) {
-				hacker = (Hacker) principal;
-				Assert.isTrue(hacker.getApplications().contains(application));
-				result.addObject("requestUri", "application/hacker/display.do");
+			// Check the principal is an Rookie and owns app
+			if (principal instanceof Rookie) {
+				rookie = (Rookie) principal;
+				Assert.isTrue(rookie.getApplications().contains(application));
+				result.addObject("requestUri", "application/rookie/display.do");
 			}
 			if (principal instanceof Company) {
 				company = (Company) principal;
@@ -122,7 +122,7 @@ public class ApplicationController extends AbstractController {
 	/*****************************************
 	 * Create Application for a Position GET
 	 ****************************************/
-	@RequestMapping(value = "/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/create", method = RequestMethod.GET)
 	public ModelAndView edit() {
 		ModelAndView result;
 		Application application;
@@ -136,7 +136,7 @@ public class ApplicationController extends AbstractController {
 	/********************************************
 	 * Create Application for a Position POST
 	 *******************************************/
-	@RequestMapping(value = "/hacker/create", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/rookie/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Application application, BindingResult binding) {
 		ModelAndView result;
 
@@ -164,7 +164,7 @@ public class ApplicationController extends AbstractController {
 	/*****************************************
 	 * Update Application GET
 	 ****************************************/
-	@RequestMapping(value = "/hacker/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/update", method = RequestMethod.GET)
 	public ModelAndView update(@RequestParam int appId) {
 		ModelAndView result;
 		Application application;
@@ -179,7 +179,7 @@ public class ApplicationController extends AbstractController {
 	/********************************************
 	 * Update Application POST
 	 *******************************************/
-	@RequestMapping(value = "/hacker/update", method = RequestMethod.POST, params = "update")
+	@RequestMapping(value = "/rookie/update", method = RequestMethod.POST, params = "update")
 	public ModelAndView update(@Valid Application application, BindingResult binding) {
 		ModelAndView result;
 
@@ -297,14 +297,14 @@ public class ApplicationController extends AbstractController {
 		positions = this.positionService.findAll();
 		curriculas = this.curriculaService.findAllPrincipalNotApplied();
 
-		for (Application app : this.hackerService.findByPrincipal().getApplications()) {
+		for (Application app : this.rookieService.findByPrincipal().getApplications()) {
 			positions.remove(app.getPosition());
 		}
 
 		if (positions.isEmpty())
 			message = "application.posisitons.empty";
 
-		result = new ModelAndView("application/hacker/create");
+		result = new ModelAndView("application/rookie/create");
 		result.addObject("application", application);
 		result.addObject("positions", positions);
 		result.addObject("curriculas", curriculas);
@@ -324,7 +324,7 @@ public class ApplicationController extends AbstractController {
 	protected ModelAndView editModelAndView(Application application, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("application/hacker/update");
+		result = new ModelAndView("application/rookie/update");
 		result.addObject("application", application);
 		result.addObject("problem", application.getProblem());
 		result.addObject("message", message);

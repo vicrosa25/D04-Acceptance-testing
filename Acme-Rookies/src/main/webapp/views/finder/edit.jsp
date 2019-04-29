@@ -7,7 +7,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="finder/hacker/edit.do" modelAttribute="finder">
+<form:form action="finder/rookie/edit.do" modelAttribute="finder">
 	
 	<%-- Hidden properties from finder--%>
 	<form:hidden path="id" />
@@ -35,7 +35,7 @@
 	<input type="submit" name="save" 
 		value="<spring:message code="finder.save"/>"/>
 	
-	<acme:cancel code="finder.clear" url="/finder/hacker/clear.do" />
+	<acme:cancel code="finder.clear" url="/finder/rookie/clear.do" />
 	<acme:cancel code="finder.cancel" url="/" />
 		
 </form:form>

@@ -62,7 +62,7 @@ public class Application extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Hacker		hacker;
+	private Rookie		rookie;
 	private Answer		answer;
 	private Position	position;
 	private Problem		problem;
@@ -82,13 +82,13 @@ public class Application extends DomainEntity {
 	
 	
 	@ManyToOne(optional = true)
-	public Hacker getHacker() {
-		return hacker;
+	public Rookie getRookie() {
+		return rookie;
 	}
 
 	
-	public void setHacker(Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	

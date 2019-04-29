@@ -12,7 +12,7 @@ import domain.Curricula;
 @Repository
 public interface CurriculaRepository extends JpaRepository<Curricula, Integer> {
 
-	@Query("select c from Curricula c where c.hacker.id = ?1 and applied='0'")
-	Collection<Curricula> findAllNoApplied(int hackerId);
+	@Query("select c from Curricula c where c.rookie.id = ?1 and applied='0'")
+	Collection<Curricula> findAllNoApplied(int rookieId);
 
 }

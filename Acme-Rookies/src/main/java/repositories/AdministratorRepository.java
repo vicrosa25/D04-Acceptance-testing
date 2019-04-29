@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import domain.Administrator;
 import domain.Company;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
 
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer> {
@@ -22,14 +22,14 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select avg(c.positions.size), min(c.positions.size), max(c.positions.size), stddev(c.positions.size) from Company c")
 	Object[] query1();
 	
-	@Query("select avg(h.applications.size), min(h.applications.size), max(h.applications.size), stddev(h.applications.size) from Hacker h")
+	@Query("select avg(h.applications.size), min(h.applications.size), max(h.applications.size), stddev(h.applications.size) from Rookie h")
 	Object[] query2();
 	
 	@Query("select c1 from Company c1 where c1.positions.size = (Select max(c2.positions.size) from Company c2)")
 	Collection<Company> query3();
 	
-	@Query("select h1 from Hacker h1 where h1.applications.size = (Select max(h2.applications.size) from Hacker h2)")
-	Collection<Hacker> query4();
+	@Query("select h1 from Rookie h1 where h1.applications.size = (Select max(h2.applications.size) from Rookie h2)")
+	Collection<Rookie> query4();
 	
 	@Query("select avg(p.salary), min(p.salary), max(p.salary), stddev(p.salary) from Position p")
 	Object[] query5();
@@ -41,7 +41,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Collection<Position> query6b();
 	
 	// Queries level B
-	@Query("select avg(h.curriculas.size), min(h.curriculas.size), max(h.curriculas.size), stddev(h.curriculas.size) from Hacker h")
+	@Query("select avg(h.curriculas.size), min(h.curriculas.size), max(h.curriculas.size), stddev(h.curriculas.size) from Rookie h")
 	Object[] query7();
 	
 	@Query("select avg(f.positions.size), min(f.positions.size), max(f.positions.size), stddev(f.positions.size) from Finder f")

@@ -34,23 +34,23 @@
 	<!-- Display -->	
 	<spring:message code="curricula.display" var="displayHeader" />
 	<display:column title="${displayHeader}">
-			<a href="curricula/hacker/display.do?curriculaId=${row.id}">
+			<a href="curricula/rookie/display.do?curriculaId=${row.id}">
 			<spring:message code="curricula.display" /></a>
 	</display:column>
 	
 
-	<jstl:if test="${requestURI == 'curricula/hacker/list.do'}">
+	<jstl:if test="${requestURI == 'curricula/rookie/list.do'}">
 	
 	<!-- Borrar -->	
 	<spring:message code="curricula.delete" var="deleteHeader" />
 	<display:column title="${deleteHeader}">
-			<a href="curricula/hacker/delete.do?curriculaId=${row.id}">
+			<a href="curricula/rookie/delete.do?curriculaId=${row.id}">
 			<spring:message code="curricula.delete" /></a>
 	</display:column>
 	</jstl:if>
 	
 </display:table>
 <!-- Create Link -->
-<jstl:if test="${requestURI == 'curricula/hacker/list.do'}">
-	<a href=curricula/hacker/create.do><spring:message code="curricula.create" /></a>
+<jstl:if test="${requestURI == 'curricula/rookie/list.do'}">
+	<a href=curricula/rookie/create.do><spring:message code="curricula.create" /></a>
 </jstl:if>

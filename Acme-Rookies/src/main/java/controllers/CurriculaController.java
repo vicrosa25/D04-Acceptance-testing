@@ -18,38 +18,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.CurriculaService;
-import services.EducationDataService;
-import services.HackerService;
-import services.MiscellaneousDataService;
-import services.PersonalDataService;
-import services.PositionDataService;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rookie;
 import domain.Url;
+import services.CurriculaService;
+import services.EducationDataService;
+import services.MiscellaneousDataService;
+import services.PersonalDataService;
+import services.PositionDataService;
+import services.RookieService;
 
 @Controller
 @RequestMapping("/curricula")
 public class CurriculaController extends AbstractController {
 
 	@Autowired
-	private CurriculaService	curriculaService;
+	private CurriculaService			curriculaService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookieService				rookieService;
 
 	@Autowired
-	private PersonalDataService	personalDataService;
+	private PersonalDataService			personalDataService;
 
 	@Autowired
-	private PositionDataService	positionDataService;
+	private PositionDataService			positionDataService;
 
 	@Autowired
-	private EducationDataService	educationDataService;
+	private EducationDataService		educationDataService;
 
 	@Autowired
 	private MiscellaneousDataService	miscellaneousDataService;
@@ -60,18 +60,18 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// List -------------------------------------------------------------
-	@RequestMapping(value = "/hacker/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Curricula> curriculas;
 		try {
-			Hacker principal = this.hackerService.findByPrincipal();
+			Rookie principal = this.rookieService.findByPrincipal();
 			Assert.notNull(principal);
 			curriculas = this.curriculaService.findAllPrincipalNotApplied();
 
 			result = new ModelAndView("curricula/list");
 			result.addObject("curriculas", curriculas);
-			result.addObject("requestURI", "curricula/hacker/list.do");
+			result.addObject("requestURI", "curricula/rookie/list.do");
 
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
@@ -85,12 +85,12 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// Display -------------------------------------------------------------
-	@RequestMapping(value = "/hacker/display", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int curriculaId) {
 		ModelAndView result;
 		Curricula curricula;
 		try {
-			Hacker principal = this.hackerService.findByPrincipal();
+			Rookie principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
@@ -98,7 +98,7 @@ public class CurriculaController extends AbstractController {
 
 			result = new ModelAndView("curricula/display");
 			result.addObject("curricula", curricula);
-			result.addObject("requestURI", "curricula/hacker/display.do");
+			result.addObject("requestURI", "curricula/rookie/display.do");
 
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
@@ -112,13 +112,13 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// create -------------------------------------------------------------
-	@RequestMapping(value = "/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		try {
 			Curricula curricula = this.curriculaService.create();
 
-			result = new ModelAndView("curricula/hacker/create");
+			result = new ModelAndView("curricula/rookie/create");
 			result.addObject(curricula);
 
 		} catch (final Throwable oops) {
@@ -133,7 +133,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/hacker/create", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/rookie/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView personalDataSave(@Valid final Curricula curricula, final BindingResult binding) {
 		ModelAndView result;
 
@@ -142,7 +142,7 @@ public class CurriculaController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = new ModelAndView("curricula/hacker/create");
+			result = new ModelAndView("curricula/rookie/create");
 			result.addObject(curricula);
 		}
 
@@ -151,25 +151,25 @@ public class CurriculaController extends AbstractController {
 				Curricula clean = this.curriculaService.create();
 				clean.setTitle(curricula.getTitle());
 				this.curriculaService.save(clean);
-				result = new ModelAndView("redirect:/curricula/hacker/list.do");
+				result = new ModelAndView("redirect:/curricula/rookie/list.do");
 			} catch (final Throwable oops) {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/hacker/create");
+				result = new ModelAndView("curricula/rookie/create");
 				result.addObject(curricula);
 			}
 		return result;
 	}
 
 	// Delete -------------------------------------------------------------
-	@RequestMapping(value = "/hacker/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/rookie/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam int curriculaId) {
 		ModelAndView result;
 		Curricula curricula;
 		try {
-			Hacker principal = this.hackerService.findByPrincipal();
+			Rookie principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			Assert.isTrue(!curricula.getApplied());
 
@@ -193,14 +193,14 @@ public class CurriculaController extends AbstractController {
 
 	/** PERSONAL DATA **/
 	// create -------------------------------------------------------------
-	@RequestMapping(value = "/personalData/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/personalData/rookie/create", method = RequestMethod.GET)
 	public ModelAndView personalDataCreate(@RequestParam int curriculaId) {
 		ModelAndView result;
 		PersonalData personalData;
-		Hacker principal;
+		Rookie principal;
 		Curricula curricula;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			Assert.isTrue(!curricula.getApplied());
 			personalData = this.personalDataService.create();
@@ -209,7 +209,7 @@ public class CurriculaController extends AbstractController {
 
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
 
-			result = new ModelAndView("curricula/personalData/hacker/edit");
+			result = new ModelAndView("curricula/personalData/rookie/edit");
 			result.addObject("personalData", personalData);
 
 		} catch (final Throwable oops) {
@@ -223,14 +223,14 @@ public class CurriculaController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/personalData/hacker/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/personalData/rookie/edit", method = RequestMethod.GET)
 	public ModelAndView personalDataEdit(@RequestParam int curriculaId) {
 		ModelAndView result;
 		PersonalData personalData;
-		Hacker principal;
+		Rookie principal;
 		Curricula curricula;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			Assert.isTrue(!curricula.getApplied());
 
@@ -239,7 +239,7 @@ public class CurriculaController extends AbstractController {
 
 			personalData = curricula.getPersonalData();
 
-			result = new ModelAndView("curricula/personalData/hacker/edit");
+			result = new ModelAndView("curricula/personalData/rookie/edit");
 			result.addObject("personalData", personalData);
 
 		} catch (final Throwable oops) {
@@ -254,7 +254,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/personalData/hacker/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/personalData/rookie/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView personalDataSave(@Valid final PersonalData personalData, final BindingResult binding) {
 		ModelAndView result;
 
@@ -263,20 +263,20 @@ public class CurriculaController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = new ModelAndView("curricula/personalData/hacker/edit");
+			result = new ModelAndView("curricula/personalData/rookie/edit");
 			result.addObject("personalData", personalData);
 		}
 
 		else
 			try {
 				this.personalDataService.save(personalData);
-				result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + personalData.getCurricula().getId());
+				result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + personalData.getCurricula().getId());
 			} catch (final Throwable oops) {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/personalData/hacker/edit");
+				result = new ModelAndView("curricula/personalData/rookie/edit");
 				result.addObject("personalData", personalData);
 			}
 		return result;
@@ -285,14 +285,14 @@ public class CurriculaController extends AbstractController {
 
 	/** POSITION DATA **/
 	// create -------------------------------------------------------------
-	@RequestMapping(value = "/positionData/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/positionData/rookie/create", method = RequestMethod.GET)
 	public ModelAndView positionDataCreate(@RequestParam int curriculaId) {
 		ModelAndView result;
 		PositionData positionData;
-		Hacker principal;
+		Rookie principal;
 		Curricula curricula;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			positionData = this.positionDataService.create();
 
@@ -301,7 +301,7 @@ public class CurriculaController extends AbstractController {
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
 			Assert.isTrue(!curricula.getApplied());
 
-			result = new ModelAndView("curricula/positionData/hacker/edit");
+			result = new ModelAndView("curricula/positionData/rookie/edit");
 			result.addObject("positionData", positionData);
 
 		} catch (final Throwable oops) {
@@ -315,19 +315,19 @@ public class CurriculaController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/positionData/hacker/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/positionData/rookie/edit", method = RequestMethod.GET)
 	public ModelAndView positionDataEdit(@RequestParam int positionDataId) {
 		ModelAndView result;
 		PositionData positionData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			positionData = this.positionDataService.findOne(positionDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(positionData.getCurricula()));
 			Assert.isTrue(!positionData.getCurricula().getApplied());
 
-			result = new ModelAndView("curricula/positionData/hacker/edit");
+			result = new ModelAndView("curricula/positionData/rookie/edit");
 			result.addObject("positionData", positionData);
 
 		} catch (final Throwable oops) {
@@ -342,7 +342,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save pos data ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/positionData/hacker/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/positionData/rookie/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView positionDataSave(@Valid final PositionData positionData, final BindingResult binding) {
 		ModelAndView result;
 
@@ -357,38 +357,38 @@ public class CurriculaController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = new ModelAndView("curricula/positionData/hacker/edit");
+			result = new ModelAndView("curricula/positionData/rookie/edit");
 			result.addObject("positionData", positionData);
 		}
 
 		else
 			try {
 				this.positionDataService.save(positionData);
-				result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + positionData.getCurricula().getId());
+				result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + positionData.getCurricula().getId());
 			} catch (final Throwable oops) {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/positionData/hacker/edit");
+				result = new ModelAndView("curricula/positionData/rookie/edit");
 				result.addObject("positionData", positionData);
 			}
 		return result;
 	}
 
-	@RequestMapping(value = "/positionData/hacker/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/positionData/rookie/delete", method = RequestMethod.GET)
 	public ModelAndView positionDataDelete(@RequestParam int positionDataId) {
 		ModelAndView result;
 		PositionData positionData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			positionData = this.positionDataService.findOne(positionDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(positionData.getCurricula()));
 			Assert.isTrue(!positionData.getCurricula().getApplied());
 
-			result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + positionData.getCurricula().getId());
+			result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + positionData.getCurricula().getId());
 
 			this.positionDataService.delete(positionData);
 
@@ -405,14 +405,14 @@ public class CurriculaController extends AbstractController {
 
 	/** EDUCATION DATA **/
 	// create -------------------------------------------------------------
-	@RequestMapping(value = "/educationData/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/educationData/rookie/create", method = RequestMethod.GET)
 	public ModelAndView educationDataCreate(@RequestParam int curriculaId) {
 		ModelAndView result;
 		EducationData educationData;
-		Hacker principal;
+		Rookie principal;
 		Curricula curricula;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			educationData = this.educationDataService.create();
 
@@ -421,7 +421,7 @@ public class CurriculaController extends AbstractController {
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
 			Assert.isTrue(!curricula.getApplied());
 
-			result = new ModelAndView("curricula/educationData/hacker/edit");
+			result = new ModelAndView("curricula/educationData/rookie/edit");
 			result.addObject("educationData", educationData);
 
 		} catch (final Throwable oops) {
@@ -436,19 +436,19 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// edit education data-------------------------------------------------------------------
-	@RequestMapping(value = "/educationData/hacker/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/educationData/rookie/edit", method = RequestMethod.GET)
 	public ModelAndView educationDataEdit(@RequestParam int educationDataId) {
 		ModelAndView result;
 		EducationData educationData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			educationData = this.educationDataService.findOne(educationDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(educationData.getCurricula()));
 			Assert.isTrue(!educationData.getCurricula().getApplied());
 
-			result = new ModelAndView("curricula/educationData/hacker/edit");
+			result = new ModelAndView("curricula/educationData/rookie/edit");
 			result.addObject("educationData", educationData);
 
 		} catch (final Throwable oops) {
@@ -463,7 +463,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save educ data ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/educationData/hacker/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/educationData/rookie/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView educationDataSave(@Valid final EducationData educationData, final BindingResult binding) {
 		ModelAndView result;
 
@@ -478,39 +478,39 @@ public class CurriculaController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = new ModelAndView("curricula/educationData/hacker/edit");
+			result = new ModelAndView("curricula/educationData/rookie/edit");
 			result.addObject("educationData", educationData);
 		}
 
 		else
 			try {
 				this.educationDataService.save(educationData);
-				result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + educationData.getCurricula().getId());
+				result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + educationData.getCurricula().getId());
 			} catch (final Throwable oops) {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/educationData/hacker/edit");
+				result = new ModelAndView("curricula/educationData/rookie/edit");
 				result.addObject("educationData", educationData);
 			}
 		return result;
 	}
 
 	// delete educatiuon data -----------------------------------------------------------
-	@RequestMapping(value = "/educationData/hacker/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/educationData/rookie/delete", method = RequestMethod.GET)
 	public ModelAndView educationDataDelete(@RequestParam int educationDataId) {
 		ModelAndView result;
 		EducationData educationData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			educationData = this.educationDataService.findOne(educationDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(educationData.getCurricula()));
 			Assert.isTrue(!educationData.getCurricula().getApplied());
 
-			result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + educationData.getCurricula().getId());
+			result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + educationData.getCurricula().getId());
 
 			this.educationDataService.delete(educationData);
 
@@ -527,14 +527,14 @@ public class CurriculaController extends AbstractController {
 
 	/** MISCELLANEOUS DATA **/
 	// create -------------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/miscellaneousData/rookie/create", method = RequestMethod.GET)
 	public ModelAndView miscellaneousDataCreate(@RequestParam int curriculaId) {
 		ModelAndView result;
 		MiscellaneousData miscellaneousData;
-		Hacker principal;
+		Rookie principal;
 		Curricula curricula;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			curricula = this.curriculaService.findOne(curriculaId);
 			miscellaneousData = this.miscellaneousDataService.create();
 
@@ -543,7 +543,7 @@ public class CurriculaController extends AbstractController {
 
 			Assert.isTrue(principal.getCurriculas().contains(curricula));
 
-			result = new ModelAndView("curricula/miscellaneousData/hacker/edit");
+			result = new ModelAndView("curricula/miscellaneousData/rookie/edit");
 			result.addObject("miscellaneousData", miscellaneousData);
 
 		} catch (final Throwable oops) {
@@ -558,19 +558,19 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// edit miscellaneous data-------------------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/miscellaneousData/rookie/edit", method = RequestMethod.GET)
 	public ModelAndView miscellaneousDataEdit(@RequestParam int miscellaneousDataId) {
 		ModelAndView result;
 		MiscellaneousData miscellaneousData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			miscellaneousData = this.miscellaneousDataService.findOne(miscellaneousDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(miscellaneousData.getCurricula()));
 			Assert.isTrue(!miscellaneousData.getCurricula().getApplied());
 
-			result = new ModelAndView("curricula/miscellaneousData/hacker/edit");
+			result = new ModelAndView("curricula/miscellaneousData/rookie/edit");
 			result.addObject("miscellaneousData", miscellaneousData);
 
 		} catch (final Throwable oops) {
@@ -585,7 +585,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save miscellaneous data ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/miscellaneousData/rookie/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView miscellaneousDataSave(@Valid final MiscellaneousData miscellaneousData, final BindingResult binding) {
 		ModelAndView result;
 
@@ -594,39 +594,39 @@ public class CurriculaController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = new ModelAndView("curricula/miscellaneousData/hacker/edit");
+			result = new ModelAndView("curricula/miscellaneousData/rookie/edit");
 			result.addObject("miscellaneousData", miscellaneousData);
 		}
 
 		else
 			try {
 				this.miscellaneousDataService.save(miscellaneousData);
-				result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + miscellaneousData.getCurricula().getId());
+				result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + miscellaneousData.getCurricula().getId());
 			} catch (final Throwable oops) {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/miscellaneousData/hacker/edit");
+				result = new ModelAndView("curricula/miscellaneousData/rookie/edit");
 				result.addObject("miscellaneousData", miscellaneousData);
 			}
 		return result;
 	}
 
 	// delete misc data -----------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/miscellaneousData/rookie/delete", method = RequestMethod.GET)
 	public ModelAndView miscellaneousDataDelete(@RequestParam int miscellaneousDataId) {
 		ModelAndView result;
 		MiscellaneousData miscellaneousData;
-		Hacker principal;
+		Rookie principal;
 		try {
-			principal = this.hackerService.findByPrincipal();
+			principal = this.rookieService.findByPrincipal();
 			miscellaneousData = this.miscellaneousDataService.findOne(miscellaneousDataId);
 
 			Assert.isTrue(principal.getCurriculas().contains(miscellaneousData.getCurricula()));
 			Assert.isTrue(!miscellaneousData.getCurricula().getApplied());
 
-			result = new ModelAndView("redirect:/curricula/hacker/display.do?curriculaId=" + miscellaneousData.getCurricula().getId());
+			result = new ModelAndView("redirect:/curricula/rookie/display.do?curriculaId=" + miscellaneousData.getCurricula().getId());
 
 			this.miscellaneousDataService.delete(miscellaneousData);
 
@@ -642,7 +642,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// Attachment  ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/addAttachment", method = RequestMethod.GET)
+	@RequestMapping(value = "/miscellaneousData/rookie/addAttachment", method = RequestMethod.GET)
 	public ModelAndView addAttachment(@RequestParam final int miscellaneousDataId) {
 		ModelAndView result;
 		final Url url;
@@ -651,10 +651,10 @@ public class CurriculaController extends AbstractController {
 		try {
 			miscellaneousData = this.miscellaneousDataService.findOne(miscellaneousDataId);
 			Assert.notNull(miscellaneousData);
-			Assert.isTrue(this.hackerService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
+			Assert.isTrue(this.rookieService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
 			url = new Url();
 			url.setTargetId(miscellaneousDataId);
-			result = new ModelAndView("curricula/miscellaneousData/hacker/addAttachment");
+			result = new ModelAndView("curricula/miscellaneousData/rookie/addAttachment");
 			result.addObject("url", url);
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
@@ -666,7 +666,7 @@ public class CurriculaController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/miscellaneousData/hacker/deleteAttachment", method = RequestMethod.GET)
+	@RequestMapping(value = "/miscellaneousData/rookie/deleteAttachment", method = RequestMethod.GET)
 	public ModelAndView deletePicture(@RequestParam final String link, @RequestParam final int miscellaneousDataId) {
 		ModelAndView result;
 		MiscellaneousData miscellaneousData;
@@ -674,7 +674,7 @@ public class CurriculaController extends AbstractController {
 			System.out.println("Controller");
 			miscellaneousData = this.miscellaneousDataService.findOne(miscellaneousDataId);
 			Assert.notNull(miscellaneousData);
-			Assert.isTrue(this.hackerService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
+			Assert.isTrue(this.rookieService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
 			for (final Url attachment : miscellaneousData.getAttachments()) {
 				if (attachment.getLink().equals(link)) {
 					System.out.println("URL igual encontrada, borrando y guardando");
@@ -683,7 +683,7 @@ public class CurriculaController extends AbstractController {
 					break;
 				}
 			}
-			result = new ModelAndView("redirect:/curricula/miscellaneousData/hacker/edit.do?miscellaneousDataId=" + miscellaneousData.getId());
+			result = new ModelAndView("redirect:/curricula/miscellaneousData/rookie/edit.do?miscellaneousDataId=" + miscellaneousData.getId());
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
 			System.out.println(oops.getClass());
@@ -695,7 +695,7 @@ public class CurriculaController extends AbstractController {
 	}
 
 	// save attachment ------------------------------------------------------------------------------------
-	@RequestMapping(value = "/miscellaneousData/hacker/addAttachment", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/miscellaneousData/rookie/addAttachment", method = RequestMethod.POST, params = "save")
 	public ModelAndView savePicture(@Valid final Url url, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors()) {
@@ -704,23 +704,23 @@ public class CurriculaController extends AbstractController {
 				System.out.println(e.toString());
 			}
 
-			result = new ModelAndView("curricula/miscellaneousData/hacker/addAttachment");
+			result = new ModelAndView("curricula/miscellaneousData/rookie/addAttachment");
 			result.addObject("url", url);
 		} else {
 			try {
 				MiscellaneousData miscellaneousData = this.miscellaneousDataService.findOne(url.getTargetId());
 				Assert.notNull(miscellaneousData);
-				Assert.isTrue(this.hackerService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
+				Assert.isTrue(this.rookieService.findByPrincipal().getCurriculas().contains(miscellaneousData.getCurricula()));
 				miscellaneousData.getAttachments().add(url);
 				miscellaneousData = this.miscellaneousDataService.save(miscellaneousData);
-				result = new ModelAndView("redirect:/curricula/miscellaneousData/hacker/edit.do?miscellaneousDataId=" + miscellaneousData.getId());
+				result = new ModelAndView("redirect:/curricula/miscellaneousData/rookie/edit.do?miscellaneousDataId=" + miscellaneousData.getId());
 			} catch (final Throwable oops) {
 				System.out.println(url);
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
 				oops.printStackTrace();
-				result = new ModelAndView("curricula/miscellaneousData/hacker/addAttachment");
+				result = new ModelAndView("curricula/miscellaneousData/rookie/addAttachment");
 				result.addObject("url", url);
 			}
 		}

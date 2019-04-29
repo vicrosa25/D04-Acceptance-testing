@@ -54,10 +54,10 @@
 					<li><a href="problem/company/create.do"><spring:message code="master.page.problems.create" /></a></li>			
 				</ul>
 			</li>
-			<li><a class="fNiv"><spring:message code="master.page.hacker.applications" /></a>
+			<li><a class="fNiv"><spring:message code="master.page.rookie.applications" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/company/list.do"><spring:message code="master.page.hacker.applications.list" /></a></li>
+					<li><a href="application/company/list.do"><spring:message code="master.page.rookie.applications.list" /></a></li>
 				</ul>
 		</li>
 		
@@ -66,23 +66,23 @@
 		
 		<!-- An actor who is authenticated as a HACKER -->
 		<security:authorize access="hasRole('HACKER')">
-		<li><a class="fNiv"><spring:message code="master.page.hacker.applications" /></a>
+		<li><a class="fNiv"><spring:message code="master.page.rookie.applications" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/hacker/list.do"><spring:message code="master.page.hacker.applications.list" /></a></li>
+					<li><a href="application/rookie/list.do"><spring:message code="master.page.rookie.applications.list" /></a></li>
 				</ul>
 		</li>
 		<li><a class="fNiv"><spring:message	code="master.page.finder" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="finder/hacker/edit.do"><spring:message code="master.page.finder.edit" /></a></li>
-					<li><a href="finder/hacker/result.do"><spring:message code="master.page.finder.result" /></a></li>
+					<li><a href="finder/rookie/edit.do"><spring:message code="master.page.finder.edit" /></a></li>
+					<li><a href="finder/rookie/result.do"><spring:message code="master.page.finder.result" /></a></li>
 				</ul>
 		</li>
 		<li><a class="fNiv"><spring:message code="master.page.curricula" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="curricula/hacker/list.do"><spring:message code="master.page.curricula.list" /></a></li>
+					<li><a href="curricula/rookie/list.do"><spring:message code="master.page.curricula.list" /></a></li>
 				</ul>
 		</li>
 		</security:authorize>
@@ -106,7 +106,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="hacker/create.do"><spring:message code="master.page.hacker.register" /></a></li>
+					<li><a href="rookie/create.do"><spring:message code="master.page.rookie.register" /></a></li>
 					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>			
 				</ul>
 			</li>
@@ -141,10 +141,10 @@
 					
 					<!-- PROFILE -->
 					<security:authorize access="hasRole('HACKER')">
-						<li><a href="hacker/edit.do"><spring:message code="master.page.hacker.edit" /></a></li>
+						<li><a href="rookie/edit.do"><spring:message code="master.page.rookie.edit" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('COMPANY')">
-						<li><a href="company/edit.do"><spring:message code="master.page.hacker.edit" /></a></li>
+						<li><a href="company/edit.do"><spring:message code="master.page.rookie.edit" /></a></li>
 					</security:authorize>
 					
 					<!-- Message -->

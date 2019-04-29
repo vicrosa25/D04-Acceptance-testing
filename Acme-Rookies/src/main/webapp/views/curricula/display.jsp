@@ -38,16 +38,16 @@
 	<display:caption><spring:message code="curricula.personalData"/></display:caption>
 	</display:table>
 	
-	<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
-		<a href="curricula/personalData/hacker/edit.do?curriculaId=${curricula.id}">
+	<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
+		<a href="curricula/personalData/rookie/edit.do?curriculaId=${curricula.id}">
 			<spring:message code="curricula.personalData.edit"/>
 		</a>
 		<br>
 	</jstl:if>
 </jstl:if>
 <jstl:if test="${empty curricula.personalData}">
-	<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
-		<a href="curricula/personalData/hacker/create.do?curriculaId=${curricula.id}">
+	<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
+		<a href="curricula/personalData/rookie/create.do?curriculaId=${curricula.id}">
 			<spring:message code="curricula.personalData.create"/>
 		</a>
 		<br>
@@ -68,14 +68,14 @@
 	<display:column property="endDate" title="${endDateHeader}" sortable="false" format="{0,date,dd/MM/yyyy}" />
 
 	
-	<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
+	<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
 	<display:column title="${editHeader }">
-		<a href="curricula/positionData/hacker/edit.do?positionDataId=${row.id}">
+		<a href="curricula/positionData/rookie/edit.do?positionDataId=${row.id}">
 			<spring:message code="curricula.edit"/>
 		</a>
 	</display:column>
 	<display:column title="${deleteHeader}">
-		<a href="curricula/positionData/hacker/delete.do?positionDataId=${row.id}"><spring:message code="curricula.delete"/></a>
+		<a href="curricula/positionData/rookie/delete.do?positionDataId=${row.id}"><spring:message code="curricula.delete"/></a>
 	</display:column>
 	</jstl:if>
 	
@@ -83,8 +83,8 @@
 </display:table>
 </jstl:if>
 	
-<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
-	<a href="curricula/positionData/hacker/create.do?curriculaId=${curricula.id}">
+<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
+	<a href="curricula/positionData/rookie/create.do?curriculaId=${curricula.id}">
 		<spring:message code="curricula.positionData.create"/>
 	</a>
 	<br>
@@ -108,14 +108,14 @@
 
 	<display:column property="endDate" title="${endDateHeader}" sortable="false" format="{0,date,dd/MM/yyyy}" />
 	
-	<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
+	<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
 	<display:column title="${editHeader}">
-		<a href="curricula/educationData/hacker/edit.do?educationDataId=${row.id}">
+		<a href="curricula/educationData/rookie/edit.do?educationDataId=${row.id}">
 			<spring:message code="curricula.edit"/>
 		</a>
 	</display:column>
 	<display:column title="${deleteHeader}">
-		<a href="curricula/educationData/hacker/delete.do?educationDataId=${row.id}">
+		<a href="curricula/educationData/rookie/delete.do?educationDataId=${row.id}">
 		<spring:message code="curricula.delete"/></a>
 	</display:column>
 	</jstl:if>
@@ -124,8 +124,8 @@
 </display:table>
 </jstl:if>
 	
-<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
-	<a href="curricula/educationData/hacker/create.do?curriculaId=${curricula.id}">
+<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
+	<a href="curricula/educationData/rookie/create.do?curriculaId=${curricula.id}">
 		<spring:message code="curricula.educationData.create"/>
 	</a>
 	<br>
@@ -147,25 +147,25 @@
 		</jstl:forEach>
 	</display:column>
 	
-	<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
+	<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
 	<display:column title="${editHeader}">
-		<a href="curricula/miscellaneousData/hacker/edit.do?miscellaneousDataId=${row.id}">
+		<a href="curricula/miscellaneousData/rookie/edit.do?miscellaneousDataId=${row.id}">
 			<spring:message code="curricula.edit"/>
 		</a>
 	</display:column>
 	<display:column title="${deleteHeader}">
-		<a href="curricula/miscellaneousData/hacker/delete.do?miscellaneousDataId=${row.id}"><spring:message code="curricula.delete"/></a>
+		<a href="curricula/miscellaneousData/rookie/delete.do?miscellaneousDataId=${row.id}"><spring:message code="curricula.delete"/></a>
 	</display:column>
 	</jstl:if>
 <display:caption><spring:message code="curricula.miscellaneousData"/></display:caption>
 </display:table>
 </jstl:if>
 	
-<jstl:if test="${requestURI == 'curricula/hacker/display.do'}">
-	<a href="curricula/miscellaneousData/hacker/create.do?curriculaId=${curricula.id}">
+<jstl:if test="${requestURI == 'curricula/rookie/display.do'}">
+	<a href="curricula/miscellaneousData/rookie/create.do?curriculaId=${curricula.id}">
 		<spring:message code="curricula.miscellaneousData.create"/>
 	</a>
 	<br>
 </jstl:if>
 
-<acme:back code="hacker.goback"/>
+<acme:back code="rookie.goback"/>

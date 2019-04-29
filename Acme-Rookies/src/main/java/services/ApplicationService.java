@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.ApplicationRepository;
 import domain.Actor;
 import domain.Answer;
 import domain.Application;
 import domain.Company;
-import domain.Hacker;
 import domain.Message;
 import domain.Problem;
+import domain.Rookie;
+import repositories.ApplicationRepository;
 
 @Service
 @Transactional
@@ -50,10 +50,10 @@ public class ApplicationService {
 		Application result;
 		Actor principal;
 
-		// Principal must be a Hacker
+		// Principal must be a Rookie
 		principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
-		Hacker hacker = (Hacker) principal;
+		Assert.isInstanceOf(Rookie.class, principal);
+		Rookie rookie = (Rookie) principal;
 		
 		result = new Application();
 		
@@ -63,7 +63,7 @@ public class ApplicationService {
 
 		
 		// Default settings
-		result.setHacker(hacker);
+		result.setRookie(rookie);
 		result.setCreationMoment(date);
 		result.setStatus("PENDING");
 
@@ -86,14 +86,14 @@ public class ApplicationService {
 	}
 	
 	
-	public Collection<Application> findByHacker() {
+	public Collection<Application> findByRookie() {
 		Collection<Application> result;
 		
-		// Check the principal is a Hacker
+		// Check the principal is a Rookie
 		Actor principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
+		Assert.isInstanceOf(Rookie.class, principal);
 		
-		result = this.applicationRepository.findByHacker(principal.getId());
+		result = this.applicationRepository.findByRookie(principal.getId());
 		
 		return result;	
 	}
@@ -102,9 +102,9 @@ public class ApplicationService {
 		Assert.notNull(application);
 		Actor principal;
 
-		// Principal must be a Hacker 
+		// Principal must be a Rookie 
 		principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
+		Assert.isInstanceOf(Rookie.class, principal);
 		
 		// Checke for Position and Problems
 		Assert.notNull(application.getPosition());
@@ -150,19 +150,19 @@ public class ApplicationService {
 
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 
-		// Principal must be a Hacker
+		// Principal must be a Rookie
 		principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
+		Assert.isInstanceOf(Rookie.class, principal);
 
-		Hacker hacker = (Hacker) principal;
-		Assert.isTrue(hacker.getApplications().contains(application));
+		Rookie rookie = (Rookie) principal;
+		Assert.isTrue(rookie.getApplications().contains(application));
 
 		this.applicationRepository.delete(application);
 	}
 
 	public void forceDelete(Application application) {
 		Assert.notNull(application);
-		application.getHacker().getApplications().remove(application);
+		application.getRookie().getApplications().remove(application);
 		application.getPosition().getApplications().remove(application);
 
 		this.applicationRepository.delete(application);
@@ -209,7 +209,7 @@ public class ApplicationService {
 
 	private void automaticNotification(Application application, String decission) {
 		Collection<Actor> recipients = new ArrayList<Actor>();
-		recipients.add(application.getHacker());
+		recipients.add(application.getRookie());
 
 		Message notification = this.messageService.create();
 

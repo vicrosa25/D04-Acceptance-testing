@@ -11,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import domain.Hacker;
-import services.HackerService;
+import domain.Rookie;
+import services.RookieService;
 import utilities.AbstractTest;
 import utilities.Md5;
 
@@ -25,7 +25,7 @@ public class RegisterAHackerTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
 	@Autowired
-	private HackerService hackerService;
+	private RookieService hackerService;
 
 
 	// Test ------------------------------------------------------
@@ -87,7 +87,7 @@ public class RegisterAHackerTest extends AbstractTest {
 			super.authenticate(null);
 
 			// Create new Hacker
-			Hacker hacker = this.hackerService.create();
+			Rookie hacker = this.hackerService.create();
 
 			// Hacker userAccount
 			password = Md5.encodeMd5(pass);

@@ -6,12 +6,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="application/hacker/create.do" modelAttribute="application">
+<form:form action="application/rookie/create.do" modelAttribute="application">
 	
 	<%-- Hidden properties from application --%>
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="hacker" />
+	<form:hidden path="rookie" />
 	<form:hidden path="status" />
 	<form:hidden path="creationMoment" />
 	
@@ -29,7 +29,7 @@
 	<%-- Buttons --%>
 	<jstl:if test="${not empty positions }">
 		<acme:submit name="save" code="application.save"/>
-		<acme:cancel code="application.cancel" url="application/hacker/list.do" />
+		<acme:cancel code="application.cancel" url="application/rookie/list.do" />
 	</jstl:if>
 	
 	<jstl:if test="${ empty positions }">

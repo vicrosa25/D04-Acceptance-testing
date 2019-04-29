@@ -24,8 +24,8 @@
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />
 		
-		<bean class="converters.HackerToStringConverter" />
-		<bean class="converters.StringToHackerConverter" />
+		<bean class="converters.RookieToStringConverter" />
+		<bean class="converters.StringToRookieConverter" />
 		
 		<bean class="converters.ApplicationToStringConverter" />
 		<bean class="converters.StringToApplicationConverter" />

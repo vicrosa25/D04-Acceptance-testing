@@ -199,7 +199,7 @@
 
 <security:authorize access="hasRole('HACKER')">
 <jstl:if test="${ application.answer == null }">
-	<acme:cancel url="application/hacker/update.do?appId=${application.id}" code="application.update"/>
+	<acme:cancel url="application/rookie/update.do?appId=${application.id}" code="application.update"/>
 </jstl:if>
 </security:authorize>
 <acme:back code="application.goBack"/>

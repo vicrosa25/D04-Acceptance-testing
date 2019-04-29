@@ -25,8 +25,8 @@
 	</bean>
 	
 	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="hacker1" />
-		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="username" value="rookie1" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -49,8 +49,8 @@
 	</bean>
 	
 	<bean id="userAccount4" class="security.UserAccount">
-		<property name="username" value="hacker2" />
-		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
+		<property name="username" value="rookie2" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -99,16 +99,16 @@
 	</bean>
 	
 	
-	<!-- Hackers *************************************************************************** -->
-	<bean id="hacker1" class="domain.Hacker">
-		<property name="name" value="hacker1" />
-		<property name="username" value="hacker1" />
-		<property name="surname" value="hacker1" />
+	<!-- Rookies *************************************************************************** -->
+	<bean id="rookie1" class="domain.Rookie">
+		<property name="name" value="rookie1" />
+		<property name="username" value="rookie1" />
+		<property name="surname" value="rookie1" />
 		<property name="vat" value="13" />
 		<property name="cardNumber" value="378721273855309" />
-		<property name="email" value="hacker1@gmail.com" />
+		<property name="email" value="rookie1@gmail.com" />
 		<property name="phoneNumber" value="+34656256697" />
-		<property name="address" value="hacker1 18" />
+		<property name="address" value="rookie1 18" />
 		<property name="UserAccount" ref="userAccount2" />
 		<property name="finder" ref="finder1" />
 		<property name="socialProfiles">
@@ -139,15 +139,15 @@
 	</bean>
 	
 	
-	<bean id="hacker2" class="domain.Hacker">
-		<property name="name" value="hacker2" />
-		<property name="username" value="hacker2" />
-		<property name="surname" value="hacker2" />
+	<bean id="rookie2" class="domain.Rookie">
+		<property name="name" value="rookie2" />
+		<property name="username" value="rookie2" />
+		<property name="surname" value="rookie2" />
 		<property name="vat" value="13" />
 		<property name="cardNumber" value="378721273855309" />
-		<property name="email" value="hacker2@gmail.com" />
+		<property name="email" value="rookie2@gmail.com" />
 		<property name="phoneNumber" value="+34656256697" />
-		<property name="address" value="hacker2 18" />
+		<property name="address" value="rookie2 18" />
 		<property name="isSpammer" value="true" />
 		<property name="UserAccount" ref="userAccount4" />
 		<property name="finder" ref="finder2" />
@@ -351,20 +351,20 @@
 
 	<!-- Curriculas  ********************************************************************************* -->
 	<bean id="applied1" class="domain.Curricula">
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="rookie1"/>
 		<property name="title" value="Applied curricula 1"/>
 		<property name="applied" value="true"/>
 	</bean>
 	
 	<bean id="applied2" class="domain.Curricula">
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="rookie1"/>
 		<property name="title" value="Applied curricula 2"/>
 		<property name="applied" value="true"/>
 	</bean>
 	
 	<bean id="curricula1" class="domain.Curricula">
-		<property name="hacker" ref="hacker1"/>
-		<property name="title" value="first curricula of hacker 1"/>
+		<property name="rookie" ref="rookie1"/>
+		<property name="title" value="first curricula of rookie 1"/>
 		<property name="applied" value="false"/>
 		<property name="personalData" ref="personalData1"/>
 		<property name="positionData">
@@ -385,8 +385,8 @@
 	</bean>
 	
 	<bean id="curricula2" class="domain.Curricula">
-		<property name="hacker" ref="hacker2"/>
-		<property name="title" value="first curricula of hacker 2"/>
+		<property name="rookie" ref="rookie2"/>
+		<property name="title" value="first curricula of rookie 2"/>
 		<property name="applied" value="false"/>
 		<property name="personalData" ref="personalData2"/>
 	</bean>
@@ -395,7 +395,7 @@
 	
 	<bean id="personalData1" class="domain.PersonalData">
 		<property name="curricula" ref="curricula1"/>
-		<property name="fullName" value="Hacker 1"/>
+		<property name="fullName" value="Rookie 1"/>
 		<property name="statement" value="statement"/>
 		<property name="phoneNumber" value="632587412"/>
 		<property name="gitHub" value="https://www.google.com/"/>
@@ -404,7 +404,7 @@
 	
 	<bean id="personalData2" class="domain.PersonalData">
 		<property name="curricula" ref="curricula2"/>
-		<property name="fullName" value="Hacker 2"/>
+		<property name="fullName" value="Rookie 2"/>
 		<property name="statement" value="statement"/>
 		<property name="phoneNumber" value="632888412"/>
 		<property name="gitHub" value="https://www.google.com/"/>
@@ -435,7 +435,7 @@
 	<bean id="application1" class="domain.Application">
 		<property name="creationMoment" value="2019/03/27" />
 		<property name="status" value="SUBMITTED" />
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 		<property name="position" ref="position1" />
 		<property name="problem" ref="problem1" />
 		<property name="answer" ref="answer1"/>
@@ -445,7 +445,7 @@
 	<bean id="application2" class="domain.Application">
 		<property name="creationMoment" value="2019/02/18" />
 		<property name="status" value="PENDING" />
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 		<property name="position" ref="position2" />
 		<property name="problem" ref="problem2" />
 		<property name="curricula" ref="applied2"/>
@@ -650,17 +650,17 @@
 	</bean>
 
 	<bean id="socialProfile4" class="domain.SocialProfile">
-		<property name="nick" value="hacker1" />
+		<property name="nick" value="rookie1" />
 		<property name="socialNetwork" value="facebook" />
 		<property name="link" value="http://www.facebook/brotherhood1" />
-		<property name="actor" ref="hacker1" />
+		<property name="actor" ref="rookie1" />
 	</bean>
 
 	<bean id="socialProfile5" class="domain.SocialProfile">
-		<property name="nick" value="hacker2" />
+		<property name="nick" value="rookie2" />
 		<property name="socialNetwork" value="facebook" />
 		<property name="link" value="http://www.facebook/brotherhood2" />
-		<property name="actor" ref="hacker2" />
+		<property name="actor" ref="rookie2" />
 	</bean>
 
 
@@ -670,10 +670,10 @@
 
 	<!-- Messages *************************************************************************** -->
 	<bean id="message1" class="domain.Message">
-		<property name="sender" ref="hacker1" />
+		<property name="sender" ref="rookie1" />
 		<property name="recipients">
 			<list>
-				<ref bean="hacker2" />
+				<ref bean="rookie2" />
 			</list>
 		</property>
 		<property name="moment" value="2019/02/12 00:00" />
@@ -689,10 +689,10 @@
 	</bean>
 
 	<bean id="message2" class="domain.Message">
-		<property name="sender" ref="hacker2" />
+		<property name="sender" ref="rookie2" />
 		<property name="recipients">
 			<list>
-				<ref bean="hacker1" />
+				<ref bean="rookie1" />
 			</list>
 		</property>
 		<property name="moment" value="2019/02/12 00:00" />
@@ -731,7 +731,7 @@
 		<property name="sender" ref="admin" />
 		<property name="recipients">
 			<list>
-				<ref bean="hacker1" />
+				<ref bean="rookie1" />
 			</list>
 		</property>
 		<property name="moment" value="2019/02/12 00:00" />
@@ -795,7 +795,7 @@
 		<property name="title" value="Acme Rookies, Inc." />
 		<property name="logo" value="https://i.imgur.com/7b8lu4b.png " />
 		<property name="spanishMessage" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
-		<property name="englishMessage" value="Welcome to Acme Rookies! We’re IT hacker’s favourite job marketplace!" />
+		<property name="englishMessage" value="Welcome to Acme Rookies! We’re IT rookie’s favourite job marketplace!" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>

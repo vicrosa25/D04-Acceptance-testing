@@ -14,18 +14,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import services.CurriculaService;
-import services.EducationDataService;
-import services.HackerService;
-import services.MiscellaneousDataService;
-import services.PersonalDataService;
-import services.PositionDataService;
-import utilities.AbstractTest;
 import domain.Curricula;
 import domain.EducationData;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import services.CurriculaService;
+import services.EducationDataService;
+import services.MiscellaneousDataService;
+import services.PersonalDataService;
+import services.PositionDataService;
+import services.RookieService;
+import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
 	"classpath:spring/junit.xml"
@@ -48,7 +48,7 @@ public class ManageCurriculaTest extends AbstractTest {
 
 	// Supporting systems ------------------------------------------------------
 	@Autowired
-	private HackerService				hackerService;
+	private RookieService				hackerService;
 
 
 	// Test ------------------------------------------------------
@@ -284,7 +284,7 @@ public class ManageCurriculaTest extends AbstractTest {
 			final Curricula curricula = this.curriculaService.create();
 
 			// set attributes
-			curricula.setHacker(this.hackerService.findByPrincipal());
+			curricula.setRookie(this.hackerService.findByPrincipal());
 			curricula.setTitle(title);
 
 			//save

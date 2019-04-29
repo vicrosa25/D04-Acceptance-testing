@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import domain.Actor;
 import domain.Administrator;
 import domain.Company;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Message;
 import domain.Position;
 import repositories.AdministratorRepository;
@@ -137,7 +137,7 @@ public class AdministratorService {
 		return this.adminRepository.query3();
 	}
 
-	public Collection<Hacker> query4() {
+	public Collection<Rookie> query4() {
 		Actor principal;
 
 		// Check principal must be an admin

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Hacker extends Actor {
+public class Rookie extends Actor {
 
 	// Attributes -------------------------------------------------------------
 
@@ -34,7 +34,7 @@ public class Hacker extends Actor {
 		this.finder = finder;
 	}
 
-	@OneToMany(mappedBy = "hacker")
+	@OneToMany(mappedBy = "rookie")
 	public Collection<Application> getApplications() {
 		return applications;
 	}
@@ -43,7 +43,7 @@ public class Hacker extends Actor {
 		this.applications = applications;
 	}
 
-	@OneToMany(mappedBy = "hacker")
+	@OneToMany(mappedBy = "rookie")
 	public Collection<Curricula> getCurriculas() {
 		return curriculas;
 	}

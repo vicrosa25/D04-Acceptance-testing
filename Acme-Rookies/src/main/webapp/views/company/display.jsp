@@ -68,4 +68,4 @@
 <br>
 </jstl:if>
 <br>
-<acme:back code="hacker.goback"/>
+<acme:back code="rookie.goback"/>

@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 
 import domain.Actor;
 import domain.Answer;
-import domain.Hacker;
+import domain.Rookie;
 import repositories.AnswerRepository;
 
 @Service
@@ -31,7 +31,7 @@ public class AnswerService {
 
 		// Principal must be a Hacker
 		principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
+		Assert.isInstanceOf(Rookie.class, principal);
 
 		result = new Answer();
 
@@ -59,7 +59,7 @@ public class AnswerService {
 
 		// Principal must be a Hacker
 		principal = this.actorService.findByPrincipal();
-		Assert.isInstanceOf(Hacker.class, principal);
+		Assert.isInstanceOf(Rookie.class, principal);
 		
 		Answer result = this.answerRepository.save(Answer);
 
