@@ -48,7 +48,7 @@ public class ManageCurriculaTest extends AbstractTest {
 
 	// Supporting systems ------------------------------------------------------
 	@Autowired
-	private RookieService				hackerService;
+	private RookieService				rookieService;
 
 
 	// Test ------------------------------------------------------
@@ -65,11 +65,11 @@ public class ManageCurriculaTest extends AbstractTest {
 	public void driverCreate() {
 		final Object testingData[][] = {
 			{
-				null, "hacker1", "test title"
+				null, "rookie1", "test title"
 			}, {
 				IllegalArgumentException.class, "", "test title"
 			}, {
-				ConstraintViolationException.class, "hacker1", ""
+				ConstraintViolationException.class, "rookie1", ""
 			}
 		};
 
@@ -85,7 +85,7 @@ public class ManageCurriculaTest extends AbstractTest {
 	 * 02- Not authenticated; Error
 	 * 03- Blank fullName; Error
 	 * 04- Incorrect number; Error
-	 * 05- Edit other hacker's curricula; Error
+	 * 05- Edit other rookie's curricula; Error
 	 * 06- Incorrect gitHub url; Error
 	 */
 
@@ -101,7 +101,7 @@ public class ManageCurriculaTest extends AbstractTest {
 			}, {
 				ConstraintViolationException.class, null, "test fullName", "6547854", "https://github.com/"
 			}, {
-				IllegalArgumentException.class, "hacker2", "test fullName", "654789654", "https://github.com/"
+				IllegalArgumentException.class, "rookie2", "test fullName", "654789654", "https://github.com/"
 			}, {
 				ConstraintViolationException.class, null, "test fullName", "654789654", "github"
 			}
@@ -125,13 +125,13 @@ public class ManageCurriculaTest extends AbstractTest {
 	public void driverCreatePositionData() {
 		final Object testingData[][] = {
 			{
-				null, "hacker1", "10/10/2010", "test title"
+				null, "rookie1", "10/10/2010", "test title"
 			}, {
 				IllegalArgumentException.class, "", "10/10/2010", "test title"
 			}, {
-				ConstraintViolationException.class, "hacker1", "10/10/2020", "test title"
+				ConstraintViolationException.class, "rookie1", "10/10/2020", "test title"
 			}, {
-				ConstraintViolationException.class, "hacker1", "10/10/2010", ""
+				ConstraintViolationException.class, "rookie1", "10/10/2010", ""
 			}
 		};
 
@@ -145,7 +145,7 @@ public class ManageCurriculaTest extends AbstractTest {
 	 * 
 	 * 01- All ok
 	 * 02- Delete position data without being authenticated; Error
-	 * 03- Hacker2 deleting hacker1's position data; Error
+	 * 03- Rookie2 deleting rookie1's position data; Error
 	 */
 
 	@Test
@@ -154,9 +154,9 @@ public class ManageCurriculaTest extends AbstractTest {
 			{
 				IllegalArgumentException.class, ""
 			}, {
-				IllegalArgumentException.class, "hacker2"
+				IllegalArgumentException.class, "rookie2"
 			}, {
-				null, "hacker1"
+				null, "rookie1"
 			}
 		};
 
@@ -178,13 +178,13 @@ public class ManageCurriculaTest extends AbstractTest {
 	public void driverCreateEducationData() {
 		final Object testingData[][] = {
 			{
-				null, "hacker1", "10/10/2010", "test title"
+				null, "rookie1", "10/10/2010", "test title"
 			}, {
 				IllegalArgumentException.class, "", "10/10/2010", "test insitution"
 			}, {
-				ConstraintViolationException.class, "hacker1", "10/10/2020", "test insitution"
+				ConstraintViolationException.class, "rookie1", "10/10/2020", "test insitution"
 			}, {
-				ConstraintViolationException.class, "hacker1", "10/10/2010", ""
+				ConstraintViolationException.class, "rookie1", "10/10/2010", ""
 			}
 		};
 
@@ -198,7 +198,7 @@ public class ManageCurriculaTest extends AbstractTest {
 	 * 
 	 * 01- All ok
 	 * 02- Delete position data without being authenticated; Error
-	 * 03- Hacker2 deleting hacker1's position data; Error
+	 * 03- Rookie2 deleting rookie1's position data; Error
 	 */
 
 	@Test
@@ -207,9 +207,9 @@ public class ManageCurriculaTest extends AbstractTest {
 			{
 				IllegalArgumentException.class, ""
 			}, {
-				IllegalArgumentException.class, "hacker2"
+				IllegalArgumentException.class, "rookie2"
 			}, {
-				null, "hacker1"
+				null, "rookie1"
 			}
 		};
 
@@ -231,11 +231,11 @@ public class ManageCurriculaTest extends AbstractTest {
 	public void driverCreateMiscellaneousData() {
 		final Object testingData[][] = {
 			{
-				null, "hacker1", "test text"
+				null, "rookie1", "test text"
 			}, {
 				IllegalArgumentException.class, "", "test text"
 			}, {
-				ConstraintViolationException.class, "hacker1", ""
+				ConstraintViolationException.class, "rookie1", ""
 			}
 		};
 
@@ -249,7 +249,7 @@ public class ManageCurriculaTest extends AbstractTest {
 	 * 
 	 * 01- All ok
 	 * 02- Delete position data without being authenticated; Error
-	 * 03- Hacker2 deleting hacker1's position data; Error
+	 * 03- Rookie2 deleting rookie1's position data; Error
 	 */
 
 	@Test
@@ -258,9 +258,9 @@ public class ManageCurriculaTest extends AbstractTest {
 			{
 				IllegalArgumentException.class, ""
 			}, {
-				IllegalArgumentException.class, "hacker2"
+				IllegalArgumentException.class, "rookie2"
 			}, {
-				null, "hacker1"
+				null, "rookie1"
 			}
 		};
 
@@ -284,7 +284,7 @@ public class ManageCurriculaTest extends AbstractTest {
 			final Curricula curricula = this.curriculaService.create();
 
 			// set attributes
-			curricula.setRookie(this.hackerService.findByPrincipal());
+			curricula.setRookie(this.rookieService.findByPrincipal());
 			curricula.setTitle(title);
 
 			//save
@@ -305,9 +305,9 @@ public class ManageCurriculaTest extends AbstractTest {
 		caught = null;
 
 		try {
-			super.authenticate("hacker1");
+			super.authenticate("rookie1");
 
-			// get hacker1 not applied curricula personal data
+			// get rookie1 not applied curricula personal data
 			final PersonalData pd = new ArrayList<Curricula>(this.curriculaService.findAllPrincipalNotApplied()).get(0).getPersonalData();
 			if (username != null) {
 				super.unauthenticate();
@@ -367,9 +367,9 @@ public class ManageCurriculaTest extends AbstractTest {
 		try {
 			int i;
 			i = this.positionDataService.findAll().size();
-			super.authenticate("hacker1");
+			super.authenticate("rookie1");
 
-			// get hacker1 position data
+			// get rookie1 position data
 			final PositionData pd = (PositionData) new ArrayList<Curricula>(this.curriculaService.findAllPrincipalNotApplied()).get(0).getPositionData().toArray()[0];
 			if (username != null) {
 				super.unauthenticate();
@@ -427,9 +427,9 @@ public class ManageCurriculaTest extends AbstractTest {
 		try {
 			int i;
 			i = this.educationDataService.findAll().size();
-			super.authenticate("hacker1");
+			super.authenticate("rookie1");
 
-			// get hacker1 position data
+			// get rookie1 position data
 			final EducationData ed = (EducationData) new ArrayList<Curricula>(this.curriculaService.findAllPrincipalNotApplied()).get(0).getPositionData().toArray()[0];
 			if (username != null) {
 				super.unauthenticate();
@@ -483,9 +483,9 @@ public class ManageCurriculaTest extends AbstractTest {
 		try {
 			int i;
 			i = this.miscellaneousDataService.findAll().size();
-			super.authenticate("hacker1");
+			super.authenticate("rookie1");
 
-			// get hacker1 position data
+			// get rookie1 position data
 			final MiscellaneousData ed = (MiscellaneousData) new ArrayList<Curricula>(this.curriculaService.findAllPrincipalNotApplied()).get(0).getPositionData().toArray()[0];
 			if (username != null) {
 				super.unauthenticate();

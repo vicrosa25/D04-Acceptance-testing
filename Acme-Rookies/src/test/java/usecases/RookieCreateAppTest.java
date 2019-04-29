@@ -20,7 +20,7 @@ import utilities.AbstractTest;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class HackerCreateAppTest extends AbstractTest {
+public class RookieCreateAppTest extends AbstractTest {
 	
 	// System under test ---------------------------------------------------------------------------
 	@Autowired
@@ -34,7 +34,7 @@ public class HackerCreateAppTest extends AbstractTest {
 	
 	
 	/**
-	 * Requirement: An actor who is authenticated as a hacker must be able to:  "Create an Application"
+	 * Requirement: An actor who is authenticated as a rookie must be able to:  "Create an Application"
 	 *  
 	 * 	1. Positive test.
 	 *  
@@ -51,7 +51,7 @@ public class HackerCreateAppTest extends AbstractTest {
 
 		applicationsNumber = this.applicationService.findAll().size();
 		
-		super.authenticate("hacker1");
+		super.authenticate("rookie1");
 		app = this.applicationService.create();
 		
 		
@@ -74,10 +74,10 @@ public class HackerCreateAppTest extends AbstractTest {
 	
 	
 	/**
-	 * Requirement: An actor who is authenticated as a hacker must be albe to:  "Create an Application"
+	 * Requirement: An actor who is authenticated as a rookie must be albe to:  "Create an Application"
 	 *  
 	 * 1. Negative test.
-	 * 2. Business rule that is intended to broke: The actor is not authenticated as a hacker
+	 * 2. Business rule that is intended to broke: The actor is not authenticated as a rookie
 	 *  
 	 **/
 	@Test(expected = IllegalArgumentException.class)

@@ -46,7 +46,7 @@ public class DeleteMessageTest extends AbstractTest {
 		int messagesAfter;
 		Actor principal;
 		
-		super.authenticate("hacker1");
+		super.authenticate("rookie1");
 		
 		principal = this.actorService.findByPrincipal();
 		
@@ -81,7 +81,7 @@ public class DeleteMessageTest extends AbstractTest {
 		int messagesAfter;
 		Actor principal;
 		
-		super.authenticate("hacker1");
+		super.authenticate("rookie1");
 		
 		principal = this.actorService.findByPrincipal();
 		

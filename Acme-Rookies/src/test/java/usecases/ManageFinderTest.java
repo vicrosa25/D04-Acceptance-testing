@@ -10,11 +10,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import services.FinderService;
-import services.RookieService;
-import services.PositionService;
-import utilities.AbstractTest;
 import domain.Finder;
+import services.FinderService;
+import services.PositionService;
+import services.RookieService;
+import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
 	"classpath:spring/junit.xml"
@@ -29,22 +29,22 @@ public class ManageFinderTest extends AbstractTest {
 
 	// Supporting systems ------------------------------------------------------
 	@Autowired
-	private RookieService	hackerService;
+	private RookieService	rookieService;
 	@Autowired
 	private PositionService	positionService;
 
 
 	// Test ------------------------------------------------------
 	/*
-	 * An actor who is authenticated as a hacker must be able to manage his/her finder
+	 * An actor who is authenticated as a rookie must be able to manage his/her finder
 	 * This test consists in update the finder, check the results, clear the finder and check the results again
 	 */
 
 	@Test
 	public void testFinder() {
-		super.authenticate("hacker1");
+		super.authenticate("rookie1");
 
-		Finder finder = this.hackerService.findByPrincipal().getFinder();
+		Finder finder = this.rookieService.findByPrincipal().getFinder();
 
 		finder.setKeyword("aoiethjsbipogjasket09ihopsrt"); // keyword that no position has, so the results must be empty
 

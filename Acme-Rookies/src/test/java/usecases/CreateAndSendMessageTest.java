@@ -43,9 +43,9 @@ public class CreateAndSendMessageTest extends AbstractTest {
 	public void driver() {
 		final Object testingData[][] = {
 			{
-				null, "hacker1", "hacker2", "subject", "body", "LOW", "TAG"
+				null, "rookie1", "rookie2", "subject", "body", "LOW", "TAG"
 			}, {
-				IllegalArgumentException.class, "", "hacker2", "subject", "body", "LOW", "TAG"
+				IllegalArgumentException.class, "", "rookie2", "subject", "body", "LOW", "TAG"
 			}
 		};
 

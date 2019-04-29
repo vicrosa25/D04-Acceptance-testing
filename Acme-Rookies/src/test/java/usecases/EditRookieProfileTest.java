@@ -21,17 +21,17 @@ import utilities.AbstractTest;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class EditHackerProfileTest extends AbstractTest {
+public class EditRookieProfileTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
 	@Autowired
-	private RookieService hackerService;
+	private RookieService rookieService;
 
 
 	// Test ------------------------------------------------------
 	/*
 	 * An actor who is not authenticated must be able to:
-	 * Register to the system as a Hacker.
+	 * Register to the system as a Rookie.
 	 * 
 	 * 01- Positive test, OK
 	 * 02- Negative test, Blank name; Error
@@ -62,28 +62,28 @@ public class EditHackerProfileTest extends AbstractTest {
 
 		try {
 			
-			// Authenticate as 'hacker1'
-			super.authenticate("hacker1");
-			Rookie hacker1 = this.hackerService.findByPrincipal();
-			int version = hacker1.getVersion();
+			// Authenticate as 'rookie1'
+			super.authenticate("rookie1");
+			Rookie rookie1 = this.rookieService.findByPrincipal();
+			int version = rookie1.getVersion();
 
 
 			// Actor attributes
-			hacker1.setName(name);
-			hacker1.setSurname(surname);
-			hacker1.setVat(vat);
-			hacker1.setCardNumber(cardNumber);
-			hacker1.setEmail(email);
-			hacker1.setPhoneNumber(phoneNumber);
+			rookie1.setName(name);
+			rookie1.setSurname(surname);
+			rookie1.setVat(vat);
+			rookie1.setCardNumber(cardNumber);
+			rookie1.setEmail(email);
+			rookie1.setPhoneNumber(phoneNumber);
 			
 
-			// Update Hacker1
-			hacker1 = this.hackerService.reconstruct(hacker1, binding);
+			// Update Rookie1
+			rookie1 = this.rookieService.reconstruct(rookie1, binding);
 			
-			this.hackerService.save(hacker1);
+			this.rookieService.save(rookie1);
 			
-			// Check effectively change Hacker1.
-			Assert.isTrue(hacker1.getVersion() != version);
+			// Check effectively change Rookie1.
+			Assert.isTrue(rookie1.getVersion() != version);
 			super.unauthenticate();
 			
 			

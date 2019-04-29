@@ -25,7 +25,7 @@ public class AdminUnbanAnActorTest extends AbstractTest {
 	private AdministratorService 	administratorService;
 	
 	@Autowired
-	private RookieService			hackerService;
+	private RookieService			rookieService;
 	
 	
 	// Tests -----------------------------------------------------------------------------------------
@@ -41,13 +41,13 @@ public class AdminUnbanAnActorTest extends AbstractTest {
 	 **/
 	@Test
 	public void unbanActorPositive(){
-		Rookie hacker;
+		Rookie rookie;
 		super.authenticate("admin");
 		
-		hacker = this.hackerService.findOne(super.getEntityId("hacker2"));
+		rookie = this.rookieService.findOne(super.getEntityId("rookie2"));
 		
-		this.administratorService.banAnActor(hacker);
-		this.administratorService.unBanAnActor(hacker);
+		this.administratorService.banAnActor(rookie);
+		this.administratorService.unBanAnActor(rookie);
 		
 		
 		super.unauthenticate();
@@ -66,13 +66,13 @@ public class AdminUnbanAnActorTest extends AbstractTest {
 	 **/
 	@Test(expected = IllegalArgumentException.class)
 	public void unbanActorNegative(){
-		Rookie hacker;
-		super.authenticate("hacker1");
+		Rookie rookie;
+		super.authenticate("rookie1");
 		
-		hacker = this.hackerService.findOne(super.getEntityId("hacker2"));
+		rookie = this.rookieService.findOne(super.getEntityId("rookie2"));
 		
-		this.administratorService.banAnActor(hacker);
-		this.administratorService.unBanAnActor(hacker);
+		this.administratorService.banAnActor(rookie);
+		this.administratorService.unBanAnActor(rookie);
 		
 		
 		

@@ -46,13 +46,13 @@ public class createSociaProfileTest extends AbstractTest {
 	public void driver() {
 		final Object testingData[][] = {
 			{
-				null, "hacker2", "socialNetwork", "http://socialNetwork"
+				null, "rookie2", "socialNetwork", "http://socialNetwork"
 			}, {
 				IllegalArgumentException.class, "", "socialNetwork", "http://socialNetwork"
 			}, {
-				ConstraintViolationException.class, "hacker2", "", "http://socialNetwork"
+				ConstraintViolationException.class, "rookie2", "", "http://socialNetwork"
 			}, {
-				ConstraintViolationException.class, "hacker2", "socialNetwork", ""
+				ConstraintViolationException.class, "rookie2", "socialNetwork", ""
 			}
 		};
 
@@ -70,7 +70,7 @@ public class createSociaProfileTest extends AbstractTest {
 
 		try {
 			
-			// Authenticate as 'hacker1'
+			// Authenticate as 'rookie1'
 			super.authenticate(actor);
 
 			i = this.socialProficeServcie.findAll().size();
