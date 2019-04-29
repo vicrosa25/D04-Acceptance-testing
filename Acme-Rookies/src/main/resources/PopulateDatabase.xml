@@ -792,10 +792,10 @@
 		<property name="cacheTime" value="1" />
 		<property name="finderMaxResult" value="10" />
 		<property name="countryCode" value="+34" />
-		<property name="title" value="Acme Hacker Rank Co., Inc." />
+		<property name="title" value="Acme Rookies, Inc." />
 		<property name="logo" value="https://i.imgur.com/7b8lu4b.png " />
-		<property name="spanishMessage" value="¡Bienvenidos a Acme Hacker Rank! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
-		<property name="englishMessage" value="Welcome to Acme hacker Rank! We’re IT hacker’s favourite job marketplace!" />
+		<property name="spanishMessage" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="englishMessage" value="Welcome to Acme Rookies! We’re IT hacker’s favourite job marketplace!" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>

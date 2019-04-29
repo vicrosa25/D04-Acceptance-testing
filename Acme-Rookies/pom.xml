@@ -12,7 +12,7 @@
 	<!-- Artifact identification and properties -->
 
 	<groupId>Design-and-Testing</groupId>
-	<artifactId>Acme-Hacker-Rank</artifactId>
+	<artifactId>Acme-Rookies</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
@@ -24,32 +24,8 @@
 
 	<!-- Indexing information -->
 
-	<name>Acme Hacker Rank</name>
-	<url>http://www.acme-hacker-rank.com</url>
-
-
-	<!-- Sonar Profile section -->
-<!-- 	<profiles> -->
-<!-- 		<profile> -->
-<!-- 			<id>sonar</id> -->
-<!-- 			<properties> -->
-<!-- 				<sonar.host.url>https://sonarcloud.io</sonar.host.url> -->
-<!-- 				<sonar.organization>vicrosa25-github</sonar.organization> -->
-<!-- 			</properties> -->
-<!-- 			<build> -->
-<!-- 				<plugins> -->
-<!-- 					<plugin> -->
-<!-- 						<groupId>org.jacoco</groupId> -->
-<!-- 						<artifactId>jacoco-maven-plugin</artifactId> -->
-<!-- 					</plugin> -->
-<!-- 					<plugin> -->
-<!-- 						<groupId>org.sonarsource.scanner.maven</groupId> -->
-<!-- 						<artifactId>sonar-maven-plugin</artifactId> -->
-<!-- 					</plugin> -->
-<!-- 				</plugins> -->
-<!-- 			</build> -->
-<!-- 		</profile> -->
-<!-- 	</profiles> -->
+	<name>Acme Rookies</name>
+	<url>http://www.acme-rookies.com</url>
 
 
 	<!-- Build commands -->
