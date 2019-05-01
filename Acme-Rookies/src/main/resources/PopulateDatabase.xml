@@ -72,6 +72,30 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 
 
@@ -259,6 +283,54 @@
 			<list>
 				<ref bean="message3" />
 				<ref bean="message4" />
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Providers *************************************************************************** -->
+	<bean id="provider1" class="domain.Provider">
+		<property name="name" value="provider1" />
+		<property name="username" value="provider1" />
+		<property name="surname" value="provider1" />
+		<property name="make" value="provider1 provider1" />
+		<property name="vat" value="13" />
+		<property name="cardNumber" value="378721273855309" />
+		<property name="email" value="provider1@gmail.com" />
+		<property name="phoneNumber" value="+34656256697" />
+		<property name="address" value="provider1 18" />
+		<property name="UserAccount" ref="userAccount6" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="items">
+			<list>
+				<ref bean="item1" />
+				<ref bean="item2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="provider2" class="domain.Provider">
+		<property name="name" value="provider2" />
+		<property name="username" value="provider2" />
+		<property name="surname" value="provider2" />
+		<property name="make" value="provider2 provider2" />
+		<property name="vat" value="13" />
+		<property name="cardNumber" value="378721273855309" />
+		<property name="email" value="provider1@gmail.com" />
+		<property name="phoneNumber" value="+34656256697" />
+		<property name="address" value="provider2 18" />
+		<property name="UserAccount" ref="userAccount7" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="items">
+			<list>
+				<ref bean="item3" />
+				<ref bean="item4" />
 			</list>
 		</property>
 	</bean>
@@ -784,6 +856,37 @@
 	
 	<bean id="attachment3" class="domain.Url">
 		<property name="link" value="http://www.attachments.com/3"/>
+	</bean>
+	
+	
+	
+	<!-- Items *************************************************************************** -->
+	<bean id="item1" class="domain.Item">
+		<property name="name" value="provider1" />
+		<property name="description" value="facebook" />
+		<property name="link" value="http://www.item1/provider1" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item2" class="domain.Item">
+		<property name="name" value="provider1" />
+		<property name="description" value="facebook" />
+		<property name="link" value="http://www.item2/provider1" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item3" class="domain.Item">
+		<property name="name" value="provider2" />
+		<property name="description" value="facebook" />
+		<property name="link" value="http://www.item3/provider2" />
+		<property name="provider" ref="provider2" />
+	</bean>
+
+	<bean id="item4" class="domain.Item">
+		<property name="name" value="provider2" />
+		<property name="description" value="facebook" />
+		<property name="link" value="http://www.item4/provider2" />
+		<property name="provider" ref="provider2" />
 	</bean>
 
 
