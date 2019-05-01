@@ -6,38 +6,38 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <!-- Listing Grid -->
-<display:table name="profiles" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
+<display:table name="items" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
 	<!-- Edit -->
-	<spring:message code="profile.edit" var="editHeader" />
+	<spring:message code="item.edit" var="editHeader" />
 	<display:column title="${editHeader}">
-		<a href="socialProfile/edit.do?socialProfileId=${row.id}"> <spring:message code="profile.edit" /></a>
+		<a href="iteml/provider/edit.do?itemId=${row.id}"> <spring:message code="item.edit" /></a>
 	</display:column>
 
 
-	<!-- Nick -->
-	<spring:message code="profile.nick" var="nickHeader" />
-	<display:column property="nick" title="${titleHeader}" />
+	<!-- Name -->
+	<spring:message code="item.name" var="nameHeader" />
+	<display:column property="name" title="${nameHeader}" />
 
-	<!-- Social Network -->
-	<spring:message code="profile.socialNetwork" var="netHeader" />
-	<display:column property="socialNetwork" title="${netHeader}" />
+	<!-- Description -->
+	<spring:message code="item.description" var="descriptionHeader" />
+	<display:column property="description" title="${descriptionHeader}" />
 
 	<!-- Link -->
-	<spring:message code="profile.link" var="linkHeader" />
+	<spring:message code="item.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}" />
 	
 	<!-- Remove -->
-	<spring:message code="profile.remove.profile" var="removeHeader" />
+	<spring:message code="item.remove.item" var="removeHeader" />
 	<display:column title="${removeHeader}">
-		<a href="socialProfile/remove.do?socialProfileId=${row.id}"> <spring:message code="profile.remove.profile" /></a>
+		<a href="item/provider/delete.do?itemId=${row.id}"> <spring:message code="item.delte.item" /></a>
 	</display:column>
 
 </display:table>
 
 
 <!-- Add Social Profile -->
-<a href=socialProfile/create.do><spring:message code="profile.create" /></a>
+<a href=item/provider/create.do><spring:message code="item.create" /></a>
 
 
 
