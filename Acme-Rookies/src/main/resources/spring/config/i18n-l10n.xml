@@ -27,6 +27,7 @@
 		<value>/views/finder/messages</value>
 		<value>/views/socialProfile/messages</value>
 		<value>/views/curricula/messages</value>
+		<value>/views/item/messages</value>
 	</util:list>
 
 </beans>

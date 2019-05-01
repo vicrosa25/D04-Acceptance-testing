@@ -145,7 +145,13 @@
 		<security:intercept-url pattern="/curricula/miscellaneousData/rookie/addAttachment.do" access="hasRole('HACKER')" />
 		<security:intercept-url pattern="/curricula/miscellaneousData/rookie/deleteAttachment.do" access="hasRole('HACKER')" />
 		
-
+		
+		<!-- ITEM -->
+		<security:intercept-url pattern="/item/provider/list.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/create.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/display.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/edit.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
