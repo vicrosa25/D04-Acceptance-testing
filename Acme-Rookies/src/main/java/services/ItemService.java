@@ -82,5 +82,4 @@ public class ItemService {
 		
 		this.itemRepository.delete(item);
 	}
-
 }
