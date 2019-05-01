@@ -46,7 +46,7 @@ public class Position extends DomainEntity {
 		return this.deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(final Date deadline) {
 		this.deadline = deadline;
 	}
 
@@ -84,7 +84,7 @@ public class Position extends DomainEntity {
 		return this.finalMode;
 	}
 
-	public void setFinalMode(Boolean finalMode) {
+	public void setFinalMode(final Boolean finalMode) {
 		this.finalMode = finalMode;
 	}
 
@@ -92,7 +92,7 @@ public class Position extends DomainEntity {
 		return this.cancelled;
 	}
 
-	public void setCancelled(Boolean cancelled) {
+	public void setCancelled(final Boolean cancelled) {
 		this.cancelled = cancelled;
 	}
 
@@ -129,7 +129,7 @@ public class Position extends DomainEntity {
 		return this.salary;
 	}
 
-	public void setSalary(Double salary) {
+	public void setSalary(final Double salary) {
 		this.salary = salary;
 	}
 
@@ -138,24 +138,33 @@ public class Position extends DomainEntity {
 	private Company					company;
 	private Collection<Problem>		problems;
 	private Collection<Application>	applications;
+	private Collection<Audit>		audits;
 
+
+	@OneToMany
+	public Collection<Audit> getAudits() {
+		return this.audits;
+	}
+
+	public void setAudits(final Collection<Audit> audits) {
+		this.audits = audits;
+	}
 
 	@OneToMany(mappedBy = "position")
 	public Collection<Application> getApplications() {
-		return applications;
+		return this.applications;
 	}
 
-	public void setApplications(Collection<Application> applications) {
+	public void setApplications(final Collection<Application> applications) {
 		this.applications = applications;
 	}
-
 
 	@ManyToOne(optional = false)
 	public Company getCompany() {
 		return this.company;
 	}
 
-	public void setCompany(Company company) {
+	public void setCompany(final Company company) {
 		this.company = company;
 	}
 
@@ -164,14 +173,14 @@ public class Position extends DomainEntity {
 		return this.problems;
 	}
 
-	public void setProblems(Collection<Problem> problems) {
+	public void setProblems(final Collection<Problem> problems) {
 		this.problems = problems;
 	}
-	
+
 	// Other methods
 	@Override
 	public String toString() {
-		return "Position [deadline=" + deadline + ", ticker=" + ticker + ", title=" + title + ", description=" + description + ", finalMode=" + finalMode + ", profile=" + profile + ", skills=" + skills + ", technologies=" + technologies + ", salary="
-			+ salary + "]";
+		return "Position [deadline=" + this.deadline + ", ticker=" + this.ticker + ", title=" + this.title + ", description=" + this.description + ", finalMode=" + this.finalMode + ", profile=" + this.profile + ", skills=" + this.skills
+			+ ", technologies=" + this.technologies + ", salary=" + this.salary + "]";
 	}
 }
