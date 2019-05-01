@@ -30,7 +30,7 @@
 	<!-- Remove -->
 	<spring:message code="item.remove.item" var="removeHeader" />
 	<display:column title="${removeHeader}">
-		<a href="item/provider/delete.do?itemId=${row.id}"> <spring:message code="item.delte.item" /></a>
+		<a href="item/provider/delete.do?itemId=${row.id}"> <spring:message code="item.remove.item" /></a>
 	</display:column>
 
 </display:table>

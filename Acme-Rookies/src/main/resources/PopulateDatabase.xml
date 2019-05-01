@@ -862,29 +862,29 @@
 	
 	<!-- Items *************************************************************************** -->
 	<bean id="item1" class="domain.Item">
-		<property name="name" value="provider1" />
-		<property name="description" value="facebook" />
+		<property name="name" value="item1" />
+		<property name="description" value="item1 description" />
 		<property name="link" value="http://www.item1/provider1" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="item2" class="domain.Item">
-		<property name="name" value="provider1" />
-		<property name="description" value="facebook" />
+		<property name="name" value="item2" />
+		<property name="description" value="item2 description" />
 		<property name="link" value="http://www.item2/provider1" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="item3" class="domain.Item">
-		<property name="name" value="provider2" />
-		<property name="description" value="facebook" />
+		<property name="name" value="item3" />
+		<property name="description" value="item3 description" />
 		<property name="link" value="http://www.item3/provider2" />
 		<property name="provider" ref="provider2" />
 	</bean>
 
 	<bean id="item4" class="domain.Item">
-		<property name="name" value="provider2" />
-		<property name="description" value="facebook" />
+		<property name="name" value="item4" />
+		<property name="description" value="item4 description" />
 		<property name="link" value="http://www.item4/provider2" />
 		<property name="provider" ref="provider2" />
 	</bean>

@@ -64,7 +64,7 @@
 		</security:authorize>
 		
 		
-		<!-- An actor who is authenticated as a HACKER -->
+		<!-- An actor who is authenticated as a ROOKIE -->
 		<security:authorize access="hasRole('HACKER')">
 		<li><a class="fNiv"><spring:message code="master.page.rookie.applications" /></a>
 				<ul>
@@ -83,6 +83,16 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="curricula/rookie/list.do"><spring:message code="master.page.curricula.list" /></a></li>
+				</ul>
+		</li>
+		</security:authorize>
+		
+		<!-- An actor who is authenticated as a PROVIDER -->
+		<security:authorize access="hasRole('PROVIDER')">
+		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="item/provider/list.do"><spring:message code="master.page.items.list" /></a></li>
 				</ul>
 		</li>
 		</security:authorize>
