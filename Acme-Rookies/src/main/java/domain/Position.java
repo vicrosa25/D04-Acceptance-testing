@@ -136,6 +136,7 @@ public class Position extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 	private Company					company;
+	private Auditor					auditor;
 	private Collection<Problem>		problems;
 	private Collection<Application>	applications;
 	private Collection<Audit>		audits;
@@ -166,6 +167,15 @@ public class Position extends DomainEntity {
 
 	public void setCompany(final Company company) {
 		this.company = company;
+	}
+
+	@ManyToOne(optional = true)
+	public Auditor getAuditor() {
+		return this.auditor;
+	}
+
+	public void setAuditor(final Auditor auditor) {
+		this.auditor = auditor;
 	}
 
 	@ManyToMany
