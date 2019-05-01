@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -43,7 +44,7 @@ public class Provider extends Actor {
 	}
 
 
-	@OneToMany(mappedBy = "provider")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
 	public Collection<Sponsorship> getSponsorships() {
 		return sponsorships;
 	}
