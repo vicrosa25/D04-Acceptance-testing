@@ -48,7 +48,23 @@
 	<display:column title="${ companyHeader }">
 		<a href="company/display.do?companyId=${row.company.id}">${row.company.commercialName}</a>
 	</display:column>
-
+	
+	
+	<!-- Asignar -->	
+	<security:authorize access="hasRole('AUDITOR')">
+	<spring:message code="position.assign" var="assignHeader" />
+	<display:column title="${assignHeader}">
+			<jstl:if test="${row.finalMode}">
+			<jstl:if test="${empty row.auditor}">
+				<a href="position/auditor/assign.do?positionId=${row.id}">
+				<spring:message code="position.selfassign" /></a>
+			</jstl:if>
+			<jstl:if test="${not empty row.auditor}">
+				<spring:message code="position.assigned" />
+			</jstl:if>
+			</jstl:if>
+	</display:column>
+	</security:authorize>
 	
 
 	<jstl:if test="${requestURI == 'position/company/list.do'}">
