@@ -377,6 +377,8 @@
 		</property>
 		<property name="audits">
 			<list>
+				<ref bean="audit1" />
+				<ref bean="audit2" />
 			</list>
 		</property>
 	</bean>
@@ -414,11 +416,18 @@
 		<property name="salary" value="20000.0" />
 		<property name="finalMode" value="true" />
 		<property name="company" ref="company1" />
+		<property name="auditor" ref="auditor1" />
 		<property name="problems">
 			<list>
 				<ref bean="problem1" />
 				<ref bean="problem2" />
 				<ref bean="problem3" />
+
+			</list>
+		</property>
+		<property name="audits">
+			<list>
+				<ref bean="audit1" />
 
 			</list>
 		</property>
@@ -435,12 +444,18 @@
 		<property name="salary" value="34000.0" />
 		<property name="finalMode" value="true" />
 		<property name="company" ref="company1" />
+		<property name="auditor" ref="auditor1" />
 		<property name="problems">
 			<list>
 				<ref bean="problem7" />
 				<ref bean="problem8" />
 				<ref bean="problem9" />
 
+			</list>
+		</property>
+		<property name="audits">
+			<list>
+				<ref bean="audit2" />
 			</list>
 		</property>
 	</bean>
@@ -487,6 +502,22 @@
 	</bean>
 	
 
+	<!-- Audits  ********************************************************************************* -->
+	<bean id="audit1" class="domain.Audit">
+		<property name="moment" value="2019/04/18"/>
+		<property name="text" value="This position is not correct: 'un treh!'"/>
+		<property name="score" value="3"/>
+		<property name="finalMode" value="true"/>
+	</bean>
+	
+	<bean id="audit2" class="domain.Audit">
+		<property name="moment" value="2019/04/18"/>
+		<property name="text" value="I have determined that I do not undertand what is an audit"/>
+		<property name="score" value="5"/>
+		<property name="finalMode" value="false"/>
+	</bean>
+	
+	
 	<!-- Curriculas  ********************************************************************************* -->
 	<bean id="applied1" class="domain.Curricula">
 		<property name="rookie" ref="rookie1"/>
