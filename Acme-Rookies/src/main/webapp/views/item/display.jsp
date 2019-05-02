@@ -18,15 +18,15 @@
 
 
 
-<%-- Tutorial table --%>
-<display:table name="tutorial" id="row" requestURI="tutorial/display.do" class="displaytag">
+<%-- Items table --%>
+<display:table name="items" id="row" requestURI="item/provider/display.do" class="displaytag">
 
-	<%-- Title --%>
-	<spring:message code="tutorial.title" var="titleHeader" />
-	<display:column property="title" title="${titleHeader}" />
+	<%-- Name --%>
+	<spring:message code="item.name" var="nameHeader" />
+	<display:column property="name" title="${nameHeader}" />
 
-	<%-- LastUpdate --%>
- 	<spring:message code="tutorial.lastUpdate" var="lastUpdateHeader" />
+	<%-- Description --%>
+ 	<spring:message code="item.description" var="lastUpdateHeader" />
 	<display:column property="lastUpdate" title="${lastUpdateHeader}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
 	<%-- Summary --%>
@@ -102,45 +102,6 @@
 
 
 
-<%-- Sections table --%>
-<display:table name="sections"  id="row" requestURI="tutorial/display.do" class="displaytag">
-
-	<display:caption><b><spring:message code="tutorial.sections"/></b></display:caption>
-
-	<spring:message code="section.number" var="numberHeader" />
-	<display:column property="number" title="${numberHeader}" />
-
-	<spring:message code="section.title" var="titleHeader" />
-	<display:column property="title" title="${titleHeader}" />
-	
-	<spring:message code="section.text" var="textHeader" />
-	<display:column property="text" title="${textHeader}" />
-	
-	<!-- Display section link -->
-	<spring:message code="section.display" var="displayHeader" />
-		<display:column title="${displayHeader}">
-			<a href="section/display.do?sectionId=${row.id}"> <spring:message code="section.display" /></a>
-		</display:column>
-	
-	<!-- Create section link -->
-	<jstl:if test="${tutorial.getHandyWorker().equals(principal)}">
-			<spring:message code="section.edit" var="editHeader" />
-			<display:column title="${editHeader}">
-				<a href="section/handyWorker/edit.do?sectionId=${row.id}&tutorialId=${row.tutorial.id}">
-				<spring:message code="section.edit" /></a>
-			</display:column>
-	</jstl:if>
-	
-		
-</display:table>
-
-<!-- Create Section Link -->
-<jstl:if test="${tutorial.getHandyWorker().equals(principal)}">
-	<a href="section/handyWorker/create.do?tutorialId=${tutorial.id}"><b><spring:message code="section.add" /></b></a>
-</jstl:if>
-<br><br>
-
-
 <!-- Tutorial's pictures table -->
 <b><spring:message code="tutorial.pictures.table"/></b>
 <table>
@@ -183,8 +144,5 @@
 		onClick="javascript: window.location.replace('tutorial/list.do')" />
 </security:authorize>
 <br><br>
-
-<%-- Banner --%>
-<img src="${banner}" width="400" height="200">
 
 
