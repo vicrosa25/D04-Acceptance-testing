@@ -76,6 +76,7 @@
 		<security:intercept-url pattern="/position/company/delete.do" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/position/company/display.do" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/position/company/create.do" access="hasRole('COMPANY')" />
+		<security:intercept-url pattern="/position/auditor/assign.do" access="hasRole('AUDITOR')" />
 		
 		
 		<!-- APPLICATION -->

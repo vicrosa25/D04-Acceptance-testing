@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AuditorService;
 import services.CompanyService;
 import services.PositionService;
 import services.ProblemService;
@@ -35,6 +36,9 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	private ProblemService	problemService;
+
+	@Autowired
+	private AuditorService	auditorService;
 
 
 	@ExceptionHandler(TypeMismatchException.class)
@@ -278,6 +282,32 @@ public class PositionController extends AbstractController {
 			this.positionService.cancel(position);
 
 			result = new ModelAndView("redirect:/position/company/list.do");
+
+		} catch (final Throwable oops) {
+			System.out.println(oops.getMessage());
+			System.out.println(oops.getClass());
+			System.out.println(oops.getCause());
+			result = this.forbiddenOpperation();
+
+		}
+
+		return result;
+	}
+
+	// Assign ------------------------------------------------------------------------------------
+	@RequestMapping(value = "auditor/assign", method = RequestMethod.GET)
+	public ModelAndView assign(@RequestParam final int positionId) {
+		ModelAndView result;
+		Position position;
+
+		try {
+			position = this.positionService.findOne(positionId);
+			Assert.isTrue(position.getFinalMode());
+			Assert.isNull(position.getAuditor());
+
+			this.positionService.assign(position, this.auditorService.findByPrincipal());
+
+			result = new ModelAndView("redirect:/position/list.do");
 
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());
