@@ -245,4 +245,11 @@ public class PositionService {
 		position.setAuditor(auditor);
 		this.positionRepository.save(position);
 	}
+
+	public Position findByAudit(int auditId){
+		Position result = this.positionRepository.findByAudit(auditId);
+		Assert.notNull(result);
+
+		return result;
+	}
 }
