@@ -4,8 +4,6 @@ package controllers;
 import java.util.Collection;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +41,6 @@ public class PositionController extends AbstractController {
 
 	@ExceptionHandler(TypeMismatchException.class)
 	public ModelAndView handleMismatchException(final TypeMismatchException oops) {
-		JOptionPane.showMessageDialog(null, "Forbidden operation");
 		return new ModelAndView("redirect:/");
 	}
 
