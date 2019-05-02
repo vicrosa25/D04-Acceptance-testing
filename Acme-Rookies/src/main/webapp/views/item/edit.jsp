@@ -38,7 +38,7 @@
 
 	<input type="button" name="cancel"
 		value="<spring:message code="item.cancel" />"
-		onClick="javascript: window.location.replace('item/provider/list.do')" />
+		onClick="javascript: window.location.replace('item/list.do')" />
 	<br>
 	<br>
 

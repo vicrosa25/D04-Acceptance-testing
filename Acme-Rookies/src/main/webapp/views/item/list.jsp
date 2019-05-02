@@ -9,10 +9,12 @@
 <display:table name="items" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
 	<!-- Edit -->
+	<security:authorize access="hasRole('PROVIDER')">
 	<spring:message code="item.edit" var="editHeader" />
 	<display:column title="${editHeader}">
 		<a href="item/provider/edit.do?itemId=${row.id}"> <spring:message code="item.edit" /></a>
 	</display:column>
+	</security:authorize>
 
 
 	<!-- Name -->
@@ -27,17 +29,18 @@
 	<spring:message code="item.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}" />
 	
-	<!-- Remove -->
-	<spring:message code="item.remove.item" var="removeHeader" />
-	<display:column title="${removeHeader}">
-		<a href="item/provider/delete.do?itemId=${row.id}"> <spring:message code="item.remove.item" /></a>
+	<!-- Display -->
+	<spring:message code="item.display.item" var="dispalyHeader" />
+	<display:column title="${displayHeader}">
+		<a href="item/display.do?itemId=${row.id}"><spring:message code="item.display" /></a>
 	</display:column>
 
 </display:table>
 
 
-<!-- Add Social Profile -->
+<!-- Add Item -->
+<security:authorize access="hasRole('PROVIDER')">
 <a href=item/provider/create.do><spring:message code="item.create" /></a>
-
+</security:authorize>
 
 

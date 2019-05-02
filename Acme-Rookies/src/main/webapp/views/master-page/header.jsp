@@ -92,7 +92,7 @@
 		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="item/provider/list.do"><spring:message code="master.page.items.list" /></a></li>
+					<li><a href="item/list.do"><spring:message code="master.page.items.list" /></a></li>
 				</ul>
 		</li>
 		</security:authorize>

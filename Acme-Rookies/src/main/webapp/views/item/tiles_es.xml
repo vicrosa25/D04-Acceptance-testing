@@ -6,9 +6,14 @@
       
 <tiles-definitions>
 
-	<definition name="item/provider/list" extends="master.page">	
+	<definition name="item/list" extends="master.page">	
 		<put-attribute name="title" value="Lista de Items" />
 		<put-attribute name="body" value="/views/item/list.jsp" />
+	</definition>
+	
+	<definition name="item/display" extends="master.page">	
+		<put-attribute name="title" value="Mostrar Item" />
+		<put-attribute name="body" value="/views/item/display.jsp" />
 	</definition>
 	
 	<definition name="item/provider/create" extends="master.page">	

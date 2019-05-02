@@ -39,7 +39,7 @@ public class ItemController extends AbstractController {
 	}
 
 	// List -------------------------------------------------------------
-	@RequestMapping(value = "/provider/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Item> items;
@@ -48,9 +48,9 @@ public class ItemController extends AbstractController {
 
 		items = principal.getItems();
 
-		result = new ModelAndView("item/provider/list");
+		result = new ModelAndView("item/list");
 		result.addObject("items", items);
-		result.addObject("requestURI", "item/provider/list.do");
+		result.addObject("requestURI", "item/list.do");
 
 		return result;
 	}
@@ -82,7 +82,7 @@ public class ItemController extends AbstractController {
 			return this.forbiddenOperation();
 		}
 
-		result = this.createEditModelAndView(item);
+		result = this.editModelAndView(item);
 		return result;
 	}
 
@@ -96,7 +96,7 @@ public class ItemController extends AbstractController {
 		else
 			try {
 				this.itemService.save(item);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:../list.do");
 			} catch (Throwable oops) {
 				oops.printStackTrace();
 				result = this.createEditModelAndView(item, "profile.commit.error");
@@ -114,16 +114,47 @@ public class ItemController extends AbstractController {
 			Assert.notNull(item);
 			Assert.isTrue(principal.getItems().contains(item));
 			this.itemService.delete(item);
-			result = new ModelAndView("redirect:list.do");
+			result = new ModelAndView("redirect:../list.do");
 		} catch (Throwable oops) {
-			result = this.createEditModelAndView(item, "item.commit.error");
+			result = this.editModelAndView(item, "item.commit.error");
 		}
 
 		return result;
 	}
 
+	//Display
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam int itemId) {
+		ModelAndView result = null;
+		Item item = null;
+		Provider provider = null;
+
+		result = new ModelAndView("item/display");
+
+		try {
+			item = this.itemService.findOne(itemId);
+		} catch (final Exception e) {
+			return this.forbiddenOperation();
+		}
+
+		try {
+			provider = this.providerService.findByPrincipal();
+		} catch (final Exception e) {
+			result = new ModelAndView("item/display");
+			result.addObject("item", item);
+			result.addObject("provider", provider);
+			result.addObject("pictures", item.getPictures());
+			return result;
+		}
+
+		result.addObject("provider", provider);
+		result.addObject("item", item);
+		result.addObject("pictures", item.getPictures());
+		return result;
+	}
+
 	// Add Image ---------------------------------------------------------------
-	@RequestMapping(value = "provider/addImage", method = RequestMethod.GET)
+	@RequestMapping(value = "/provider/addImage", method = RequestMethod.GET)
 	public ModelAndView addLink(@RequestParam int tutorialId) {
 		ModelAndView result;
 		Item item;
@@ -142,60 +173,29 @@ public class ItemController extends AbstractController {
 		url = new Url();
 		url.setTargetId(item.getId());
 
-		result = new ModelAndView("item/provider/addImage");
+		result = new ModelAndView("item/addImage");
 		result.addObject("url", url);
 		result.addObject("item", item);
 
 		return result;
 	}
 
-	//Display
-	@RequestMapping(value = "/provider/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam int tutorialId) {
-		ModelAndView result = null;
-		Item item = null;
-		Provider principal = null;
-
-		result = new ModelAndView("item/provider/display");
-
-		try {
-			item = this.itemService.findOne(tutorialId);
-		} catch (final Exception e) {
-			return this.forbiddenOperation();
-		}
-
-		try {
-			principal = this.providerService.findByPrincipal();
-		} catch (final Exception e) {
-			result = new ModelAndView("item/provider/display");
-			result.addObject("item", item);
-			result.addObject("principal", principal);
-			result.addObject("pictures", item.getPictures());
-			return result;
-		}
-
-		result.addObject("principal", principal);
-		result.addObject("item", item);
-		result.addObject("pictures", item.getPictures());
-		return result;
-	}
-
 	// Add Image Save -------------------------------------------------------------
-	@RequestMapping(value = "provider/addImage", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/provider/addImage", method = RequestMethod.POST, params = "save")
 	public ModelAndView addLink(@Valid Url url, BindingResult binding) {
 		ModelAndView result;
 
 		Item item = this.itemService.findOne(url.getTargetId());
 
 		if (binding.hasErrors()) {
-			result = new ModelAndView("tutorial/handyWorker/addImage");
+			result = new ModelAndView("tutorial/addImage");
 			result.addObject("url", url);
 			result.addObject("item", item);
 		} else
 			try {
 				item.getPictures().add(url);
 				this.itemService.save(item);
-				result = new ModelAndView("redirect:/item/provider/display.do?tutorialId=" + item.getId());
+				result = new ModelAndView("redirect:/item/display.do?tutorialId=" + item.getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(item, "item.commit.error");
 			}
@@ -221,7 +221,7 @@ public class ItemController extends AbstractController {
 
 		return result;
 	}
-	
+
 	protected ModelAndView editModelAndView(Item item) {
 		ModelAndView result;
 
