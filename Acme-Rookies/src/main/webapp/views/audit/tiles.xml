@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+
+	<definition name="audit/auditor/list" extends="master.page">	
+		<put-attribute name="title" value="Audit list" />
+		<put-attribute name="body" value="/views/audit/list.jsp" />
+	</definition>
+
+	<definition name="audit/auditor/display" extends="master.page">	
+		<put-attribute name="title" value="Audit information" />
+		<put-attribute name="body" value="/views/audit/display.jsp" />
+	</definition>
+
+	<definition name="audit/auditor/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit audit" />
+		<put-attribute name="body" value="/views/audit/edit.jsp" />
+	</definition>
+
+	<definition name="audit/auditor/create" extends="master.page">	
+		<put-attribute name="title" value="New audit" />
+		<put-attribute name="body" value="/views/audit/edit.jsp" />
+	</definition>
+	
+</tiles-definitions>

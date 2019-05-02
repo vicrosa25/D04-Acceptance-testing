@@ -52,7 +52,7 @@
 	
 	<!-- Asignar -->	
 	<security:authorize access="hasRole('AUDITOR')">
-	<spring:message code="position.assign" var="assignHeader" />
+	<spring:message code="position.auditor" var="assignHeader" />
 	<display:column title="${assignHeader}">
 			<jstl:if test="${row.finalMode}">
 			<jstl:if test="${empty row.auditor}">
@@ -60,7 +60,7 @@
 				<spring:message code="position.selfassign" /></a>
 			</jstl:if>
 			<jstl:if test="${not empty row.auditor}">
-				<spring:message code="position.assigned" />
+				${row.auditor.name}
 			</jstl:if>
 			</jstl:if>
 	</display:column>

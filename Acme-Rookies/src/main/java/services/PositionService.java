@@ -14,14 +14,15 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import repositories.PositionRepository;
 import domain.Actor;
 import domain.Application;
+import domain.Auditor;
 import domain.Company;
 import domain.Finder;
 import domain.Message;
 import domain.Position;
 import domain.Problem;
-import repositories.PositionRepository;
 
 @Service
 @Transactional
@@ -52,6 +53,9 @@ public class PositionService {
 
 	@Autowired
 	private ProblemService		problemService;
+
+	@Autowired
+	private AuditorService	auditorService;
 
 	@Autowired
 	@Qualifier("validator")
@@ -231,5 +235,14 @@ public class PositionService {
 
 			this.messageService.save(notification);
 		}
+	}
+
+	public void assign(Position position, Auditor auditor) {
+		Assert.isTrue(position.getFinalMode());
+		Assert.isNull(position.getAuditor());
+		Assert.isTrue(auditor == this.auditorService.findByPrincipal());
+
+		position.setAuditor(auditor);
+		this.positionRepository.save(position);
 	}
 }

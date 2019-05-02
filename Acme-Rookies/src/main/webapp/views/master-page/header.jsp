@@ -97,6 +97,14 @@
 		</li>
 		</security:authorize>
 		
+		<!-- An actor who is authenticated as a AUDITOR -->
+		<security:authorize access="hasRole('AUDITOR')">
+		<li><a href="audit/auditor/list.do" class="fNiv"><spring:message code="master.page.audits" /></a>
+				<ul>
+				</ul>
+		</li>
+		</security:authorize>
+		
 		
 		
 		<!-- An actor who is NOT authenticated -->
