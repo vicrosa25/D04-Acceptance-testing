@@ -963,6 +963,12 @@
 		<property name="description" value="item1 description" />
 		<property name="link" value="http://www.item1/provider1" />
 		<property name="provider" ref="provider1" />
+		<property name="pictures">
+			<list>
+				<ref bean="picture1" />
+				<ref bean="picture2" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="item2" class="domain.Item">
@@ -977,6 +983,12 @@
 		<property name="description" value="item3 description" />
 		<property name="link" value="http://www.item3/provider2" />
 		<property name="provider" ref="provider2" />
+		<property name="pictures">
+			<list>
+				<ref bean="picture3" />
+				<ref bean="picture4" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="item4" class="domain.Item">

@@ -27,4 +27,9 @@
 		<put-attribute name="body" value="/views/item/edit.jsp" />
 	</definition>
 	
+	<definition name="item/provider/addPicture" extends="master.page">	
+		<put-attribute name="title" value="Add Picture" />
+		<put-attribute name="body" value="/views/item/addPicture.jsp" />
+	</definition>
+	
 </tiles-definitions>

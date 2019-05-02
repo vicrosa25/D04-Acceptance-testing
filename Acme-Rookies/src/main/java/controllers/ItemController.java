@@ -141,9 +141,9 @@ public class ItemController extends AbstractController {
 		return result;
 	}
 
-	// Add Image ---------------------------------------------------------------
-	@RequestMapping(value = "/provider/addImage", method = RequestMethod.GET)
-	public ModelAndView addLink(@RequestParam int tutorialId) {
+	// Add Picture GET  ---------------------------------------------------------------
+	@RequestMapping(value = "/provider/addPicture", method = RequestMethod.GET)
+	public ModelAndView addLink(@RequestParam int itemId) {
 		ModelAndView result;
 		Item item;
 		Url url;
@@ -151,7 +151,7 @@ public class ItemController extends AbstractController {
 		// Comprueba que el tutorial no es null y que le pertenece al worker
 		try {
 			Provider principal = this.providerService.findByPrincipal();
-			item = this.itemService.findOne(tutorialId);
+			item = this.itemService.findOne(itemId);
 			Assert.notNull(item);
 			Assert.isTrue(principal.getItems().contains(item));
 		} catch (final Exception e) {
@@ -161,31 +161,31 @@ public class ItemController extends AbstractController {
 		url = new Url();
 		url.setTargetId(item.getId());
 
-		result = new ModelAndView("item/addImage");
+		result = new ModelAndView("item/provider/addPicture");
 		result.addObject("url", url);
 		result.addObject("item", item);
 
 		return result;
 	}
 
-	// Add Image Save -------------------------------------------------------------
-	@RequestMapping(value = "/provider/addImage", method = RequestMethod.POST, params = "save")
+	// Add Picture POST -------------------------------------------------------------
+	@RequestMapping(value = "/provider/addPicture", method = RequestMethod.POST, params = "save")
 	public ModelAndView addLink(@Valid Url url, BindingResult binding) {
 		ModelAndView result;
 
 		Item item = this.itemService.findOne(url.getTargetId());
 
 		if (binding.hasErrors()) {
-			result = new ModelAndView("tutorial/addImage");
+			result = new ModelAndView("item/provider/addPicture");
 			result.addObject("url", url);
 			result.addObject("item", item);
 		} else
 			try {
 				item.getPictures().add(url);
 				this.itemService.save(item);
-				result = new ModelAndView("redirect:/item/display.do?tutorialId=" + item.getId());
+				result = new ModelAndView("redirect:/item/display.do?itemId=" + item.getId());
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(item, "item.commit.error");
+				result = this.editModelAndView(item, "item.commit.error");
 			}
 
 		return result;

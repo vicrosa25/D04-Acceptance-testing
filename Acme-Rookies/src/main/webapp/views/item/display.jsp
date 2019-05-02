@@ -45,9 +45,9 @@
 </table>
 
 
-<!-- Add Image -->
+<!-- Add Picture -->
 <security:authorize access="hasRole('PROVIDER')">
-	<a href="item/provider/addImage.do?itemId=${item.id}"><spring:message code="item.addPicture" /></a>
+	<a href="item/provider/addPicture.do?itemId=${item.id}"><spring:message code="item.addPicture" /></a>
 </security:authorize>
 <br><br>
 

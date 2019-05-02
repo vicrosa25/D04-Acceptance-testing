@@ -24,7 +24,7 @@
 
 		<%-- Link--%>
 		<form:label path="link">
-			<spring:message code="tutorial.link" />
+			<spring:message code="item.link" />
 		</form:label>
 		<form:input path="link" />
 		<form:errors class="error" path="link" />
@@ -38,7 +38,7 @@
 		
 		<input type="button" name="cancel"
 			value="<spring:message code="item.cancel" />"
-			onClick="javascript: window.location.replace('item/provider/display.do?itemId=${item.id}')" />
+			onClick="javascript: window.location.replace('item/display.do?itemId=${item.id}')" />
 	<br><br>
 	
 	
