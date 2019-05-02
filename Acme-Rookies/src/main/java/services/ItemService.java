@@ -76,9 +76,7 @@ public class ItemService {
 		Provider principal = this.providerService.findByPrincipal();
 		
 		Assert.notNull(principal);
-		Assert.isTrue(this.itemRepository.findByProvider(principal.getId()).contains(item));
-		
-		principal.getItems().remove(item);
+		Assert.isTrue(principal.getItems().contains(item));
 		
 		this.itemRepository.delete(item);
 	}

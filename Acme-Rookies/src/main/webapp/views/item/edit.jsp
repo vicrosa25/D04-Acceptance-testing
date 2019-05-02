@@ -6,41 +6,39 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="socialProfile/edit.do" modelAttribute="socialProfile">
+<form:form action="item/provider/edit.do" modelAttribute="item">
 
 	<%-- Hidden properties--%>
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="actor" />
+	<form:hidden path="provider" />
+	<form:hidden path="pictures" />
 	
-	
-	
-	<%-- socialProfile --%>
 
-	<%-- Nick --%>
-	<acme:textbox code="profile.nick" path="nick" />
+	<%-- Name --%>
+	<acme:textbox code="item.name" path="name" />
 	<br>
 
-	<%-- Social Network --%>
-	<acme:textbox code="profile.socialNetwork" path="socialNetwork" />
+	<%-- Description --%>
+	<acme:textbox code="item.description" path="description" />
 	<br>
 
 	<%-- link --%>
-	<acme:textbox code="profile.link" path="link" />
+	<acme:textbox code="item.link" path="link" />
 	<br>
 
 
 	<%-- Buttons --%>
 
-	<input type="submit" name="save" value="<spring:message code="profile.save"/>" />
+	<input type="submit" name="save" value="<spring:message code="item.save"/>" />
 
-<%-- 	<jstl:if test="${socialProfile.id != 0 }"> --%>
-<%-- 		<input type="submit" name="delete" value="<spring:message code="tutorial.delete"/>" /> --%>
-<%-- 	</jstl:if> --%>
+	<jstl:if test="${item.id != 0 }">
+		<input type="submit" name="delete" value="<spring:message code="item.remove"/>" />
+	</jstl:if>
 
 	<input type="button" name="cancel"
-		value="<spring:message code="profile.cancel" />"
-		onClick="javascript: window.location.replace('socialProfile/list.do')" />
+		value="<spring:message code="item.cancel" />"
+		onClick="javascript: window.location.replace('item/provider/list.do')" />
 	<br>
 	<br>
 

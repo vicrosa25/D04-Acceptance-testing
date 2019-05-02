@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Item;
 import domain.Provider;
+import domain.Url;
 import services.ItemService;
 import services.ProviderService;
 
@@ -78,7 +79,7 @@ public class ItemController extends AbstractController {
 			item = this.itemService.findOne(itemId);
 			Assert.isTrue(principal.getItems().contains(item));
 		} catch (Throwable oops) {
-			return this.forbiddenOpperation();
+			return this.forbiddenOperation();
 		}
 
 		result = this.createEditModelAndView(item);
@@ -104,19 +105,100 @@ public class ItemController extends AbstractController {
 	}
 
 	// Delete ------------------------------------------------------
-	@RequestMapping(value = "/provider/delete", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam int itemId) {
+	@RequestMapping(value = "/provider/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(Item item, BindingResult binding) {
 		ModelAndView result;
-		Item identity;
-
-		identity = this.itemService.findOne(itemId);
 
 		try {
-			this.itemService.delete(identity);
+			Provider principal = this.providerService.findByPrincipal();
+			Assert.notNull(item);
+			Assert.isTrue(principal.getItems().contains(item));
+			this.itemService.delete(item);
 			result = new ModelAndView("redirect:list.do");
 		} catch (Throwable oops) {
-			result = this.createEditModelAndView(identity, "profile.commit.error");
+			result = this.createEditModelAndView(item, "item.commit.error");
 		}
+
+		return result;
+	}
+
+	// Add Image ---------------------------------------------------------------
+	@RequestMapping(value = "provider/addImage", method = RequestMethod.GET)
+	public ModelAndView addLink(@RequestParam int tutorialId) {
+		ModelAndView result;
+		Item item;
+		Url url;
+
+		// Comprueba que el tutorial no es null y que le pertenece al worker
+		try {
+			Provider principal = this.providerService.findByPrincipal();
+			item = this.itemService.findOne(tutorialId);
+			Assert.notNull(item);
+			Assert.isTrue(principal.getItems().contains(item));
+		} catch (final Exception e) {
+			return this.forbiddenOperation();
+		}
+
+		url = new Url();
+		url.setTargetId(item.getId());
+
+		result = new ModelAndView("item/provider/addImage");
+		result.addObject("url", url);
+		result.addObject("item", item);
+
+		return result;
+	}
+
+	//Display
+	@RequestMapping(value = "/provider/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam int tutorialId) {
+		ModelAndView result = null;
+		Item item = null;
+		Provider principal = null;
+
+		result = new ModelAndView("item/provider/display");
+
+		try {
+			item = this.itemService.findOne(tutorialId);
+		} catch (final Exception e) {
+			return this.forbiddenOperation();
+		}
+
+		try {
+			principal = this.providerService.findByPrincipal();
+		} catch (final Exception e) {
+			result = new ModelAndView("item/provider/display");
+			result.addObject("item", item);
+			result.addObject("principal", principal);
+			result.addObject("pictures", item.getPictures());
+			return result;
+		}
+
+		result.addObject("principal", principal);
+		result.addObject("item", item);
+		result.addObject("pictures", item.getPictures());
+		return result;
+	}
+
+	// Add Image Save -------------------------------------------------------------
+	@RequestMapping(value = "provider/addImage", method = RequestMethod.POST, params = "save")
+	public ModelAndView addLink(@Valid Url url, BindingResult binding) {
+		ModelAndView result;
+
+		Item item = this.itemService.findOne(url.getTargetId());
+
+		if (binding.hasErrors()) {
+			result = new ModelAndView("tutorial/handyWorker/addImage");
+			result.addObject("url", url);
+			result.addObject("item", item);
+		} else
+			try {
+				item.getPictures().add(url);
+				this.itemService.save(item);
+				result = new ModelAndView("redirect:/item/provider/display.do?tutorialId=" + item.getId());
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(item, "item.commit.error");
+			}
 
 		return result;
 	}
@@ -140,7 +222,7 @@ public class ItemController extends AbstractController {
 		return result;
 	}
 
-	private ModelAndView forbiddenOpperation() {
+	private ModelAndView forbiddenOperation() {
 		return new ModelAndView("redirect:list.do");
 	}
 
