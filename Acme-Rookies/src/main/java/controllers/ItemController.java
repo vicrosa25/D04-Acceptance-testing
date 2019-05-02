@@ -215,6 +215,24 @@ public class ItemController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Item item, String message) {
 		ModelAndView result;
 
+		result = new ModelAndView("item/provider/create");
+		result.addObject("item", item);
+		result.addObject("message", message);
+
+		return result;
+	}
+	
+	protected ModelAndView editModelAndView(Item item) {
+		ModelAndView result;
+
+		result = this.createEditModelAndView(item, null);
+
+		return result;
+	}
+
+	protected ModelAndView editModelAndView(Item item, String message) {
+		ModelAndView result;
+
 		result = new ModelAndView("item/provider/edit");
 		result.addObject("item", item);
 		result.addObject("message", message);

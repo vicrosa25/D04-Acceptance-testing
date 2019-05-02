@@ -57,7 +57,7 @@ public class ItemService {
 			item.setProvider(principal);
 			saved = this.itemRepository.save(item);
 		} else {
-			Assert.isTrue(this.itemRepository.findByProvider(principal.getId()).contains(item));
+			Assert.isTrue(principal.getItems().contains(item));
 			saved = this.update(item);
 		}
 		return saved;

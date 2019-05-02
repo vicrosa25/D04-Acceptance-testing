@@ -11,7 +11,7 @@
 	<!-- Edit -->
 	<spring:message code="item.edit" var="editHeader" />
 	<display:column title="${editHeader}">
-		<a href="iteml/provider/edit.do?itemId=${row.id}"> <spring:message code="item.edit" /></a>
+		<a href="item/provider/edit.do?itemId=${row.id}"> <spring:message code="item.edit" /></a>
 	</display:column>
 
 
