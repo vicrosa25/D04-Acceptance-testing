@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!-- Listing Grid -->
-<display:table name="audits" id="row" pagesize="5" class="displaytag">
+<display:table name="audits" id="row" pagesize="5" requestURI="audit/auditor/list.do" class="displaytag">
 
 	<!-- moment -->
 	<spring:message code="audit.moment" var="momentHeader" />
