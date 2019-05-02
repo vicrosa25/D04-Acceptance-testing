@@ -19,7 +19,7 @@
 
 
 <%-- Items table --%>
-<display:table name="items" id="row" requestURI="item/provider/display.do" class="displaytag">
+<display:table name="item" id="row" requestURI="item/provider/display.do" class="displaytag">
 
 	<%-- Name --%>
 	<spring:message code="item.name" var="nameHeader" />
@@ -27,7 +27,7 @@
 
 	<%-- Description --%>
  	<spring:message code="item.description" var="lastUpdateHeader" />
-	<display:column property="lastUpdate" title="${lastUpdateHeader}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="description" title="${lastUpdateHeader}" />
 	
 	<%-- Link --%>
 	<spring:message code="item.link" var="linkHeader" />
@@ -45,38 +45,18 @@
 </table>
 
 
-<!-- Add Image to tutorial link -->
-<jstl:if test="${tutorial.getHandyWorker().equals(principal)}">
-	<a href="item/provider/addImage.do?itemId=${item.id}"><spring:message code="item.addPicture" />
-	</a>
-</jstl:if>
+<!-- Add Image -->
+<security:authorize access="hasRole('PROVIDER')">
+	<a href="item/provider/addImage.do?itemId=${item.id}"><spring:message code="item.addPicture" /></a>
+</security:authorize>
 <br><br>
 
 
 
 <%-- Button gotBack --%>
-<security:authorize access="hasRole('HANDYWORKER')">
 <input type="button" name="goBack"
-		value="<spring:message code="complaint.goBack.myTutorials" />"
-		onClick="javascript: window.location.replace('tutorial/handyWorker/list.do')" />
-		
-<input type="button" name="goBack"
-		value="<spring:message code="complaint.goBack.tutorials" />"
-		onClick="javascript: window.location.replace('tutorial/list.do')" />
-
-</security:authorize>
-
-<security:authorize access="hasAnyRole('ADMIN', 'CUSTOMER', 'REFEREE', 'SPONSOR')">
-<input type="button" name="goBack"
-		value="<spring:message code="complaint.goBack.tutorials" />"
-		onClick="javascript: window.location.replace('tutorial/list.do')" />
-</security:authorize>
-
-<security:authorize access="isAnonymous()">
-<input type="button" name="goBack"
-		value="<spring:message code="complaint.goBack.tutorials" />"
-		onClick="javascript: window.location.replace('tutorial/list.do')" />
-</security:authorize>
+		value="<spring:message code="item.goBack" />"
+		onClick="javascript: window.location.replace('item/list.do')" />
 <br><br>
 
 

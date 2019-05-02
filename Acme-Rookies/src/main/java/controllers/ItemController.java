@@ -127,7 +127,6 @@ public class ItemController extends AbstractController {
 	public ModelAndView display(@RequestParam int itemId) {
 		ModelAndView result = null;
 		Item item = null;
-		Provider provider = null;
 
 		result = new ModelAndView("item/display");
 
@@ -137,17 +136,6 @@ public class ItemController extends AbstractController {
 			return this.forbiddenOperation();
 		}
 
-		try {
-			provider = this.providerService.findByPrincipal();
-		} catch (final Exception e) {
-			result = new ModelAndView("item/display");
-			result.addObject("item", item);
-			result.addObject("provider", provider);
-			result.addObject("pictures", item.getPictures());
-			return result;
-		}
-
-		result.addObject("provider", provider);
 		result.addObject("item", item);
 		result.addObject("pictures", item.getPictures());
 		return result;
