@@ -508,6 +508,7 @@
 		<property name="text" value="This position is not correct: 'un treh!'"/>
 		<property name="score" value="3"/>
 		<property name="finalMode" value="true"/>
+		<property name="position" ref="position1" />
 	</bean>
 	
 	<bean id="audit2" class="domain.Audit">
@@ -515,6 +516,7 @@
 		<property name="text" value="I have determined that I do not undertand what is an audit"/>
 		<property name="score" value="5"/>
 		<property name="finalMode" value="false"/>
+		<property name="position" ref="position2" />
 	</bean>
 	
 	

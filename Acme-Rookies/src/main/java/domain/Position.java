@@ -142,7 +142,7 @@ public class Position extends DomainEntity {
 	private Collection<Audit>		audits;
 
 
-	@OneToMany
+	@OneToMany(mappedBy = "position")
 	public Collection<Audit> getAudits() {
 		return this.audits;
 	}

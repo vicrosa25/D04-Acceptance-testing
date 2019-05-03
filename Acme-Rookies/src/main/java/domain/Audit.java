@@ -6,8 +6,10 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -28,6 +30,9 @@ public class Audit extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
+	private Position	position;
+
+
 	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
@@ -66,5 +71,16 @@ public class Audit extends DomainEntity {
 
 	public void setFinalMode(final Boolean finalMode) {
 		this.finalMode = finalMode;
+	}
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	public Position getPosition() {
+		return this.position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 }
