@@ -11,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import domain.Administrator;
-import services.AdministratorService;
+import domain.Auditor;
+import services.AuditorService;
 import utilities.AbstractTest;
 import utilities.Md5;
 
@@ -21,28 +21,28 @@ import utilities.Md5;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class AdminCreateAdminTest extends AbstractTest {
+public class AdminCreateAuditorTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
 	@Autowired
-	private AdministratorService administratorService;
+	private AuditorService auditorService;
 
 
 	// Test ------------------------------------------------------
 	/*
 	 * An actor who is authenticated as an Admin must be able to:
-	 * 			Create an Admin Account.
+	 * 			Create an Auditor Account.
 	 * 
-	 * 01- All ok 							- Positive test
-	 * 02- Admin is not autheticate 		- Negative test - error
-	 * 03- Blank password 					- Negative test - error
-	 * 04- Blank username 					- Negative test - error
-	 * 05- Blank name 						- Negative test - error
-	 * 06- Blank surname 					- Negative test - error
-	 * 07- Blank vat 						- Negative test - error
-	 * 08- Blank cardNumber 				- Negative test - error
-	 * 09- Blank mail 						- Negative test - error
-	 * 10- Blank phoneNumber 				- Negative test - error
+	 * 01- All ok - Positive test
+	 * 02- Admin is not autheticate - Negative test - error
+	 * 03- Blank password - Negative test - error
+	 * 04- Blank username - Negative test - error
+	 * 05- Blank name - Negative test - error
+	 * 06- Blank surname - Negative test - error
+	 * 07- Blank vat - Negative test - error
+	 * 08- Blank cardNumber - Negative test - error
+	 * 09- Blank mail - Negative test - error
+	 * 10- Blank phoneNumber - Negative test - error
 	 */
 
 	@Test
@@ -72,9 +72,8 @@ public class AdminCreateAdminTest extends AbstractTest {
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.template((Class<?>) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], 
-						 (String) testingData[i][4], (String) testingData[i][5], (Integer) testingData[i][6], (String) testingData[i][7],
-						 (String) testingData[i][8], (String) testingData[i][9]);
+			this.template((Class<?>) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Integer) testingData[i][6], (String) testingData[i][7],
+				(String) testingData[i][8], (String) testingData[i][9]);
 	}
 
 	// Ancillary methods ------------------------------------------------------
@@ -86,37 +85,36 @@ public class AdminCreateAdminTest extends AbstractTest {
 
 		try {
 			String password;
-			
-			i = this.administratorService.findAll().size();
+
+			i = this.auditorService.findAll().size();
 
 			super.authenticate(principal);
 
-			// Create new Administrator
-			Administrator administrator = this.administratorService.create();
+			// Create new Auditor
+			Auditor auditor = this.auditorService.create();
 
-			// Administrator userAccount
+			// Auditor userAccount
 			password = Md5.encodeMd5(pass);
-			administrator.getUserAccount().setPassword(password);
-			administrator.getUserAccount().setUsername(userName);
+			auditor.getUserAccount().setPassword(password);
+			auditor.getUserAccount().setUsername(userName);
 
 			// Actor attributes
-			administrator.setName(name);
-			administrator.setSurname(surname);
-			administrator.setVat(vat);
-			administrator.setCardNumber(cardNumber);
-			administrator.setEmail(email);
-			administrator.setPhoneNumber(phoneNumber);
+			auditor.setName(name);
+			auditor.setSurname(surname);
+			auditor.setVat(vat);
+			auditor.setCardNumber(cardNumber);
+			auditor.setEmail(email);
+			auditor.setPhoneNumber(phoneNumber);
 
+			// Save new Auditor
+			this.auditorService.save(auditor);
 
-			// Save new Administrator
-			this.administratorService.save(administrator);
-			
-			ii = this.administratorService.findAll().size();
+			ii = this.auditorService.findAll().size();
 
 			Assert.isTrue(ii > i);
 
 			super.unauthenticate();
-			
+
 		} catch (Throwable oops) {
 			caught = oops.getClass();
 		}
