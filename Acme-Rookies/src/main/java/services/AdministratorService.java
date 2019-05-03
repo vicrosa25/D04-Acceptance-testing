@@ -11,10 +11,11 @@ import org.springframework.util.Assert;
 
 import domain.Actor;
 import domain.Administrator;
+import domain.Audit;
 import domain.Company;
-import domain.Rookie;
 import domain.Message;
 import domain.Position;
+import domain.Rookie;
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
@@ -37,6 +38,12 @@ public class AdministratorService {
 
 	@Autowired
 	private MessageService			messageService;
+	
+	@Autowired
+	private CompanyService			companyService;
+	
+	@Autowired
+	private AuditService			auditService;
 
 
 	/*************************************
@@ -168,8 +175,7 @@ public class AdministratorService {
 		result.addAll(this.adminRepository.query6a());
 		return result;
 	}
-	
-	
+
 	public Collection<Position> query6b() {
 		Actor principal;
 
@@ -191,7 +197,6 @@ public class AdministratorService {
 
 		return this.adminRepository.query7();
 	}
-
 
 	public Object[] query8() {
 		Actor principal;
@@ -245,7 +250,6 @@ public class AdministratorService {
 		}
 	}
 
-
 	public Collection<Actor> getSpammers() {
 		Actor principal;
 
@@ -296,7 +300,6 @@ public class AdministratorService {
 		return this.actorService.save(actor);
 
 	}
-
 
 	/**
 	 * 
@@ -352,9 +355,70 @@ public class AdministratorService {
 		this.configurationsService.update(this.configurationsService.getConfiguration());
 	}
 
+	/**
+	 * 
+	 * Company SCORE ****************************************************************************
+	 */
+	public void computeAllScores() {
 
+		Collection<Company> companies;
+		Collection<Audit> audits;
 
+		// Make sure that the principal is an Admin
+		final Actor principal = this.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
+		
+		// Get all the system companies 
+		companies = this.companyService.findAll();
+		
+		
+		// Loop for all company getting its list of audits
+		for (Company company : companies) {
+			audits = this.auditService.findAllByCompany(company.getId());
+			
+			if(!audits.isEmpty()) {
+				company.setScore(this.computeScore(audits));
+				this.companyService.save(company);
+			} else {
+				// if the audit list is empty score is null
+				company.setScore(null);
+				this.companyService.save(company);
+			}
+		}
+	}
 
+	private Double computeScore(Collection<Audit> audits) {
+		Double sum = 0.0;
+		Double average = 0.0;
+		Double result = 0.0;
+		Integer maxValue = 0;
+		Integer minValue = 10;
+		
+		// Calculate the media
+		for (Audit audit : audits) {
+			sum += audit.getScore();
+		}
+		average = sum / audits.size();
+		
+		// Find maxValue
+		for (Audit audit : audits) {
+			if(audit.getScore() >= maxValue) 
+				maxValue = audit.getScore();
+		}
+		
+		// Find minValue
+		for (Audit audit : audits) {
+			if(audit.getScore() <= minValue) 
+				minValue = audit.getScore();
+		}
+		
+		
+		// Calculate result
+		result = (average - minValue) /(maxValue - minValue);
+		
+		return result;
+
+	}
 
 	/*************************************
 	 * Other business methods

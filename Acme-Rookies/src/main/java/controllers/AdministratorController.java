@@ -32,10 +32,11 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Company;
 import domain.Configurations;
-import domain.Rookie;
 import domain.Position;
+import domain.Rookie;
 import services.ActorService;
 import services.AdministratorService;
+import services.CompanyService;
 import services.ConfigurationsService;
 import utilities.Md5;
 
@@ -51,6 +52,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private ActorService			actorService;
+	
+	@Autowired
+	private CompanyService			companyService;
 
 
 	@ExceptionHandler(TypeMismatchException.class)
@@ -424,6 +428,43 @@ public class AdministratorController extends AbstractController {
 		}
 
 		result = new ModelAndView("redirect:/");
+		return result;
+	}
+	
+	/**
+	 * 
+	 * SCORE ****************************************************************************
+	 */
+
+	// Score list -------------------------------------------------------------------
+	@RequestMapping(value = "/score", method = RequestMethod.GET)
+	public ModelAndView scoreList() {
+		ModelAndView result;
+		Collection<Company> companies;
+
+		companies = this.companyService.findAll();
+
+		result = new ModelAndView("administrator/score");
+		result.addObject("companies", companies);
+		result.addObject("requestURI", "administrator/score.do");
+
+		return result;
+	}
+
+	// Score Compute -------------------------------------------------------------------
+	@RequestMapping(value = "/computeScore", method = RequestMethod.GET)
+	public ModelAndView computeScoreList() {
+		ModelAndView result;
+		Collection<Company> companies;
+
+		this.administratorService.computeAllScores();
+
+		companies = this.companyService.findAll();
+
+		result = new ModelAndView("administrator/score");
+		result.addObject("companies", companies);
+		//result.addObject("requestURI", "administrator/score.do");
+
 		return result;
 	}
 

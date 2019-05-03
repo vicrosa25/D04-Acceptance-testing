@@ -16,6 +16,7 @@ public class Company extends Actor {
 
 	// Attributes -------------------------------------------------------------
 	private String					commercialName;
+	private Double					score;					
 
 	// Relationships ----------------------------------------------------------
 	private Collection<Position>	positions;
@@ -30,6 +31,16 @@ public class Company extends Actor {
 
 	public void setCommercialName(final String commercialName) {
 		this.commercialName = commercialName;
+	}
+	
+	
+	public Double getScore() {
+		return score;
+	}
+
+	
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	//--------------------------------------------------------------
