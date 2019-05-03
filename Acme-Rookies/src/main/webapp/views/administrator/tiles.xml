@@ -66,6 +66,12 @@
 		<put-attribute name="title" value="Edit Spam Word" />
 		<put-attribute name="body" value="/views/administrator/config/spam/edit.jsp" />
 	</definition>
+	
+	<!--  SCORE  -->
+	<definition name="administrator/score" extends="master.page">
+		<put-attribute name="title" value="Company Audit Scores"/>
+		<put-attribute name="body" value="/views/administrator/score.jsp"/>
+	</definition>
 
 
 </tiles-definitions>

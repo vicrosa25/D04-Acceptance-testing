@@ -414,9 +414,13 @@ public class AdministratorService {
 		
 		
 		// Calculate result
-		result = (average - minValue) /(maxValue - minValue);
-		
-		return result;
+		if (average - minValue == 0) 
+			return result;
+		else if (maxValue - minValue == 0)
+			return result;
+		else
+			return result = (average - minValue) /(maxValue - minValue);
+
 
 	}
 

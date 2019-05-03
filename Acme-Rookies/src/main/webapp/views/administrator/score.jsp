@@ -16,19 +16,31 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table name="users" id="row" requestURI="administrator/score.do" pagesize="5" class="displaytag">
+<display:table name="companies" id="row" requestURI="administrator/score.do" pagesize="5" class="displaytag">
 
-	<spring:message code="administrator.name" var="nameHeader" />
-	<display:column property="name" title="${nameHeader}" sortable="true" />
+	<spring:message code="administrator.commercialName" var="commercialNameHeader" />
+	<display:column property="commercialName" title="${commercialNameHeader}" />
 	
-	<spring:message code="administrator.surname" var="surnameHeader" />
-	<display:column property="surname" title="${surnameHeader}" />
 	
 	<spring:message code="administrator.email" var="emailHeader" />
 	<display:column property="email" title="${emailHeader}" />
 
+<%-- 	<spring:message code="administrator.score" var="scoreHeader" /> --%>
+<%-- 	<display:column property="score" title="${scoreHeader}" format="{0,number,0.00}" /> --%>
+	
+	<!-- Audit Score -->
 	<spring:message code="administrator.score" var="scoreHeader" />
-	<display:column property="score" title="${scoreHeader}" format="{0,number,0.00}" />
+	<display:column title="${scoreHeader}">
+		<jstl:choose>
+			<jstl:when test="${row.score != null}">
+				<jstl:out value="${row.score}" />
+			</jstl:when>
+			<jstl:otherwise>
+				Nil
+			</jstl:otherwise>
+		</jstl:choose>
+	</display:column>
+
 	
 </display:table>
 

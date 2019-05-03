@@ -13,16 +13,16 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.CompanyRepository;
-import security.Authority;
-import security.LoginService;
-import security.UserAccount;
 import domain.Company;
 import domain.Message;
 import domain.Position;
 import domain.Problem;
 import domain.SocialProfile;
 import forms.CompanyForm;
+import repositories.CompanyRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 
 @Service
 @Transactional
@@ -34,11 +34,14 @@ public class CompanyService {
 
 	// Supporting services
 	@Autowired
-	private MessageService		messageService;
+	private MessageService			messageService;
+	
 	@Autowired
 	private PositionService			positionService;
+	
 	@Autowired
 	private ProblemService			problemService;
+	
 	@Autowired
 	private SocialProfileService	socialProfileService;
 
@@ -77,7 +80,7 @@ public class CompanyService {
 	}
 
 	public Collection<Company> findAll() {
-		final Collection<Company> result = this.companyRepository.findAll();
+		Collection<Company> result = this.companyRepository.findAll();
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 
