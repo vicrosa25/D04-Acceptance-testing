@@ -1,3 +1,4 @@
+
 package usecases;
 
 import javax.transaction.Transactional;
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import domain.Rookie;
 import services.AdministratorService;
-import services.RookieService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
@@ -18,61 +17,49 @@ import utilities.AbstractTest;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class AdminBanAnActorTest extends AbstractTest {
-	
+public class AdminAuditScoreTest extends AbstractTest {
+
 	// System under test ---------------------------------------------------------------------------
 	@Autowired
-	private AdministratorService 	administratorService;
-	
-	@Autowired
-	private RookieService			rookieService;
-	
-	
+	private AdministratorService administratorService;
+
 	// Tests -----------------------------------------------------------------------------------------
-	
-	
+
 	/**
-	 * Requirement: An actor who is authenticated as an Admin must be able to:  
+	 * Requirement: An actor who is authenticated as an Admin must be able to:
 	 * 
-	 * 		"Ban an actor with the spammer flag"
-	 *  
-	 * 	1. Positive test.
-	 *  
+	 * 		"Launch a process to compute an audit score for every company"
+	 * 
+	 * 1. Positive test.
+	 * 
 	 **/
 	@Test
-	public void banActorPositive(){
-		Rookie rookie;
+	public void scorePositive() {
 		super.authenticate("admin");
 		
-		rookie = this.rookieService.findOne(super.getEntityId("rookie2"));
-		
-		this.administratorService.banAnActor(rookie);
-		
+		this.administratorService.computeAllScores();
 		
 		super.unauthenticate();
-		
 	}
-
+	
+	
 	
 	/**
 	 * Requirement: An actor who is authenticated as an Admin must be able to:  
 	 * 
-	 * 		"Ban an actor with the spammer flag"
+	 * 		"Launch a process to compute an audit score for every company"
 	 *  
 	 * 1. Negative test.
 	 * 2. Business rule that is intended to broke: The actor is not authenticated as an Admin
 	 *  
 	 **/
 	@Test(expected = IllegalArgumentException.class)
-	public void banActorNegative(){
-		Rookie rookie;
-		super.authenticate("rookie1");
+	public void scoreNegative() {
+		super.authenticate(null);
 		
-		rookie = this.rookieService.findOne(super.getEntityId("rookie2"));
-		
-		this.administratorService.banAnActor(rookie);
-		
+		this.administratorService.computeAllScores();
 		
 		super.unauthenticate();
 	}
+
 }
