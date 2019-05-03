@@ -23,8 +23,8 @@ import services.AuditorService;
 import utilities.Md5;
 
 @Controller
-@RequestMapping("/auditor")
-public class AuditorController {
+@RequestMapping("/auditor/admin")
+public class AuditorController extends AbstractController {
 
 	@Autowired
 	private AuditorService auditorService;
@@ -37,7 +37,7 @@ public class AuditorController {
 	}
 
 	// List -------------------------------------------------------------
-	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Auditor> auditors;
@@ -52,7 +52,7 @@ public class AuditorController {
 	}
 
 	// Create -----------------------------------------------------------
-	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Auditor auditor;
@@ -74,7 +74,7 @@ public class AuditorController {
 			final List<ObjectError> errors = binding.getAllErrors();
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
-			result = new ModelAndView("auditor/create");
+			result = new ModelAndView("auditor/admin/create");
 			result.addObject("auditor", auditor);
 		} else
 			try {
