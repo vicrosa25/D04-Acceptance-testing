@@ -66,5 +66,42 @@
 </display:table>
 <br>
 </jstl:if>
+
+
+<jstl:if test="${not empty position.audits}">
+<display:table name="position.audits" id="row" requestURI="position/display.do" class="displaytag">
+	<jstl:if test="${row.finalMode}">
+
+	<!-- moment -->
+	<spring:message code="audit.moment" var="momentHeader" />
+	<display:column property="moment" title="${momentHeader}" format="{0,date,dd/MM/yyyy}" />
+	
+	<!-- text -->
+	<spring:message code="audit.text" var="textHeader" />
+	<display:column property="text" title="${textHeader}" />
+	
+	<!-- score -->
+	<spring:message code="audit.score" var="scoreHeader" />
+	<display:column property="score" title="${scoreHeader}" />
+	
+	</jstl:if>
+	<jstl:if test="${not row.finalMode}">
+
+	<!-- moment -->
+	<spring:message code="audit.moment" var="momentHeader" />
+	<display:column title="${momentHeader}" format="{0,date,dd/MM/yyyy}" />
+	
+	<!-- text -->
+	<spring:message code="audit.text" var="textHeader" />
+	<display:column title="${textHeader}" />
+	
+	<!-- score -->
+	<spring:message code="audit.score" var="scoreHeader" />
+	<display:column title="${scoreHeader}" />
+	</jstl:if>
+	<display:caption><spring:message code="position.audits"/></display:caption>
+</display:table>
 <br>
-<acme:back code="hacker.goback"/>
+</jstl:if>
+<br>
+<acme:back code="rookie.goback"/>
