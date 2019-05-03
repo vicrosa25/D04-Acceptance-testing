@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AuditService;
 import services.AuditorService;
 import services.PositionService;
-import utilities.internal.SchemaPrinter;
 import domain.Audit;
 import domain.Auditor;
 import domain.Position;
@@ -130,9 +129,8 @@ public class AuditController extends AbstractController {
 			audit = this.auditService.findOne(auditId);
 
 			Assert.notNull(audit);
+			Assert.isTrue(!audit.getFinalMode());
 			Assert.isTrue(this.auditorService.findByPrincipal().getAudits().contains(audit));
-
-			SchemaPrinter.print(audit);
 
 			result = new ModelAndView("audit/auditor/edit");
 			result.addObject("audit", audit);
@@ -179,6 +177,34 @@ public class AuditController extends AbstractController {
 			}
 		return result;
 	}
+
+	// delete -------------------------------------------------------------
+	@RequestMapping(value = "/auditor/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam int auditId) {
+		ModelAndView result;
+		Audit audit;
+		try {
+			audit = this.auditService.findOne(auditId);
+
+			Assert.notNull(audit);
+			Assert.isTrue(!audit.getFinalMode());
+			Assert.isTrue(this.auditorService.findByPrincipal().getAudits().contains(audit));
+
+			this.auditService.delete(audit);
+
+			result = new ModelAndView("redirect:/audit/auditor/list.do");
+		} catch (final Throwable oops) {
+			System.out.println(oops.getMessage());
+			System.out.println(oops.getClass());
+			System.out.println(oops.getCause());
+			result = this.forbiddenOpperation();
+		}
+
+		return result;
+
+	}
+
+
 
 	private ModelAndView forbiddenOpperation() {
 		return new ModelAndView("redirect:/");
