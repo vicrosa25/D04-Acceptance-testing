@@ -27,6 +27,10 @@
 	<!-- commercial name -->
 	<spring:message code="company.commercialName" var="commercialNameHeader" />
 	<display:column property="commercialName" title="${commercialNameHeader}" />
+
+	<!-- audit score -->
+	<spring:message code="company.score" var="scoreHeader" />
+	<display:column property="score" title="${scoreHeader}" />
 	
 	<!-- Spammer -->
 	<security:authorize access="hasRole('ADMIN')">
