@@ -252,4 +252,11 @@ public class PositionService {
 
 		return result;
 	}
+
+	public Collection<Position> findByAuditor(Auditor auditor) {
+		Collection<Position> result = this.positionRepository.findByAuditor(auditor.getId());
+		Assert.notNull(result);
+
+		return result;
+	}
 }
