@@ -65,7 +65,51 @@
 	</display:column>
 </display:table>
 
-<!-- Create Link -->
-<security:authorize access="hasRole('AUDITOR')">
-	<a href=audit/auditor/create.do><spring:message code="audit.create" /></a>
-</security:authorize>
+<display:table name="positions" id="row" requestURI="audit/auditor/list.do" pagesize="5" class="displaytag">
+	<!-- Title -->
+	<spring:message code="position.title" var="titleHeader" />
+	<display:column property="title" title="${titleHeader}" />
+	
+	<!-- Ticker -->
+	<spring:message code="position.ticker" var="tickerHeader" />
+	<display:column property="ticker" title="${tickerHeader}" />
+	
+	<!-- Description -->
+	<spring:message code="position.description" var="descriptionHeader" />
+	<display:column property="description" title="${descriptionHeader}" />
+	
+	<!-- Deadline -->
+	<spring:message code="position.deadline" var="deadlineHeader" />
+	<display:column property="deadline" title="${deadlineHeader}" format="{0,date,dd/MM/yyyy}" />
+	
+	<!-- Profile -->
+	<spring:message code="position.profile" var="profileHeader" />
+	<display:column property="profile" title="${profileHeader}" />
+	
+	<!-- Skills -->
+	<spring:message code="position.skills" var="skillsHeader" />
+	<display:column property="skills" title="${skillsHeader}" />
+	
+	<!-- Technologies -->
+	<spring:message code="position.technologies" var="technologiesHeader" />
+	<display:column property="technologies" title="${technologiesHeader}" />
+	
+	<!-- Salary -->
+	<spring:message code="position.salary" var="salaryHeader" />
+	<display:column property="salary" title="${salaryHeader}" />
+
+		
+	<!-- Company -->
+	<spring:message code="position.company" var="companyHeader" />
+	<display:column title="${ companyHeader }">
+		<a href="company/display.do?companyId=${row.company.id}">${row.company.commercialName}</a>
+	</display:column>
+	
+	
+	<!-- create audit -->
+	<display:column>
+				<a href="audit/auditor/create.do?positionId=${row.id}">
+				<spring:message code="audit.create" /></a>
+	</display:column>
+	<display:caption><spring:message code="audit.positions"/></display:caption>
+</display:table>
