@@ -160,6 +160,11 @@
 		<security:intercept-url pattern="/audit/auditor/display.do" access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/edit.do" access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/delete.do" access="hasRole('AUDITOR')" />
+		
+		
+		<!-- AUDITOR -->
+		<security:intercept-url pattern="/auditor/admin/list.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/auditor/admin/create.do" access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

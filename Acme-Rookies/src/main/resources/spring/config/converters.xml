@@ -27,6 +27,9 @@
 		<bean class="converters.RookieToStringConverter" />
 		<bean class="converters.StringToRookieConverter" />
 		
+		<bean class="converters.AuditorToStringConverter" />
+		<bean class="converters.StringToAuditorConverter" />
+		
 		<bean class="converters.ProviderToStringConverter" />
 		<bean class="converters.StringToProviderConverter" />
 		

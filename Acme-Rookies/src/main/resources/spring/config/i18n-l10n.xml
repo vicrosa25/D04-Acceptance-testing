@@ -29,6 +29,7 @@
 		<value>/views/curricula/messages</value>
 		<value>/views/item/messages</value>
 		<value>/views/audit/messages</value>
+		<value>/views/auditor/messages</value>
 	</util:list>
 
 </beans>
