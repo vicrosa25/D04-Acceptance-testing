@@ -19,7 +19,7 @@ import utilities.AbstractTest;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class ProviderCreateItem extends AbstractTest {
+public class ProviderCreateItemTest extends AbstractTest {
 
 	// System under test ---------------------------------------------------------------------------
 	@Autowired
