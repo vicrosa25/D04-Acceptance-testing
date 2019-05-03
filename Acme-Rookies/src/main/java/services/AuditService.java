@@ -77,6 +77,19 @@ public class AuditService {
 
 		return result;
 	}
+
+	public void delete(final Audit audit) {
+		Auditor principal = this.auditorService.findByPrincipal();
+
+		Assert.notNull(audit);
+		Assert.isTrue(principal.getAudits().contains(audit));
+		Assert.isTrue(!audit.getFinalMode());
+
+		audit.getPosition().getAudits().remove(audit);
+		principal.getAudits().remove(audit);
+
+		this.auditRepository.delete(audit);
+	}
 	/********************************************************************/
 	// Other business methods
 

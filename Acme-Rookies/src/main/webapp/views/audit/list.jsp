@@ -20,17 +20,6 @@
 	<!-- score -->
 	<spring:message code="audit.score" var="scoreHeader" />
 	<display:column property="score" title="${scoreHeader}" />
-	
-	<!-- status 
-	<spring:message code="audit.status" var="statusHeader" />
-	<display:column title="${deadlineHeader}">
-			<jstl:if test="${row.finalMode}">
-				<spring:message code="audit.finalMode" />
-			</jstl:if>
-			<jstl:if test="${not row.finalMode}">
-				<spring:message code="audit.draftMode" />
-			</jstl:if>
-	</display:column>-->
 		
 	<!-- Display -->
 	<spring:message code="audit.display" var="displayHeader" />
