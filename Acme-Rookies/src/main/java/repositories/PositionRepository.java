@@ -18,4 +18,7 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select p from Position p join p.audits a where a.id=?1")
 	Position findByAudit(int auditId);
 
+	@Query("select p from Position p where p.auditor.id=?1")
+	Collection<Position> findByAuditor(int auditorId);
+
 }

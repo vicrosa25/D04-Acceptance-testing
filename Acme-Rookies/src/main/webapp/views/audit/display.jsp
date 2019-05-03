@@ -60,6 +60,7 @@
 	<display:column title="${ companyHeader }">
 		<a href="company/display.do?companyId=${row.company.id}">${row.company.commercialName}</a>
 	</display:column>
+	<display:caption><spring:message code="audit.position"/></display:caption>
 </display:table>
 <br>
 <acme:back code="rookie.goback"/>
