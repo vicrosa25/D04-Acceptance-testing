@@ -57,5 +57,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	
 	@Query("select avg(c.score), min(c.score), max(c.score), stddev(c.score) from Company c")
 	Object[] query11();
+	
+	@Query("select c from Company c where c.score = (select max(c1.score) from Company c1)")
+	Collection<Company> query12();
 
 }

@@ -32,6 +32,7 @@
 <spring:message code="administrator.positions" 		  var="positionsHeader" />
 <spring:message code="administrator.applications" 	  var="applicationsHeader" />
 <spring:message code="administrator.position.salary"  var="salaryHeader" />
+<spring:message code="administrator.score" 	  		  var="scoreHeader" />
 
 <spring:message code="administrator.dashboard.query1" var="query1Header" />
 <spring:message code="administrator.dashboard.query2" var="query2Header" />
@@ -97,6 +98,24 @@
 		<td><jstl:out value="${query11[2]}"></jstl:out></td>
 		<td><jstl:out value="${query11[3]}"></jstl:out></td>
 	</tr>
+</table>
+<br />
+
+<!-- Query 12  -->
+<table>
+	<caption>
+		<jstl:out value="${query12Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${companyHeader}"></jstl:out></th>
+		<th><jstl:out value="${scoreHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query12}" var="row">
+      <tr>
+        	<td>${row.getCommercialName()}</td>
+        	<td>${row.getScore()}</td>
+      </tr>
+   </jstl:forEach>
 </table>
 <br />
 
