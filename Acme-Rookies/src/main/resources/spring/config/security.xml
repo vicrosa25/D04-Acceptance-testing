@@ -150,7 +150,9 @@
 		
 		<!-- ITEM -->
 		<security:intercept-url pattern="/item/list.do" access="permitAll" />
+		<security:intercept-url pattern="/item/listAll.do" access="permitAll" />
 		<security:intercept-url pattern="/item/display.do" access="permitAll" />
+		<security:intercept-url pattern="/item/provider.do" access="permitAll" />
 		<security:intercept-url pattern="/item/provider/create.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/edit.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')" />
@@ -166,6 +168,12 @@
 		
 		<!-- AUDITOR -->
 		<security:intercept-url pattern="/auditor/admin/list.do" 	access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/auditor/admin/create.do"  access="hasRole('ADMIN')" />
+		
+		
+		<!-- PROVIDER -->
+		<security:intercept-url pattern="/provider/list.do" 	access="permitAll" />
+		<security:intercept-url pattern="/provider/display.do" 	access="permitAll" />
 		<security:intercept-url pattern="/auditor/admin/create.do"  access="hasRole('ADMIN')" />
 		
 		

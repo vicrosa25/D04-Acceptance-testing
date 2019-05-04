@@ -123,6 +123,18 @@
 					<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>				
 				</ul>
 			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.providers" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>		
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.items" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="item/listAll.do"><spring:message code="master.page.item.list" /></a></li>		
+				</ul>
+			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -149,6 +161,18 @@
 					<security:authorize access="hasRole('COMPANY')">
 						<li><a href="position/company/list.do"><spring:message code="master.page.position.company.list" /></a></li>
 					</security:authorize>			
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.providers" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>		
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.items" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="item/listAll.do"><spring:message code="master.page.item.list" /></a></li>		
 				</ul>
 			</li>
 			<li>
