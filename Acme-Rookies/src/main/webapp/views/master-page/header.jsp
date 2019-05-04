@@ -139,7 +139,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="rookie/create.do"><spring:message code="master.page.rookie.register" /></a></li>
-					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>			
+					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
+					<li><a href="provider/create.do"><spring:message code="master.page.provider.register" /></a></li>	
 				</ul>
 			</li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
