@@ -7,7 +7,7 @@
 
 <!-- Listing Grid -->
 <display:table name="items" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
-
+	<jstl:if test="${requestURI == 'item/list.do'}">
 	<!-- Edit -->
 	<security:authorize access="hasRole('PROVIDER')">
 	<spring:message code="item.edit" var="editHeader" />
@@ -15,6 +15,7 @@
 		<a href="item/provider/edit.do?itemId=${row.id}"> <spring:message code="item.edit" /></a>
 	</display:column>
 	</security:authorize>
+	</jstl:if>
 
 
 	<!-- Name -->
@@ -28,19 +29,28 @@
 	<!-- Link -->
 	<spring:message code="item.link" var="linkHeader" />
 	<display:column property="link" title="${linkHeader}" />
+		
+	<!-- Provider -->
+	<spring:message code="item.provider" var="providerHeader" />
+	<display:column title="${ providerHeader }">
+		<a href="provider/display.do?providerId=${row.provider.id}">${row.provider.name}</a>
+	</display:column>
 	
+	<jstl:if test="${requestURI == 'item/list.do'}">
 	<!-- Display -->
 	<spring:message code="item.display.item" var="dispalyHeader" />
 	<display:column title="${displayHeader}">
 		<a href="item/display.do?itemId=${row.id}"><spring:message code="item.display" /></a>
 	</display:column>
+	</jstl:if>
 
 </display:table>
 
 
+<jstl:if test="${requestURI == 'item/list.do'}">
 <!-- Add Item -->
 <security:authorize access="hasRole('PROVIDER')">
 <a href=item/provider/create.do><spring:message code="item.create" /></a>
 </security:authorize>
-
+</jstl:if>
 
