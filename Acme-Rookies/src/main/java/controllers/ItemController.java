@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ItemService;
+import services.ProviderService;
 import domain.Item;
 import domain.Provider;
 import domain.Url;
-import services.ItemService;
-import services.ProviderService;
 
 @Controller
 @RequestMapping("/item")
@@ -51,6 +51,46 @@ public class ItemController extends AbstractController {
 		result = new ModelAndView("item/list");
 		result.addObject("items", items);
 		result.addObject("requestURI", "item/list.do");
+
+		return result;
+	}
+
+	// List -------------------------------------------------------------
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+		ModelAndView result;
+		Collection<Item> items;
+
+		try {
+			items = this.itemService.findAll();
+
+			result = new ModelAndView("item/list");
+			result.addObject("items", items);
+			result.addObject("requestURI", "item/listAll.do");
+		} catch (Throwable oops) {
+			return this.forbiddenOperation();
+		}
+
+		return result;
+	}
+
+	// provider List -------------------------------------------------------------
+	@RequestMapping(value = "/provider", method = RequestMethod.GET)
+	public ModelAndView provider(@RequestParam int providerId) {
+		ModelAndView result;
+		Collection<Item> items;
+
+		try {
+			Provider principal = this.providerService.findOne(providerId);
+
+			items = principal.getItems();
+
+			result = new ModelAndView("item/list");
+			result.addObject("items", items);
+			result.addObject("requestURI", "item/provider.do");
+		} catch (Throwable oops) {
+			return this.forbiddenOperation();
+		}
 
 		return result;
 	}
