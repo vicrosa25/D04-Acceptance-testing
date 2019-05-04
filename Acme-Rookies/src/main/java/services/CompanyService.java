@@ -13,16 +13,16 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.CompanyRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 import domain.Company;
 import domain.Message;
 import domain.Position;
 import domain.Problem;
 import domain.SocialProfile;
 import forms.CompanyForm;
-import repositories.CompanyRepository;
-import security.Authority;
-import security.LoginService;
-import security.UserAccount;
 
 @Service
 @Transactional
@@ -35,13 +35,13 @@ public class CompanyService {
 	// Supporting services
 	@Autowired
 	private MessageService			messageService;
-	
+
 	@Autowired
 	private PositionService			positionService;
-	
+
 	@Autowired
 	private ProblemService			problemService;
-	
+
 	@Autowired
 	private SocialProfileService	socialProfileService;
 
@@ -60,7 +60,7 @@ public class CompanyService {
 		authority.setAuthority(Authority.COMPANY);
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
-		
+
 		// Set Messages
 		Collection<Message> messages = new ArrayList<Message>();
 
@@ -103,7 +103,7 @@ public class CompanyService {
 		Iterator<Position> positions = new ArrayList<Position>(company.getPositions()).iterator();
 		Iterator<Problem> problems = new ArrayList<Problem>(company.getProblems()).iterator();
 		Iterator<SocialProfile> socialIs 	= new ArrayList<SocialProfile>
-			(company.getSocialProfiles()).iterator();
+		(company.getSocialProfiles()).iterator();
 
 		while (messages.hasNext()) {
 			Message next = messages.next();
@@ -184,14 +184,15 @@ public class CompanyService {
 		result.setVersion(temp.getVersion());
 		result.setIsSpammer(temp.getIsSpammer());
 		result.setIsBanned(temp.getIsBanned());
-		
+
 
 		// Relantionships
 		result.setPositions(temp.getPositions());
 		result.setProblems(temp.getProblems());
 		result.setSocialProfiles(temp.getSocialProfiles());
 		result.setUserAccount(temp.getUserAccount());
-		
+		result.setMessages(temp.getMessages());
+
 		this.validator.validate(result, binding);
 
 		return result;

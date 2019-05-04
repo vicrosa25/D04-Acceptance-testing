@@ -15,5 +15,15 @@
 		<put-attribute name="title" value="Provider information" />
 		<put-attribute name="body" value="/views/provider/display.jsp" />
 	</definition>
+
+	<definition name="provider/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit Profile" />
+		<put-attribute name="body" value="/views/provider/edit.jsp" />
+	</definition>
+
+	<definition name="provider/create" extends="master.page">	
+		<put-attribute name="title" value="New provider" />
+		<put-attribute name="body" value="/views/provider/create.jsp" />
+	</definition>
 	
 </tiles-definitions>
