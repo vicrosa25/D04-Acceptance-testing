@@ -283,8 +283,13 @@ public class AdministratorService {
 	
 	
 	public Collection<Provider> query15() {
-		final Collection<Provider> queryResult = this.adminRepository.query15();
-		final Collection<Provider> result = new ArrayList<Provider>();
+		Actor principal;
+		Collection<Provider> queryResult = this.adminRepository.query15();
+		Collection<Provider> result = new ArrayList<Provider>();
+		
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
 
 		int count = 0;
 		for (Provider provider : queryResult)

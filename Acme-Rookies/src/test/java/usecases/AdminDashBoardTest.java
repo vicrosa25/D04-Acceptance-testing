@@ -461,4 +461,70 @@ public class AdminDashBoardTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	// Tests Query14-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 14: The minimum, the maximum, the average, and the standard deviation of the
+	 * number of items per provider.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query14Positive() {
+		super.authenticate("admin");
+		this.adminService.query14();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 14: The minimum, the maximum, the average, and the standard deviation of the
+	 * number of items per provider.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query14Negative() {
+		super.authenticate(null);
+		this.adminService.query14();
+		super.unauthenticate();
+	}
+
+	// Tests Query15-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 15: The top-5 providers in terms of total number of items provided.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query15Positive() {
+		super.authenticate("admin");
+		this.adminService.query15();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 15: The top-5 providers in terms of total number of items provided.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query15Negative() {
+		super.authenticate(null);
+		this.adminService.query15();
+		super.unauthenticate();
+	}
+
 }
