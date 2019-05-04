@@ -143,6 +143,10 @@ public class AdministratorController extends AbstractController {
 		Object[] query7 				= this.administratorService.query7();
 		Object[] query8 				= this.administratorService.query8();
 		Double query9					= this.administratorService.query9();
+		
+		
+		/** ACME ROOKIE QUERIES **/
+		Object[] query10				= this.administratorService.query10();
 
 
 		result = new ModelAndView("administrator/dashboard");
@@ -157,6 +161,10 @@ public class AdministratorController extends AbstractController {
 		result.addObject("query7", query7);
 		result.addObject("query8", query8);
 		result.addObject("query9", query9);
+		
+		result.addObject("query10", query10);
+		
+		
 
 		return result;
 	}

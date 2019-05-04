@@ -42,6 +42,10 @@
 <spring:message code="administrator.dashboard.query7" var="query7Header" />
 <spring:message code="administrator.dashboard.query8" var="query8Header" />
 <spring:message code="administrator.dashboard.query9" var="query9Header" />
+<spring:message code="administrator.dashboard.query10" var="query10Header" />
+<spring:message code="administrator.dashboard.query11" var="query11Header" />
+<spring:message code="administrator.dashboard.query12" var="query12Header" />
+<spring:message code="administrator.dashboard.query13" var="query13Header" />
 
 
 <!--  Custom table style -->
@@ -49,6 +53,31 @@
 	<link rel="stylesheet" href="styles/tablas.css" type="text/css">
 	<link rel="stylesheet" href="styles/charts.css" type="text/css">
 </head>
+
+
+
+<!-- ACME ROOKIE -->
+
+
+<!-- Query 10 -->
+<table>
+	<caption>
+		<jstl:out value="${query10Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query10[0]}"></jstl:out></td>
+		<td><jstl:out value="${query10[1]}"></jstl:out></td>
+		<td><jstl:out value="${query10[2]}"></jstl:out></td>
+		<td><jstl:out value="${query10[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
 
 
 
@@ -231,6 +260,10 @@
 	</tr>
 </table>
 <br />
+
+
+
+
 
 
 

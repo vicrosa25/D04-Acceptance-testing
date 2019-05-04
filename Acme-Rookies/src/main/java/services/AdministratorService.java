@@ -217,6 +217,26 @@ public class AdministratorService {
 
 		return this.adminRepository.query9();
 	}
+	
+	
+	/*********************************************
+	 * 
+	 * ACME ROOKIE QUERIES
+	 * 
+	 *********************************************/
+	
+	public Object[] query10() {
+		Actor principal;
+
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
+
+		return this.adminRepository.query10();
+	}
+	
+	
+	
 
 	/*********************************************
 	 * 
