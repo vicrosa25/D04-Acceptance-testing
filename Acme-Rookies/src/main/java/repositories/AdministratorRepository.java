@@ -54,5 +54,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	/** ACME ROOKIE **/
 	@Query("select avg(a.score), min(a.score), max(a.score), stddev(a.score) from Position p join p.audits a")
 	Object[] query10();
+	
+	@Query("select avg(c.score), min(c.score), max(c.score), stddev(c.score) from Company c")
+	Object[] query11();
 
 }

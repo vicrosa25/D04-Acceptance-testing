@@ -80,6 +80,27 @@
 <br />
 
 
+<!-- Query 11 -->
+<table>
+	<caption>
+		<jstl:out value="${query11Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query11[0]}"></jstl:out></td>
+		<td><jstl:out value="${query11[1]}"></jstl:out></td>
+		<td><jstl:out value="${query11[2]}"></jstl:out></td>
+		<td><jstl:out value="${query11[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+
 
 <!-- C level -->
 

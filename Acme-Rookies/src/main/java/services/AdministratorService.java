@@ -235,6 +235,16 @@ public class AdministratorService {
 		return this.adminRepository.query10();
 	}
 	
+	public Object[] query11() {
+		Actor principal;
+
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
+
+		return this.adminRepository.query11();
+	}
+	
 	
 	
 
