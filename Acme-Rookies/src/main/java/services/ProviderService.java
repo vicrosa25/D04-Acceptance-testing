@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,8 +17,10 @@ import repositories.ProviderRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Item;
 import domain.Message;
 import domain.Provider;
+import domain.SocialProfile;
 import forms.ProviderForm;
 
 @Service
@@ -29,6 +32,12 @@ public class ProviderService {
 	private ProviderRepository providerRepository;
 
 	// Supporting services
+	@Autowired
+	private ItemService	itemService;
+	@Autowired
+	private MessageService messageService;
+	@Autowired
+	private SocialProfileService socialProfileService;
 
 	@Autowired
 	@Qualifier("validator")
@@ -83,8 +92,35 @@ public class ProviderService {
 	}
 
 	public void delete(Provider provider) {
-		Assert.isTrue(this.findByPrincipal() == provider);
 		Assert.notNull(provider);
+		Assert.isTrue(this.findByPrincipal() == provider);
+
+		Iterator<Message> messages = new ArrayList<Message>(provider.getMessages()).iterator();
+		Iterator<Item> items = new ArrayList<Item>(provider.getItems()).iterator();
+		Iterator<SocialProfile> socialIs 	= new ArrayList<SocialProfile>
+		(provider.getSocialProfiles()).iterator();
+
+		while (messages.hasNext()) {
+			Message next = messages.next();
+			if (next.getSender() == provider)
+				next.setSender(null);
+			next.getRecipients().remove(provider);
+			this.messageService.save(next);
+			provider.getMessages().remove(next);
+			messages.remove();
+		}
+		while (items.hasNext()) {
+			Item next = items.next();
+			this.itemService.delete(next);
+			provider.getItems().remove(next);
+			items.remove();
+		}
+		while (socialIs.hasNext()) {
+			SocialProfile si = socialIs.next();
+			this.socialProfileService.delete(si);
+			provider.getSocialProfiles().remove(si);
+			socialIs.remove();
+		}
 
 		this.providerRepository.delete(provider);
 	}

@@ -177,6 +177,8 @@
 		<security:intercept-url pattern="/provider/display.do" 	access="permitAll" />
 		<security:intercept-url pattern="/provider/create.do" 	access="permitAll" />
 		<security:intercept-url pattern="/provider/edit.do" 	access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/provider/delete.do" 	access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/provider/generatePDF.do" 	access="hasRole('PROVIDER')" />
 		
 		
 		

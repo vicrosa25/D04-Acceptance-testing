@@ -7,25 +7,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import repositories.ItemRepository;
 import domain.Item;
 import domain.Provider;
-import repositories.ItemRepository;
 
 @Service
 @Transactional
 public class ItemService {
-	
+
 	// Manage Repository
 	@Autowired
 	private ItemRepository		itemRepository;
-	
-	
+
+
 	// Supporting services
 	@Autowired
 	private ProviderService		providerService;
-	
-	
-	
+
+
+
 	// CRUD methods
 	public Item create() {
 		final Item result = new Item();
@@ -50,7 +50,7 @@ public class ItemService {
 	public Item save(Item item) {
 		Assert.notNull(item);
 		Item saved;
-		
+
 		Provider principal = this.providerService.findByPrincipal();
 
 		if (item.getId() == 0) {
@@ -62,22 +62,24 @@ public class ItemService {
 		}
 		return saved;
 	}
-	
+
 	public Item update(Item item) {
 		Assert.notNull(item);
 
 		return this.itemRepository.save(item);
 	}
 
-	
-	
+
+
 	public void delete(Item item) {
-		
+
 		Provider principal = this.providerService.findByPrincipal();
-		
+
 		Assert.notNull(principal);
 		Assert.isTrue(principal.getItems().contains(item));
-		
+
+		principal.getItems().remove(item);
+
 		this.itemRepository.delete(item);
 	}
 }
