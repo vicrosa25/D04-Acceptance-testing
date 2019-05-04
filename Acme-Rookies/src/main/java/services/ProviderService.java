@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
-import domain.Message;
-import domain.Provider;
 import repositories.ProviderRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Message;
+import domain.Provider;
+import forms.ProviderForm;
 
 @Service
 @Transactional
@@ -25,6 +29,10 @@ public class ProviderService {
 	private ProviderRepository providerRepository;
 
 	// Supporting services
+
+	@Autowired
+	@Qualifier("validator")
+	private Validator				validator;
 
 
 	/*************************************
@@ -77,11 +85,11 @@ public class ProviderService {
 	public void delete(Provider provider) {
 		Assert.isTrue(this.findByPrincipal() == provider);
 		Assert.notNull(provider);
-		
+
 		this.providerRepository.delete(provider);
 	}
-	
-	
+
+
 	/*************************************
 	 * Other business methods
 	 *************************************/
@@ -112,6 +120,67 @@ public class ProviderService {
 		Assert.notNull(username);
 
 		return this.providerRepository.findByUserName(username);
+	}
+
+	/*** Reconstruct object, check validity and update binding ***/
+	public Provider reconstruct(final ProviderForm form, final BindingResult binding) {
+		final Provider provider = this.create();
+
+		provider.getUserAccount().setPassword(form.getUserAccount().getPassword());
+		provider.getUserAccount().setUsername(form.getUserAccount().getUsername());
+
+		provider.setAddress(form.getAddress());
+		provider.setEmail(form.getEmail());
+		provider.setName(form.getName());
+		provider.setPhoneNumber(form.getPhoneNumber());
+		provider.setPhoto(form.getPhoto());
+		provider.setSurname(form.getSurname());
+		provider.setVat(form.getVat());
+		provider.setCardNumber(form.getCardNumber());
+		provider.setMake(form.getMake());
+
+		// Default attributes from Actor
+		provider.setIsSpammer(false);
+		provider.setIsBanned(false);
+
+		this.validator.validate(provider, binding);
+
+		return provider;
+	}
+
+	public Provider reconstruct(final Provider provider, final BindingResult binding) {
+		final Provider result = this.create();
+		final Provider temp = this.findOne(provider.getId());
+
+		Assert.isTrue(this.findByPrincipal().getId() == provider.getId());
+
+		// Updated attributes
+		result.setAddress(provider.getAddress());
+		result.setEmail(provider.getEmail());
+		result.setName(provider.getName());
+		result.setPhoneNumber(provider.getPhoneNumber());
+		result.setPhoto(provider.getPhoto());
+		result.setSurname(provider.getSurname());
+		result.setVat(provider.getVat());
+		result.setCardNumber(provider.getCardNumber());
+		result.setMake(provider.getMake());
+
+		// Not updated attributes
+		result.setId(temp.getId());
+		result.setVersion(temp.getVersion());
+		result.setIsSpammer(temp.getIsSpammer());
+		result.setIsBanned(temp.getIsBanned());
+
+
+		// Relantionships
+		result.setMessages(temp.getMessages());
+		result.setItems(temp.getItems());
+		result.setSocialProfiles(temp.getSocialProfiles());
+		result.setUserAccount(temp.getUserAccount());
+
+		this.validator.validate(result, binding);
+
+		return result;
 	}
 
 }

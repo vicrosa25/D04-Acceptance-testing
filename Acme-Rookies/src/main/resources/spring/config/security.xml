@@ -174,7 +174,8 @@
 		<!-- PROVIDER -->
 		<security:intercept-url pattern="/provider/list.do" 	access="permitAll" />
 		<security:intercept-url pattern="/provider/display.do" 	access="permitAll" />
-		<security:intercept-url pattern="/auditor/admin/create.do"  access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/provider/create.do" 	access="permitAll" />
+		<security:intercept-url pattern="/provider/edit.do" 	access="hasRole('PROVIDER')" />
 		
 		
 		

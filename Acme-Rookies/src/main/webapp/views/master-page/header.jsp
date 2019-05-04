@@ -91,12 +91,12 @@
 		
 		<!-- An actor who is authenticated as a PROVIDER -->
 		<security:authorize access="hasRole('PROVIDER')">
-		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
+<%-- 		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="item/list.do"><spring:message code="master.page.items.list" /></a></li>
 				</ul>
-		</li>
+		</li> --%>
 		</security:authorize>
 		
 		<!-- An actor who is authenticated as a AUDITOR -->
@@ -173,7 +173,10 @@
 			<li><a class="fNiv"><spring:message	code="master.page.items" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="item/listAll.do"><spring:message code="master.page.item.list" /></a></li>		
+					<li><a href="item/listAll.do"><spring:message code="master.page.item.list" /></a></li>
+					<security:authorize access="hasRole('PROVIDER')">
+					<li><a href="item/list.do"><spring:message code="master.page.items.list" /></a></li>
+					</security:authorize>	
 				</ul>
 			</li>
 			<li>
@@ -190,6 +193,9 @@
 					</security:authorize>
 					<security:authorize access="hasRole('COMPANY')">
 						<li><a href="company/edit.do"><spring:message code="master.page.rookie.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('PROVIDER')">
+						<li><a href="provider/edit.do"><spring:message code="master.page.rookie.edit" /></a></li>
 					</security:authorize>
 					
 					<!-- Message -->
