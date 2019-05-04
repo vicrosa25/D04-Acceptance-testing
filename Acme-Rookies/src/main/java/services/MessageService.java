@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Actor;
+import domain.Administrator;
 import domain.Configurations;
 import domain.Message;
 import repositories.MessageRepository;
@@ -182,6 +183,36 @@ public class MessageService {
 	public Collection<Message> findAllBySender(int senderID) {
 		final Collection<Message> result = this.messageRepository.findAllBySender(senderID);
 		Assert.notNull(result);
+
+		return result;
+	}
+	
+	
+	// Create Rebranding Message
+	public Message createRebrandingMessage() {
+		Actor principal;
+
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
+		
+		// Create the message
+		Message result = new Message();
+		Calendar calendar = new GregorianCalendar();
+		Collection<String> tags = new ArrayList<String>();
+		Collection<Actor> recipients = this.actorService.findAll();
+
+		
+		// Setting the message
+		result.setSubject("System Announcement");
+		result.setBody("Acme Hacker Rank is changing their commercial name to Acme Rookies, Inc., which reflects better its "
+						+ "target audience");
+		result.setSender(principal);
+		result.setRecipients(recipients);
+		result.setTags(tags);
+		result.setMoment(calendar.getTime());
+		result.setIsNotification(true);
+		result.setPriority("HIGH");
 
 		return result;
 	}

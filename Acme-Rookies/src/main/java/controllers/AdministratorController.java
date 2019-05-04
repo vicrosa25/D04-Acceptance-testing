@@ -32,6 +32,7 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Company;
 import domain.Configurations;
+import domain.Message;
 import domain.Position;
 import domain.Provider;
 import domain.Rookie;
@@ -39,6 +40,7 @@ import services.ActorService;
 import services.AdministratorService;
 import services.CompanyService;
 import services.ConfigurationsService;
+import services.MessageService;
 import utilities.Md5;
 
 @Controller
@@ -56,6 +58,9 @@ public class AdministratorController extends AbstractController {
 	
 	@Autowired
 	private CompanyService			companyService;
+	
+	@Autowired
+	private MessageService			messageService;
 
 
 	@ExceptionHandler(TypeMismatchException.class)
@@ -452,6 +457,41 @@ public class AdministratorController extends AbstractController {
 		result = new ModelAndView("redirect:/");
 		return result;
 	}
+	
+	/**
+	 * 
+	 * Notify the rebranding ****************************************************************************
+	 */
+	@RequestMapping(value = "/rebranding", method = RequestMethod.GET)
+	public ModelAndView rebranding() {
+		ModelAndView result;
+		Message mesage;
+		
+		mesage = this.messageService.createRebrandingMessage();
+		
+		this.messageService.save(mesage);
+		
+		result = new ModelAndView("administrator/rebranding");
+		
+		result.addObject("mesage", mesage);
+		
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/rebranding", method = RequestMethod.POST)
+	public ModelAndView rebranding(Message mesage) {
+		ModelAndView result;
+	
+		
+		this.messageService.save(mesage);
+		
+		result = new ModelAndView("redirect:../message/list");
+		
+		return result;
+	}
+	
+	
 	
 	/**
 	 * 

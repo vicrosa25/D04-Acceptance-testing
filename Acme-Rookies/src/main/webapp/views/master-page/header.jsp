@@ -33,7 +33,8 @@
 					<li><a href="message/admin/broadcast.do"><spring:message code="master.page.administrator.broadcast" /></a></li>
 					<li><a href="administrator/spammers.do"><spring:message code="master.page.administrator.spammers" /></a></li>					
 					<li><a href="administrator/securityBreach.do"><spring:message code="master.page.administrator.securityBreach" /></a></li>
-					<li><a href="administrator/score.do"><spring:message code="master.page.administrator.score" /></a></li>				
+					<li><a href="administrator/score.do"><spring:message code="master.page.administrator.score" /></a></li>
+					<li><a href="administrator/rebranding.do"><spring:message code="master.page.administrator.rebranding" /></a></li>				
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message code="master.page.configurations" /></a>

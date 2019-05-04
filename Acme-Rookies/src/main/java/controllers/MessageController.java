@@ -153,7 +153,7 @@ public class MessageController extends AbstractController {
 			List<ObjectError> errors = binding.getAllErrors();
 			for (ObjectError e : errors)
 				System.out.println(e.toString());
-			result = new ModelAndView("message/broadcast");
+			result = new ModelAndView("message/admin/broadcast");
 			result.addObject("mesage", mesage);
 		} else
 			try {
