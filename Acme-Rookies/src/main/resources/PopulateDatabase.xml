@@ -355,6 +355,7 @@
 			<list>
 				<ref bean="item3" />
 				<ref bean="item4" />
+				<ref bean="item5" />
 			</list>
 		</property>
 	</bean>
@@ -997,6 +998,14 @@
 		<property name="name" value="item4" />
 		<property name="description" value="item4 description" />
 		<property name="link" value="http://www.item4/provider2" />
+		<property name="provider" ref="provider2" />
+	</bean>
+	
+	
+	<bean id="item5" class="domain.Item">
+		<property name="name" value="item5" />
+		<property name="description" value="item5 description" />
+		<property name="link" value="http://www.item5/provider2" />
 		<property name="provider" ref="provider2" />
 	</bean>
 

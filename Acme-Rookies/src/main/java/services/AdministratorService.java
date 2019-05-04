@@ -15,6 +15,7 @@ import domain.Audit;
 import domain.Company;
 import domain.Message;
 import domain.Position;
+import domain.Provider;
 import domain.Rookie;
 import repositories.AdministratorRepository;
 import security.Authority;
@@ -225,6 +226,9 @@ public class AdministratorService {
 	 * 
 	 *********************************************/
 	
+	
+	
+	// Level C
 	public Object[] query10() {
 		Actor principal;
 
@@ -264,6 +268,35 @@ public class AdministratorService {
 
 		return this.adminRepository.query13();
 	}
+	
+	
+	//Level B
+	public Object[] query14() {
+		Actor principal;
+
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
+
+		return this.adminRepository.query14();
+	}
+	
+	
+	public Collection<Provider> query15() {
+		final Collection<Provider> queryResult = this.adminRepository.query15();
+		final Collection<Provider> result = new ArrayList<Provider>();
+
+		int count = 0;
+		for (Provider provider : queryResult)
+			if (count < 5) {
+				result.add(provider);
+				count++;
+			} else
+				break;
+
+		return result;
+	}
+	
 	
 	
 	

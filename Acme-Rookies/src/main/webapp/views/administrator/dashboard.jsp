@@ -33,6 +33,8 @@
 <spring:message code="administrator.applications" 	  var="applicationsHeader" />
 <spring:message code="administrator.position.salary"  var="salaryHeader" />
 <spring:message code="administrator.score" 	  		  var="scoreHeader" />
+<spring:message code="administrator.provider"  		  var="providerHeader" />
+<spring:message code="administrator.items"  		  var="itemsHeader" />
 
 <spring:message code="administrator.dashboard.query1" var="query1Header" />
 <spring:message code="administrator.dashboard.query2" var="query2Header" />
@@ -47,6 +49,8 @@
 <spring:message code="administrator.dashboard.query11" var="query11Header" />
 <spring:message code="administrator.dashboard.query12" var="query12Header" />
 <spring:message code="administrator.dashboard.query13" var="query13Header" />
+<spring:message code="administrator.dashboard.query14" var="query14Header" />
+<spring:message code="administrator.dashboard.query15" var="query15Header" />
 
 
 <!--  Custom table style -->
@@ -59,6 +63,8 @@
 
 <!-- ACME ROOKIE -->
 
+
+<!-- Level C -->
 
 <!-- Query 10 -->
 <table>
@@ -134,6 +140,52 @@
 <br />
 
 
+<!-- level B-->
+
+<!-- Query 14 -->
+<table>
+	<caption>
+		<jstl:out value="${query14Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query14[0]}"></jstl:out></td>
+		<td><jstl:out value="${query14[1]}"></jstl:out></td>
+		<td><jstl:out value="${query14[2]}"></jstl:out></td>
+		<td><jstl:out value="${query14[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 15  -->
+<table>
+	<caption>
+		<jstl:out value="${query15Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${providerHeader}"></jstl:out></th>
+		<th><jstl:out value="${itemsSizeHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query15}" var="row">
+      <tr>
+        	<td>${row.name}</td>
+        	<td>${row.getItems().size()}</td>
+      </tr>
+   </jstl:forEach>
+</table>
+<br />
+
+
+
+
+
+
+<!-- ACME HACKER RANK -->
 
 <!-- C level -->
 

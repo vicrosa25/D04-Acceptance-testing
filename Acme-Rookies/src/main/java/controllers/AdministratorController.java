@@ -33,6 +33,7 @@ import domain.Administrator;
 import domain.Company;
 import domain.Configurations;
 import domain.Position;
+import domain.Provider;
 import domain.Rookie;
 import services.ActorService;
 import services.AdministratorService;
@@ -146,11 +147,17 @@ public class AdministratorController extends AbstractController {
 		
 		
 		/** ACME ROOKIE QUERIES **/
+		// Level C
 		Object[] query10				= this.administratorService.query10();
 		Object[] query11				= this.administratorService.query11();
 		Collection<Company> query12		= this.administratorService.query12();
 		Double query13					= this.administratorService.query13();
-
+		
+		// Level B
+		Object[] query14				= this.administratorService.query14();
+		Collection<Provider> query15	= this.administratorService.query15();
+		
+		
 		result = new ModelAndView("administrator/dashboard");
 
 		result.addObject("query1", query1);
@@ -168,6 +175,8 @@ public class AdministratorController extends AbstractController {
 		result.addObject("query11", query11);
 		result.addObject("query12", query12);
 		result.addObject("query13", query13);
+		result.addObject("query14", query14);
+		result.addObject("query15", query15);
 		
 		
 

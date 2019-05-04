@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import domain.Administrator;
 import domain.Company;
 import domain.Position;
+import domain.Provider;
 import domain.Rookie;
 
 @Repository
@@ -52,6 +53,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	
 	
 	/** ACME ROOKIE **/
+	
+	// Leve C
 	@Query("select avg(a.score), min(a.score), max(a.score), stddev(a.score) from Position p join p.audits a")
 	Object[] query10();
 	
@@ -63,5 +66,13 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	
 	@Query("select avg(p.salary) from Position p join p.audits a where a.score = (select max(a.score) from Position p join p.audits a)")
 	Double query13();
+	
+	
+	// Lever B
+	@Query("select avg(p.items.size), min(p.items.size), max(p.items.size), stddev(p.items.size) from Provider p")
+	Object[] query14();
+	
+	@Query("select p from Provider p group by p order by p.items.size desc")
+	Collection<Provider> query15();
 
 }
