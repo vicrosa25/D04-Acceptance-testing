@@ -329,4 +329,136 @@ public class AdminDashBoardTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	// Tests Query10-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 10: The average, the minimum, the maximum, and the standard deviation of the audit score of
+	 * the positions stored in the system.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query10Positive() {
+		super.authenticate("admin");
+		this.adminService.query10();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 10: The average, the minimum, the maximum, and the standard deviation of the audit score of
+	 * the positions stored in the system.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query10Negative() {
+		super.authenticate(null);
+		this.adminService.query10();
+		super.unauthenticate();
+	}
+
+	// Tests Query11-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 11: The average, the minimum, the maximum, and the standard deviation of the
+	 * audit score of the companies that are registered in the system.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query11Positive() {
+		super.authenticate("admin");
+		this.adminService.query11();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 11: The average, the minimum, the maximum, and the standard deviation of the
+	 * audit score of the companies that are registered in the system.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query11Negative() {
+		super.authenticate(null);
+		this.adminService.query11();
+		super.unauthenticate();
+	}
+
+	// Tests Query12-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 12: The companies with the highest audit score.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query12Positive() {
+		super.authenticate("admin");
+		this.adminService.query12();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 12: The companies with the highest audit score.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query12Negative() {
+		super.authenticate(null);
+		this.adminService.query12();
+		super.unauthenticate();
+	}
+
+	// Tests Query13-----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 13: The average salary offered by the positions that have the highest audit score.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query13Positive() {
+		super.authenticate("admin");
+		this.adminService.query13();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 13: The average salary offered by the positions that have the highest audit score.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query13Negative() {
+		super.authenticate(null);
+		this.adminService.query13();
+		super.unauthenticate();
+	}
+
 }
