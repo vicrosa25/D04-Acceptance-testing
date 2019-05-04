@@ -60,5 +60,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	
 	@Query("select c from Company c where c.score = (select max(c1.score) from Company c1)")
 	Collection<Company> query12();
+	
+	@Query("select avg(p.salary) from Position p join p.audits a where a.score = (select max(a.score) from Position p join p.audits a)")
+	Double query13();
 
 }

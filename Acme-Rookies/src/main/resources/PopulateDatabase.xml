@@ -506,7 +506,7 @@
 	<bean id="audit1" class="domain.Audit">
 		<property name="moment" value="2019/04/18"/>
 		<property name="text" value="This position is not correct: 'un treh!'"/>
-		<property name="score" value="3"/>
+		<property name="score" value="5"/>
 		<property name="finalMode" value="true"/>
 		<property name="position" ref="position1" />
 	</bean>

@@ -119,6 +119,20 @@
 </table>
 <br />
 
+<!-- Query 13 -->
+<table>
+	<caption>
+		<jstl:out value="${query13Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query13}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
 
 
 <!-- C level -->
