@@ -14,9 +14,9 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class Sponsorship extends DomainEntity {
 
-	private String		banner;
-	private String		targetPage;
-	private Long		creditCard;
+	private String	banner;
+	private String	targetPage;
+	private Long	creditCard;
 
 
 	@NotBlank
@@ -37,28 +37,38 @@ public class Sponsorship extends DomainEntity {
 		this.targetPage = targetPage;
 	}
 
-	
 	@NotNull
 	public Long getCreditCard() {
-		return creditCard;
+		return this.creditCard;
 	}
-	
-	public void setCreditCard(Long creditCard) {
+
+	public void setCreditCard(final Long creditCard) {
 		this.creditCard = creditCard;
 	}
 
 
-
 	// Relationships ----------------------------------------------------------
-	private Provider provider;
-	
-	@ManyToOne(optional=false)
+	private Provider	provider;
+	private Position	position;
+
+
+	@ManyToOne(optional = false)
 	public Provider getProvider() {
-		return provider;
+		return this.provider;
 	}
-	
-	public void setProvider(Provider provider) {
+
+	public void setProvider(final Provider provider) {
 		this.provider = provider;
+	}
+
+	@NotNull
+	@ManyToOne(optional = false)
+	public Position getPosition() {
+		return this.position;
+	}
+
+	public void setPosition(final Position position) {
+		this.position = position;
 	}
 	@Override
 	public String toString() {
