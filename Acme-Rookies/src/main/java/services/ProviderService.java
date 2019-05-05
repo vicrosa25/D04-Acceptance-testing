@@ -21,6 +21,7 @@ import domain.Item;
 import domain.Message;
 import domain.Provider;
 import domain.SocialProfile;
+import domain.Sponsorship;
 import forms.ProviderForm;
 
 @Service
@@ -38,6 +39,8 @@ public class ProviderService {
 	private MessageService messageService;
 	@Autowired
 	private SocialProfileService socialProfileService;
+	@Autowired
+	private SponsorshipService sponsorshipService;
 
 	@Autowired
 	@Qualifier("validator")
@@ -97,6 +100,7 @@ public class ProviderService {
 
 		Iterator<Message> messages = new ArrayList<Message>(provider.getMessages()).iterator();
 		Iterator<Item> items = new ArrayList<Item>(provider.getItems()).iterator();
+		Iterator<Sponsorship> sponsorships = new ArrayList<Sponsorship>(provider.getSponsorships()).iterator();
 		Iterator<SocialProfile> socialIs 	= new ArrayList<SocialProfile>
 		(provider.getSocialProfiles()).iterator();
 
@@ -120,6 +124,12 @@ public class ProviderService {
 			this.socialProfileService.delete(si);
 			provider.getSocialProfiles().remove(si);
 			socialIs.remove();
+		}
+		while (sponsorships.hasNext()) {
+			Sponsorship s = sponsorships.next();
+			this.sponsorshipService.delete(s);
+			provider.getSponsorships().remove(s);
+			sponsorships.remove();
 		}
 
 		this.providerRepository.delete(provider);
