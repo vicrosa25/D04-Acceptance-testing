@@ -31,6 +31,7 @@
 		<value>/views/item/messages</value>
 		<value>/views/audit/messages</value>
 		<value>/views/provider/messages</value>
+		<value>/views/sponsorship/messages</value>
 		
 	</util:list>
 

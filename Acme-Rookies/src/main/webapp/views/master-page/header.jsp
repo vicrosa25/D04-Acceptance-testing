@@ -92,6 +92,7 @@
 		
 		<!-- An actor who is authenticated as a PROVIDER -->
 		<security:authorize access="hasRole('PROVIDER')">
+			<li><a href="sponsorship/sponsor/list.do" class="fNiv"><spring:message	code="master.page.sponsorships" /></a></li>
 <%-- 		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
 				<ul>
 					<li class="arrow"></li>
