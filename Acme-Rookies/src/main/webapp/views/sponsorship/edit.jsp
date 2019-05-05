@@ -11,7 +11,6 @@
 	<%-- Hidden properties from sponsorship--%>
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="active" />
 
 	<%-- banner--%>
 	<acme:textbox code="sponsorship.banner" path="banner" />
@@ -22,7 +21,12 @@
 	<br>
 
 	<%-- credit card--%>
-	<acme:textbox code="sponsorship.creditcard" path="creditCard" />
+	<form:label path="creditCard">
+		<spring:message code="sponsorship.creditCard" />
+	</form:label>	
+	<form:input path="creditCard" type="number" />	
+	<form:errors path="creditCard" cssClass="error" />
+	<br>
 	<br>	
 		
 	<!-- Select Position -->

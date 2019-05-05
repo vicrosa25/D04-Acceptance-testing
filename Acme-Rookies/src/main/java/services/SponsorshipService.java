@@ -13,9 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.SponsorshipRepository;
-import domain.Actor;
 import domain.Position;
-import domain.Provider;
 import domain.Sponsorship;
 
 @Service
@@ -61,12 +59,10 @@ public class SponsorshipService {
 	public Sponsorship save(final Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
 		Assert.isTrue(sponsorship.getPosition().getFinalMode());
-		Actor principal;
-
-		principal = this.actorService.findByPrincipal();
-
-		if (principal.getClass().equals(Provider.class))
-			Assert.isTrue(this.providerService.findByPrincipal() == sponsorship.getProvider());
+		if(sponsorship.getId() == 0){
+			sponsorship.getProvider().getSponsorships().add(sponsorship);
+		}else
+			Assert.isTrue(this.providerService.findByPrincipal().getSponsorships().contains(sponsorship));
 
 		final Sponsorship result = this.sponsorshipRepository.save(sponsorship);
 
@@ -97,12 +93,12 @@ public class SponsorshipService {
 		result.setCreditCard(sponsorship.getCreditCard());
 		result.setPosition(sponsorship.getPosition());
 		result.setTargetPage(sponsorship.getTargetPage());
+		result.setProvider(this.providerService.findByPrincipal());
 
 		if (sponsorship.getId() != 0) {
 			//not updated atributes
 			result.setId(sponsorship.getId());
 			result.setVersion(sponsorship.getVersion());
-			result.setProvider(this.providerService.findByPrincipal());
 		}
 
 		this.validator.validate(result, binding);

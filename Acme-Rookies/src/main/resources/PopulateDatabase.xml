@@ -334,6 +334,12 @@
 				<ref bean="item2" />
 			</list>
 		</property>
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship1" />
+				<ref bean="sponsorship2" />
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="provider2" class="domain.Provider">
@@ -517,6 +523,24 @@
 		<property name="text" value="I have determined that I do not undertand what is an audit"/>
 		<property name="score" value="5"/>
 		<property name="finalMode" value="false"/>
+		<property name="position" ref="position2" />
+	</bean>
+	
+
+	<!-- Sponsorship  ********************************************************************************* -->
+	<bean id="sponsorship1" class="domain.Sponsorship">
+		<property name="banner" value="https://goo.gl/mR1tJ6" />
+		<property name="targetPage" value="http://www.targetPage.com" />
+		<property name="creditCard" value="5145928616769391" />
+		<property name="provider" ref="provider1" />
+		<property name="position" ref="position1" />
+	</bean>
+	
+	<bean id="sponsorship2" class="domain.Sponsorship">
+		<property name="banner" value="https://goo.gl/mR1tJ6" />
+		<property name="targetPage" value="http://www.targetPage.com" />
+		<property name="creditCard" value="5145928616769391" />
+		<property name="provider" ref="provider1" />
 		<property name="position" ref="position2" />
 	</bean>
 	

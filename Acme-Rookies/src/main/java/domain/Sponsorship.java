@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
@@ -16,7 +17,7 @@ public class Sponsorship extends DomainEntity {
 
 	private String	banner;
 	private String	targetPage;
-	private Long	creditCard;
+	private String	creditCard;
 
 
 	@NotBlank
@@ -37,12 +38,13 @@ public class Sponsorship extends DomainEntity {
 		this.targetPage = targetPage;
 	}
 
-	@NotNull
-	public Long getCreditCard() {
+	@NotBlank
+	@CreditCardNumber
+	public String getCreditCard() {
 		return this.creditCard;
 	}
 
-	public void setCreditCard(final Long creditCard) {
+	public void setCreditCard(final String creditCard) {
 		this.creditCard = creditCard;
 	}
 
@@ -52,6 +54,7 @@ public class Sponsorship extends DomainEntity {
 	private Position	position;
 
 
+	@NotNull
 	@ManyToOne(optional = false)
 	public Provider getProvider() {
 		return this.provider;
