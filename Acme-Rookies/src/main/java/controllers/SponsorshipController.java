@@ -124,6 +124,44 @@ public class SponsorshipController extends AbstractController {
 		return result;
 	}
 
+	// Display -------------------------------------------------------------
+	@RequestMapping(value = "/provider/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int sponsorshipId) {
+		ModelAndView result;
+		Sponsorship sponsorship;
+
+		try {
+			final Provider principal = this.providerService.findByPrincipal();
+			sponsorship = this.sponsorshipService.findOne(sponsorshipId);
+			Assert.isTrue(this.sponsorshipService.findByProvider(principal.getId()).contains(sponsorship));
+
+			result = new ModelAndView("sponsorship/provider/display");
+			result.addObject("sponsorship", sponsorship);
+		} catch (final Throwable oops) {
+			result = this.forbiddenOpperation();
+		}
+		return result;
+	}
+
+	// Display -------------------------------------------------------------
+	@RequestMapping(value = "/provider/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam final int sponsorshipId) {
+		ModelAndView result;
+		Sponsorship sponsorship;
+
+		try {
+			final Provider principal = this.providerService.findByPrincipal();
+			sponsorship = this.sponsorshipService.findOne(sponsorshipId);
+			Assert.isTrue(this.sponsorshipService.findByProvider(principal.getId()).contains(sponsorship));
+			this.sponsorshipService.delete(sponsorship);
+
+			result = new ModelAndView("redirect:/sponsorship/provider/list.do");
+		} catch (final Throwable oops) {
+			result = this.forbiddenOpperation();
+		}
+		return result;
+	}
+
 	// Ancillary methods ------------------------------------------------------
 	protected ModelAndView createEditModelAndView(final Sponsorship sponsorship) {
 		ModelAndView result;

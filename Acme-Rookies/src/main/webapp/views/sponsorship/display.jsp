@@ -6,7 +6,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<display:table name="position" id="row" requestURI="sponsorship/display.do" class="displaytag">
+<display:table name="sponsorship" id="row" requestURI="sponsorship/display.do" class="displaytag">
 
 	<!-- banner -->
 	<spring:message code="sponsorship.banner" var="bannerHeader" />
@@ -61,7 +61,7 @@
 	<display:column title="${ companyHeader }">
 		<a href="company/display.do?companyId=${row.company.id}">${row.company.commercialName}</a>
 	</display:column>
-	
+	<display:caption><spring:message code="sponsorship.position"/></display:caption>
 </display:table>
 <br>
 <acme:back code="rookie.goback"/>

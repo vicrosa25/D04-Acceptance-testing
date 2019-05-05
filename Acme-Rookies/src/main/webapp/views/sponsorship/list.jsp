@@ -37,6 +37,13 @@
 		<a href="sponsorship/provider/edit.do?sponsorshipId=${row.id}">
 			<spring:message code="sponsorship.edit" /></a>
 	</display:column>
+	
+	<!-- Delete -->
+	<spring:message code="sponsorship.delete" var="deleteHeader" />
+	<display:column title="${deleteHeader}" >
+		<a href="sponsorship/provider/delete.do?sponsorshipId=${row.id}">
+			<spring:message code="sponsorship.delete" /></a>
+	</display:column>
 </display:table>
 
 <a href=sponsorship/provider/create.do><spring:message code="sponsorship.create" /></a>
