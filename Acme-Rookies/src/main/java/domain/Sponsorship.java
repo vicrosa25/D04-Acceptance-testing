@@ -5,6 +5,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -18,7 +19,18 @@ public class Sponsorship extends DomainEntity {
 	private String	banner;
 	private String	targetPage;
 	private String	creditCard;
+	private double		charge;
 
+
+	@NotNull
+	@DecimalMin("0.0")
+	public double getCharge() {
+		return this.charge;
+	}
+
+	public void setCharge(double charge) {
+		this.charge = charge;
+	}
 
 	@NotBlank
 	@URL

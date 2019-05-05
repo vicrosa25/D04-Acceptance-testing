@@ -90,6 +90,7 @@ public class SponsorshipController extends AbstractController {
 			final Provider principal = this.providerService.findByPrincipal();
 			sponsorship = this.sponsorshipService.findOne(sponsorshipId);
 			Assert.isTrue(this.sponsorshipService.findByProvider(principal.getId()).contains(sponsorship));
+			sponsorship.setProvider(null);
 			result = this.createEditModelAndView(sponsorship);
 		} catch (final Throwable oops) {
 			result = this.forbiddenOpperation();

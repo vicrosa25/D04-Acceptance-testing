@@ -48,6 +48,11 @@
 	
 </display:table>
 
+<jstl:if test="${not empty sponsorship}"><div>
+	<a href="${sponsorship.targetPage}"><img src="${sponsorship.banner}" alt="${sponsorship.targetPage}"
+		width="500" height="120" /></a>
+</div></jstl:if>
+
 
 <jstl:if test="${not empty position.problems}">
 <display:table name="position.problems" id="row" requestURI="position/display.do" class="displaytag">

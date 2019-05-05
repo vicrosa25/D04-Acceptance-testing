@@ -1,8 +1,10 @@
 
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,9 @@ import services.AuditorService;
 import services.CompanyService;
 import services.PositionService;
 import services.ProblemService;
+import services.SponsorshipService;
 import domain.Position;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/position")
@@ -37,6 +41,9 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	private AuditorService	auditorService;
+
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
 
 	@ExceptionHandler(TypeMismatchException.class)
@@ -117,16 +124,24 @@ public class PositionController extends AbstractController {
 	}
 
 	// Company display -------------------------------------------------------------
-	@RequestMapping(value = "/company/display", method = RequestMethod.GET)
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int positionId) {
 		ModelAndView result;
 		Position position;
 		try {
 
 			position = this.positionService.findOne(positionId);
+			ArrayList<Sponsorship> sponsorships = this.sponsorshipService.findByPosition(position);
 
-			result = new ModelAndView("position/company/display");
+			result = new ModelAndView("position/display");
 			result.addObject("position", position);
+			if (!sponsorships.isEmpty()) {
+				Random rand = new Random();
+				Sponsorship sponsorship = sponsorships.get(rand.nextInt(sponsorships.size()));
+
+				sponsorship = this.sponsorshipService.updateCharge(sponsorship);
+				result.addObject("sponsorship", sponsorship);
+			}
 
 		} catch (final Throwable oops) {
 			System.out.println(oops.getMessage());

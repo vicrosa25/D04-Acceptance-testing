@@ -11,6 +11,7 @@
 	<%-- Hidden properties from sponsorship--%>
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="charge" />
 
 	<%-- banner--%>
 	<acme:textbox code="sponsorship.banner" path="banner" />

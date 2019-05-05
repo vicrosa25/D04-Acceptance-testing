@@ -31,6 +31,9 @@ public class SponsorshipService {
 	private ActorService			actorService;
 
 	@Autowired
+	private ConfigurationsService	configurationsService;
+
+	@Autowired
 	@Qualifier("validator")
 	private Validator				validator;
 
@@ -57,15 +60,17 @@ public class SponsorshipService {
 	}
 
 	public Sponsorship save(final Sponsorship sponsorship) {
+		boolean nuevo = false;
 		Assert.notNull(sponsorship);
 		Assert.isTrue(sponsorship.getPosition().getFinalMode());
 		if(sponsorship.getId() == 0){
-			sponsorship.getProvider().getSponsorships().add(sponsorship);
+			nuevo = true;
 		}else
 			Assert.isTrue(this.providerService.findByPrincipal().getSponsorships().contains(sponsorship));
 
 		final Sponsorship result = this.sponsorshipRepository.save(sponsorship);
-
+		if (nuevo)
+			sponsorship.getProvider().getSponsorships().add(sponsorship);
 		return result;
 	}
 
@@ -93,7 +98,9 @@ public class SponsorshipService {
 		result.setCreditCard(sponsorship.getCreditCard());
 		result.setPosition(sponsorship.getPosition());
 		result.setTargetPage(sponsorship.getTargetPage());
+		result.setCharge(sponsorship.getCharge());
 		result.setProvider(this.providerService.findByPrincipal());
+		result.setVersion(sponsorship.getVersion());
 
 		if (sponsorship.getId() != 0) {
 			//not updated atributes
@@ -112,6 +119,12 @@ public class SponsorshipService {
 		Assert.notNull(result);
 
 		return result;
+	}
+
+	public Sponsorship updateCharge(Sponsorship sponsorship) {
+		Assert.notNull(sponsorship);
+		sponsorship.setCharge(sponsorship.getCharge() /*+	this.configurationsService.getConfiguration().getVat()*/); //TODO
+		return this.sponsorshipRepository.save(sponsorship);
 	}
 
 	public void flush() {
