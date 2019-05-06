@@ -438,6 +438,12 @@
 
 			</list>
 		</property>
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship1" />
+
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="position2" class="domain.Position">
@@ -463,6 +469,11 @@
 		<property name="audits">
 			<list>
 				<ref bean="audit2" />
+			</list>
+		</property>
+				<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship2" />
 			</list>
 		</property>
 	</bean>

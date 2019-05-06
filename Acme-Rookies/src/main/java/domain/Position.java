@@ -135,11 +135,12 @@ public class Position extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Company					company;
-	private Auditor					auditor;
-	private Collection<Problem>		problems;
-	private Collection<Application>	applications;
-	private Collection<Audit>		audits;
+	private Company					 company;
+	private Auditor					 auditor;
+	private Collection<Problem>		 problems;
+	private Collection<Application>	 applications;
+	private Collection<Audit>		 audits;
+	private Collection<Sponsorship>  sponsorships;
 
 
 	@OneToMany(mappedBy = "position")
@@ -185,6 +186,17 @@ public class Position extends DomainEntity {
 
 	public void setProblems(final Collection<Problem> problems) {
 		this.problems = problems;
+	}
+	
+	
+	@OneToMany(mappedBy = "position")
+	public Collection<Sponsorship> getSponsorships() {
+		return sponsorships;
+	}
+
+	
+	public void setSponsorships(Collection<Sponsorship> sponsorships) {
+		this.sponsorships = sponsorships;
 	}
 
 	// Other methods
