@@ -47,34 +47,36 @@ public class AdminEditConfigTest extends AbstractTest {
 	public void driver() {
 		final Object testingData[][] = {
 			{
-				null, "admin", 2, 15, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
+				null, "admin", 2, 15, 0.21, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				IllegalArgumentException.class, "", 2, 15, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
+				IllegalArgumentException.class, "", 2, 15, 0.21, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", null, 15, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
+				ConstraintViolationException.class, "admin", null, 15, 0.21, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, null, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
+				ConstraintViolationException.class, "admin", 2, null, 0.21, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, 15, "", "englishMessage", "countryCode", "title", "logo"
+				ConstraintViolationException.class, "admin", 2, 15, null, "spanishMessage", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, 15, "spanishMessage", "", "countryCode", "title", "logo"
+				ConstraintViolationException.class, "admin", 2, 15, 0.21, "", "englishMessage", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, 15, "spanishMessage", "englishMessage", "", "title", "logo"
+				ConstraintViolationException.class, "admin", 2, 15, 0.21, "spanishMessage", "", "countryCode", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, 15, "spanishMessage", "englishMessage", "countryCode", "", "logo"
+				ConstraintViolationException.class, "admin", 2, 15, 0.21, "spanishMessage", "englishMessage", "", "title", "logo"
 			}, {
-				ConstraintViolationException.class, "admin", 2, 15, "spanishMessage", "englishMessage", "countryCode", "title", ""
+				ConstraintViolationException.class, "admin", 2, 15, 0.21, "spanishMessage", "englishMessage", "countryCode", "", "logo"
+			}, {
+				ConstraintViolationException.class, "admin", 2, 15, 0.21, "spanishMessage", "englishMessage", "countryCode", "title", ""
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.template((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (Integer) testingData[i][3], 
-						 (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6], (String) testingData[i][7],
-						 (String) testingData[i][8]);
+			this.template((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (Integer) testingData[i][3],
+						 (Double) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6], (String) testingData[i][7], 
+						 (String) testingData[i][8], (String) testingData[i][9]);
 	}
 
 	// Ancillary methods ------------------------------------------------------
-	protected void template(Class<?> expected, String principal, Integer cacheTime, Integer finderMaxResult, String spanishMessage, 
+	protected void template(Class<?> expected, String principal, Integer cacheTime, Integer finderMaxResult, Double vat, String spanishMessage, 
 							String englishMessage, String countryCode, String title, String logo) {
 		Class<?> caught;
 		caught = null;
@@ -94,6 +96,7 @@ public class AdminEditConfigTest extends AbstractTest {
 			// Editing configurations
 			config.setCacheTime(cacheTime);
 			config.setFinderMaxResult(finderMaxResult);
+			config.setVat(vat);
 			config.setSpanishMessage(spanishMessage);
 			config.setEnglishMessage(englishMessage);
 			config.setCountryCode(countryCode);
