@@ -527,4 +527,106 @@ public class AdminDashBoardTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	// Tests Query16 -----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 16: The average, the minimum, the maximum, and the standard deviation of the
+	 * number of sponsorships per provider.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query16Positive() {
+		super.authenticate("admin");
+		this.adminService.query16();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 16: The average, the minimum, the maximum, and the standard deviation of the
+	 * number of sponsorships per provider.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query16Negative() {
+		super.authenticate(null);
+		this.adminService.query16();
+		super.unauthenticate();
+	}
+
+	// Tests Query17 -----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 17: he average, the minimum, the maximum, and the standard deviation of the
+					number of sponsorships per position.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query17Positive() {
+		super.authenticate("admin");
+		this.adminService.query17();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 17: he average, the minimum, the maximum, and the standard deviation of the
+	 * number of sponsorships per position.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query17Negative() {
+		super.authenticate(null);
+		this.adminService.query17();
+		super.unauthenticate();
+	}
+	
+	// Tests Query18 -----------------------------------------------------------------------------------------
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 18: The providers who have a number of sponsorships that is at least 10% above
+					the average number of sponsorships per provider.
+	 * 
+	 * 2. Positive test.
+	 * 
+	 **/
+	@Test
+	public void query18Positive() {
+		super.authenticate("admin");
+		this.adminService.query18();
+		super.unauthenticate();
+	}
+
+	/**
+	 * Requirement: An actor who is authenticated as an administrator must be able to Display a dashboard.
+	 * 
+	 * 1. Query 18: The providers who have a number of sponsorships that is at least 10% above
+					the average number of sponsorships per provider.
+	 * 
+	 * 2. Negative test.
+	 * 3. Business rule that is intended to broke: The actor is not authenticated as an Admin
+	 * 
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void query18Negative() {
+		super.authenticate(null);
+		this.adminService.query18();
+		super.unauthenticate();
+	}
+
 }
