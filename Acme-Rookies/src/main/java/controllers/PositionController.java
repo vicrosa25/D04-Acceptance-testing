@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import domain.Position;
+import domain.Sponsorship;
 import services.AuditorService;
 import services.CompanyService;
 import services.PositionService;
 import services.ProblemService;
 import services.SponsorshipService;
-import domain.Position;
-import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/position")
 public class PositionController extends AbstractController {
 
 	@Autowired
-	private PositionService positionService;
+	private PositionService		positionService;
 
 	@Autowired
-	private CompanyService	companyService;
+	private CompanyService		companyService;
 
 	@Autowired
-	private ProblemService	problemService;
+	private ProblemService		problemService;
 
 	@Autowired
-	private AuditorService	auditorService;
+	private AuditorService		auditorService;
 
 	@Autowired
 	private SponsorshipService	sponsorshipService;
@@ -128,6 +128,7 @@ public class PositionController extends AbstractController {
 	public ModelAndView display(@RequestParam final int positionId) {
 		ModelAndView result;
 		Position position;
+
 		try {
 
 			position = this.positionService.findOne(positionId);

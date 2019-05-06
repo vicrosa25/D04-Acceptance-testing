@@ -16,9 +16,9 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class Sponsorship extends DomainEntity {
 
-	private String	banner;
-	private String	targetPage;
-	private String	creditCard;
+	private String		banner;
+	private String		targetPage;
+	private String		creditCard;
 	private double		charge;
 
 

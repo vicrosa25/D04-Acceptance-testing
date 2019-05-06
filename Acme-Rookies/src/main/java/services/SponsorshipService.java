@@ -12,9 +12,9 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.SponsorshipRepository;
 import domain.Position;
 import domain.Sponsorship;
+import repositories.SponsorshipRepository;
 
 @Service
 @Transactional
@@ -26,9 +26,6 @@ public class SponsorshipService {
 
 	@Autowired
 	private ProviderService			providerService;
-
-	@Autowired
-	private ActorService			actorService;
 
 	@Autowired
 	private ConfigurationsService	configurationsService;
@@ -123,7 +120,7 @@ public class SponsorshipService {
 
 	public Sponsorship updateCharge(Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
-		sponsorship.setCharge(sponsorship.getCharge() /*+	this.configurationsService.getConfiguration().getVat()*/); //TODO
+		sponsorship.setCharge(this.configurationsService.getConfiguration().getVat()); 
 		return this.sponsorshipRepository.save(sponsorship);
 	}
 

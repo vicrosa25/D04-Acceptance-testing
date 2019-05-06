@@ -67,6 +67,14 @@
 	<form:input path="countryCode" />
 	<form:errors class="error" path="countryCode" />
 	<br><br>
+	
+	<%-- vat --%>
+	<form:label path="vat">
+		<spring:message code="config.vat" />
+	</form:label>
+	<form:input path="vat" />
+	<form:errors class="error" path="vat" />
+	<br><br>
 		
 
 

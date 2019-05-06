@@ -29,6 +29,7 @@ public class Configurations extends DomainEntity {
 	private String				title;
 	private String				logo;
 	private Boolean				isNotifiedRebranding;
+	private double				vat;
 
 	@NotNull
 	@Range(min = 1, max = 24)
@@ -117,4 +118,15 @@ public class Configurations extends DomainEntity {
 	public void setIsNotifiedRebranding(Boolean isNotifiedRebranding) {
 		this.isNotifiedRebranding = isNotifiedRebranding;
 	}
+
+
+	public double getVat() {
+		return vat;
+	}
+
+	public void setVat(double vat) {
+		this.vat = vat;
+	}
+	
+	
 }
