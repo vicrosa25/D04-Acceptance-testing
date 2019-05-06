@@ -474,28 +474,29 @@ public class AdministratorController extends AbstractController {
 	@RequestMapping(value = "/rebranding", method = RequestMethod.GET)
 	public ModelAndView rebranding() {
 		ModelAndView result;
-		Message mesage;
+		Boolean isNotified;
 		
-		mesage = this.messageService.createRebrandingMessage();
-		
-		this.messageService.save(mesage);
+		isNotified = this.configurationsService.getConfiguration().getIsNotifiedRebranding();
 		
 		result = new ModelAndView("administrator/rebranding");
-		
-		result.addObject("mesage", mesage);
+		result.addObject("isNotified", isNotified);
 		
 		
 		return result;
 	}
 	
-	@RequestMapping(value = "/rebranding", method = RequestMethod.POST)
-	public ModelAndView rebranding(Message mesage) {
+	@RequestMapping(value = "/sendRebrandingMessage", method = RequestMethod.GET)
+	public ModelAndView sendRebrandingMessage() {
 		ModelAndView result;
+		Message mesage;
 	
-		
+		mesage = this.messageService.createRebrandingMessage();
 		this.messageService.save(mesage);
 		
-		result = new ModelAndView("redirect:../message/list");
+		this.configurationsService.getConfiguration().setIsNotifiedRebranding(true);
+		this.configurationsService.update(this.configurationsService.getConfiguration());
+		
+		result = this.rebranding();
 		
 		return result;
 	}
@@ -511,6 +512,7 @@ public class AdministratorController extends AbstractController {
 	@RequestMapping(value = "/score", method = RequestMethod.GET)
 	public ModelAndView scoreList() {
 		ModelAndView result;
+		
 		Collection<Company> companies;
 
 		companies = this.companyService.findAll();

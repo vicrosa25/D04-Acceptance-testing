@@ -29,7 +29,7 @@ public class ConfigurationsService {
 		return result;
 	}
 
-	public Configurations update(final Configurations config) {
+	public Configurations update(Configurations config) {
 		Assert.notNull(config);
 
 		return this.configurationsRepository.save(config);

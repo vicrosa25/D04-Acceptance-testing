@@ -201,6 +201,9 @@ public class MessageService {
 		Calendar calendar = new GregorianCalendar();
 		Collection<String> tags = new ArrayList<String>();
 		Collection<Actor> recipients = this.actorService.findAll();
+		
+		// Remove Admin from the recipients
+		recipients.remove(principal);
 
 		
 		// Setting the message

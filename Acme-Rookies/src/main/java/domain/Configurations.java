@@ -28,6 +28,7 @@ public class Configurations extends DomainEntity {
 	private String				countryCode;
 	private String				title;
 	private String				logo;
+	private Boolean				isNotifiedRebranding;
 
 	@NotNull
 	@Range(min = 1, max = 24)
@@ -105,5 +106,15 @@ public class Configurations extends DomainEntity {
 
 	public void setEnglishMessage(String englishMessage) {
 		this.englishMessage = englishMessage;
+	}
+
+	
+	public Boolean getIsNotifiedRebranding() {
+		return isNotifiedRebranding;
+	}
+
+	
+	public void setIsNotifiedRebranding(Boolean isNotifiedRebranding) {
+		this.isNotifiedRebranding = isNotifiedRebranding;
 	}
 }

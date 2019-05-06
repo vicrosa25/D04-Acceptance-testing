@@ -17,29 +17,23 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-
-
-
-<form:form action="administrator/rebranding.do" modelAttribute="mesage">
 	
-	<security:authorize access="hasRole('ADMIN')">
-
-	<%-- Hidden properties from message--%>
-	<form:hidden path="id" />
-	<form:hidden path="version" />
-	<form:hidden path="sender" />
-	<form:hidden path="moment" />
-	<form:hidden path="recipients" />
-	<form:hidden path="tags" />
-	<form:hidden path="isNotification" />
-	<form:hidden path="subject" />
-	<form:hidden path="priority" />
-	<form:hidden path="body" />
+<security:authorize access="hasRole('ADMIN')">
 	
-	<input type="button" name="submit"
-			value="<spring:message code="administrator.cancel" />"
-			onClick="this.disabled = true;" />
+	
+	<%-- Notify --%>
+	<jstl:if test="${ not isNotified }">
+		<a href=administrator/sendRebrandingMessage.do><spring:message code="administrator.notify" /></a>
+	</jstl:if>
+	
+	<jstl:if test="${ isNotified }">
+		<spring:message code='administrator.notified' var="notifiedMessage"/>
+		<jstl:out value="${ notifiedMessage }" />
+	</jstl:if>
+		
+</security:authorize>
 
 
-	</security:authorize>
-</form:form>
+
+
+
