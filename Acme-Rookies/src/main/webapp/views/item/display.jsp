@@ -48,15 +48,30 @@
 <!-- Add Picture -->
 <security:authorize access="hasRole('PROVIDER')">
 	<a href="item/provider/addPicture.do?itemId=${item.id}"><spring:message code="item.addPicture" /></a>
+	
+	<br><br>
+	<%-- Button gotBack --%>
+	<input type="button" name="goBack"
+			value="<spring:message code="item.goBack" />"
+			onClick="javascript: window.location.replace('item/provider/list.do')" />
+	
 </security:authorize>
-<br><br>
 
+<security:authorize access="hasAnyRole('HACKER', 'COMPANY', 'ADMIN', 'AUDITOR')">
+	<br><br>
+	<%-- Button gotBack --%>
+	<input type="button" name="goBack"
+			value="<spring:message code="item.goBack" />"
+			onClick="javascript: window.location.replace('item/listAll.do')" />
+</security:authorize>
 
+<security:authorize access="isAnonymous()">
+	<br><br>
+	<%-- Button gotBack --%>
+	<input type="button" name="goBack"
+			value="<spring:message code="item.goBack" />"
+			onClick="javascript: window.location.replace('item/listAll.do')" />
+</security:authorize>
 
-<%-- Button gotBack --%>
-<input type="button" name="goBack"
-		value="<spring:message code="item.goBack" />"
-		onClick="javascript: window.location.replace('item/list.do')" />
-<br><br>
 
 

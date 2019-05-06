@@ -327,7 +327,6 @@ public class PositionController extends AbstractController {
 			System.out.println(oops.getClass());
 			System.out.println(oops.getCause());
 			result = this.forbiddenOpperation();
-
 		}
 
 		return result;

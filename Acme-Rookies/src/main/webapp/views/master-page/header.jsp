@@ -93,12 +93,12 @@
 		<!-- An actor who is authenticated as a PROVIDER -->
 		<security:authorize access="hasRole('PROVIDER')">
 			<li><a href="sponsorship/provider/list.do" class="fNiv"><spring:message	code="master.page.sponsorships" /></a></li>
-<%-- 		<li><a class="fNiv"><spring:message code="master.page.items" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="item/list.do"><spring:message code="master.page.items.list" /></a></li>
-				</ul>
-		</li> --%>
+<%-- 	 		<li><a class="fNiv"><spring:message code="master.page.items" /></a> --%>
+<!-- 				<ul> -->
+<!-- 					<li class="arrow"></li> -->
+<%-- 					<li><a href="item/provider/list.do"><spring:message code="master.page.items.list" /></a></li> --%>
+<!-- 				</ul> -->
+<!-- 			</li> -->
 		</security:authorize>
 		
 		<!-- An actor who is authenticated as a AUDITOR -->
@@ -177,7 +177,7 @@
 					<li class="arrow"></li>
 					<li><a href="item/listAll.do"><spring:message code="master.page.item.list" /></a></li>
 					<security:authorize access="hasRole('PROVIDER')">
-					<li><a href="item/list.do"><spring:message code="master.page.items.list" /></a></li>
+						<li><a href="item/provider/list.do"><spring:message code="master.page.items.list" /></a></li>
 					</security:authorize>	
 				</ul>
 			</li>

@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ItemService;
-import services.ProviderService;
 import domain.Item;
 import domain.Provider;
 import domain.Url;
+import services.ItemService;
+import services.ProviderService;
 
 @Controller
 @RequestMapping("/item")
@@ -39,7 +39,7 @@ public class ItemController extends AbstractController {
 	}
 
 	// List -------------------------------------------------------------
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/provider/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Item> items;
@@ -48,9 +48,9 @@ public class ItemController extends AbstractController {
 
 		items = principal.getItems();
 
-		result = new ModelAndView("item/list");
+		result = new ModelAndView("item/provider/list");
 		result.addObject("items", items);
-		result.addObject("requestURI", "item/list.do");
+		result.addObject("requestURI", "item/provider/list.do");
 
 		return result;
 	}
@@ -64,7 +64,7 @@ public class ItemController extends AbstractController {
 		try {
 			items = this.itemService.findAll();
 
-			result = new ModelAndView("item/list");
+			result = new ModelAndView("item/provider/list");
 			result.addObject("items", items);
 			result.addObject("requestURI", "item/listAll.do");
 		} catch (Throwable oops) {
@@ -85,7 +85,7 @@ public class ItemController extends AbstractController {
 
 			items = principal.getItems();
 
-			result = new ModelAndView("item/list");
+			result = new ModelAndView("item/provider/list");
 			result.addObject("items", items);
 			result.addObject("requestURI", "item/provider.do");
 		} catch (Throwable oops) {
@@ -136,7 +136,7 @@ public class ItemController extends AbstractController {
 		else
 			try {
 				this.itemService.save(item);
-				result = new ModelAndView("redirect:../list.do");
+				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
 				oops.printStackTrace();
 				result = this.createEditModelAndView(item, "profile.commit.error");
@@ -154,7 +154,7 @@ public class ItemController extends AbstractController {
 			Assert.notNull(item);
 			Assert.isTrue(principal.getItems().contains(item));
 			this.itemService.delete(item);
-			result = new ModelAndView("redirect:../list.do");
+			result = new ModelAndView("redirect:list.do");
 		} catch (Throwable oops) {
 			result = this.editModelAndView(item, "item.commit.error");
 		}
