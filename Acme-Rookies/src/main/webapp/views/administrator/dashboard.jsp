@@ -227,6 +227,24 @@
 <br />
 
 
+<table>
+	<caption>
+		<jstl:out value="${query18Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${providerHeader}"></jstl:out></th>
+		<th><jstl:out value="${itemsSizeHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query18}" var="row">
+      <tr>
+        	<td>${row.name}</td>
+        	<td>${row.getItems().size()}</td>
+      </tr>
+   </jstl:forEach>
+</table>
+<br />
+
+
 
 
 

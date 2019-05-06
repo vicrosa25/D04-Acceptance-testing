@@ -77,8 +77,10 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select avg(p.sponsorships.size), min(p.sponsorships.size), max(p.sponsorships.size), stddev(p.sponsorships.size) from Provider p")
 	Object[] query16();
 
-	// Level A
 	@Query("select avg(p.sponsorships.size), min(p.sponsorships.size), max(p.sponsorships.size), stddev(p.sponsorships.size) from Position p")
 	Object[] query17();
+	
+	@Query("select p from Provider p where p.sponsorships.size > (select avg(p1.sponsorships.size) from Provider p1)")
+	Collection<Provider> query18();
 
 }
