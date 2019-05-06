@@ -237,13 +237,13 @@ public class PositionService {
 		}
 	}
 
-	public void assign(Position position, Auditor auditor) {
+	public Position assign(Position position, Auditor auditor) {
 		Assert.isTrue(position.getFinalMode());
 		Assert.isNull(position.getAuditor());
 		Assert.isTrue(auditor == this.auditorService.findByPrincipal());
 
 		position.setAuditor(auditor);
-		this.positionRepository.save(position);
+		return this.positionRepository.save(position);
 	}
 
 	public Position findByAudit(int auditId){
@@ -258,5 +258,9 @@ public class PositionService {
 		Assert.notNull(result);
 
 		return result;
+	}
+
+	public void flush(){
+		this.positionRepository.flush();
 	}
 }
