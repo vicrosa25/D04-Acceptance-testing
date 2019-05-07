@@ -82,44 +82,19 @@ public class ManageSponsorshipTest extends AbstractTest {
 	 * 02- Delete sponsorship of other provider; Error
 	 */
 
-	//	@Test
-	//	public void driverDelete() {
-	//		final Object testingData[][] = {
-	//			{
-	//				null, null
-	//			}, {
-	//				IllegalArgumentException.class, "provider2"
-	//			}
-	//		};
-	//
-	//		for (int i = 0; i < testingData.length; i++)
-	//			this.deleteTemplate((Class<?>) testingData[i][0], (String) testingData[i][1]);
-	//	}
-	/*
-	 * ------------------------------------------------------------------------------------------------------------------------------------------
-	 * An actor who is authenticated as a provider must be able to manage their sponsorships
-	 * CANCEL
-	 * 
-	 * 01- All ok
-	 * 02- Cancel sponsorship of other provider; Error
-	 * 03- Cancel sponsorship in draft mode; Error
-	 */
-	//
-	//	@Test
-	//	public void driverCancel() {
-	//		final Object testingData[][] = {
-	//			{
-	//				null, null, true
-	//			}, {
-	//				IllegalArgumentException.class, "provider2", true
-	//			}, {
-	//				IllegalArgumentException.class, null, false
-	//			}
-	//		};
-	//
-	//		for (int i = 0; i < testingData.length; i++)
-	//			this.cancelTemplate((Class<?>) testingData[i][0], (String) testingData[i][1], (Boolean) testingData[i][2]);
-	//	}
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				null, "provider1"
+			}, {
+				IllegalArgumentException.class, "provider2"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.deleteTemplate((Class<?>) testingData[i][0], (String) testingData[i][1]);
+	}
 
 	// Ancillary methods ------------------------------------------------------
 	protected void createTemplate(Class<?> expected, String username, String banner, String targetPage, String card) {
@@ -151,67 +126,29 @@ public class ManageSponsorshipTest extends AbstractTest {
 			this.sponsorshipService.flush();
 		} catch (Throwable oops) {
 			caught = oops.getClass();
-			oops.printStackTrace();
 		}
 		super.checkExceptions(expected, caught);
 	}
-	//	protected void deleteTemplate(Class<?> expected, String username) {
-	//		Class<?> caught;
-	//		caught = null;
-	//
-	//		try {
-	//			int i;
-	//			i = this.sponsorshipService.findAll().size();
-	//
-	//			super.authenticate("provider1");
-	//
-	//			for (Sponsorship sponsorship : new ArrayList<Sponsorship>(this.providerService.findByPrincipal().getSponsorships())) {
-	//				if(!sponsorship.getFinalMode()){
-	//					if (username != null) {
-	//						super.unauthenticate();
-	//						super.authenticate(username);
-	//					}
-	//					this.sponsorshipService.delete(sponsorship);
-	//
-	//				}
-	//			}
-	//
-	//			Assert.isTrue(this.sponsorshipService.findAll().size() < i);
-	//
-	//			super.unauthenticate();
-	//		} catch (Throwable oops) {
-	//			caught = oops.getClass();
-	//		}
-	//		super.checkExceptions(expected, caught);
-	//	}
-	//	protected void cancelTemplate(Class<?> expected, String username, Boolean finalMode) {
-	//		Class<?> caught;
-	//		caught = null;
-	//		Sponsorship cancelled = null;
-	//
-	//		try {
-	//
-	//			super.authenticate("provider1");
-	//
-	//			for (Sponsorship sponsorship : new ArrayList<Sponsorship>(this.providerService.findByPrincipal().getSponsorships())) {
-	//				if (sponsorship.getFinalMode().equals(finalMode)) {
-	//					if (username != null) {
-	//						super.unauthenticate();
-	//						super.authenticate(username);
-	//					}
-	//					cancelled = sponsorship;
-	//					this.sponsorshipService.cancel(sponsorship);
-	//					break;
-	//				}
-	//			}
-	//
-	//			Assert.isTrue(cancelled.getCancelled());
-	//
-	//			super.unauthenticate();
-	//		} catch (Throwable oops) {
-	//			caught = oops.getClass();
-	//		}
-	//		super.checkExceptions(expected, caught);
-	//	}
+	protected void deleteTemplate(Class<?> expected, String username) {
+		Class<?> caught;
+		caught = null;
+
+		try {
+			int i;
+			i = this.sponsorshipService.findAll().size();
+
+			super.authenticate(username);
+
+			Sponsorship sponsorship = (Sponsorship) this.sponsorshipService.findAll().toArray()[0];
+			this.sponsorshipService.delete(sponsorship);
+
+			Assert.isTrue(this.sponsorshipService.findAll().size() < i);
+
+			super.unauthenticate();
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+		super.checkExceptions(expected, caught);
+	}
 
 }
