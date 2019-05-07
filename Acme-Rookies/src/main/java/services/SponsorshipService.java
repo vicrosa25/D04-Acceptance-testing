@@ -14,6 +14,7 @@ import org.springframework.validation.Validator;
 
 import repositories.SponsorshipRepository;
 import domain.Position;
+import domain.Provider;
 import domain.Sponsorship;
 
 @Service
@@ -58,12 +59,13 @@ public class SponsorshipService {
 
 	public Sponsorship save(final Sponsorship sponsorship) {
 		boolean nuevo = false;
+		Provider principal = this.providerService.findByPrincipal();
 		Assert.notNull(sponsorship);
 		Assert.isTrue(sponsorship.getPosition().getFinalMode());
 		if(sponsorship.getId() == 0){
 			nuevo = true;
 		}else
-			Assert.isTrue(this.providerService.findByPrincipal().getSponsorships().contains(sponsorship));
+			Assert.isTrue(principal.getSponsorships().contains(sponsorship));
 
 		final Sponsorship result = this.sponsorshipRepository.save(sponsorship);
 		if (nuevo)
