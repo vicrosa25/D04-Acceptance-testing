@@ -1,0 +1,8 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
+/Acme-Rookies/,1000,2673,31,9056,2,48794,0.0,2.5554141559722585,12.40024701272085
+/Acme-Rookies/security/login.do,1000,2228,249,7373,1,33948,0.0,2.5547417283849687,9.430589583296078
+/Acme-Rookies/j_spring_security_check,1000,8370,5495,21278,4,58747,0.0,2.5546503577787827,13.90837475060226
+/Acme-Rookies/item/provider/list.do,1000,5078,1577,15608,213,59868,0.0,2.5517950602351225,15.682076478573855
+/Acme-Rookies/item/provider/create.do,1000,2608,251,8643,2,43883,0.0,2.5573943220731263,12.379886381363756
+/Acme-Rookies/item/provider/edit.do,1000,9943,6999,22754,222,63859,0.0,2.556413658406894,18.077139941918283
+TOTAL,6000,5150,1252,16337,1,63859,0.0,15.129584894622441,80.80685682243414
