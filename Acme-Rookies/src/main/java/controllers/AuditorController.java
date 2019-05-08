@@ -23,7 +23,7 @@ import services.AuditorService;
 import utilities.Md5;
 
 @Controller
-@RequestMapping("/auditor/admin")
+@RequestMapping("/auditor")
 public class AuditorController extends AbstractController {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class AuditorController extends AbstractController {
 	}
 
 	// List -------------------------------------------------------------
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Auditor> auditors;
@@ -52,7 +52,7 @@ public class AuditorController extends AbstractController {
 	}
 
 	// Create -----------------------------------------------------------
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Auditor auditor;
@@ -66,8 +66,8 @@ public class AuditorController extends AbstractController {
 	}
 
 	// Save -----------------------------------------------------------
-	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Auditor auditor, BindingResult binding) {
+	@RequestMapping(value = "/admin/create", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid final Auditor auditor, final BindingResult binding) {
 		ModelAndView result;
 		String password;
 		if (binding.hasErrors()) {

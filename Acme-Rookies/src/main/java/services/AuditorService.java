@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Actor;
+import domain.Administrator;
 import domain.Auditor;
 import domain.Message;
 import repositories.AuditorRepository;
@@ -25,13 +27,16 @@ public class AuditorService {
 	private AuditorRepository		auditorRepository;
 
 	// Supporting services
+	@Autowired
+	private ConfigurationsService	configurationsService;
+	
+	@Autowired
+	private ActorService			actorService;
+	
 
 
 	// CRUD methods
 	public Auditor create() {
-
-		Auditor auditor = new Auditor();
-
 		// Initialice
 		UserAccount userAccount = new UserAccount();
 		Collection<Authority> authorities = new ArrayList<Authority>();
@@ -40,13 +45,14 @@ public class AuditorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		
 		// Set Messages
 		Collection<Message> messages = new ArrayList<Message>();
-
+		
+		// Settings
+		Auditor auditor = new Auditor();
 		auditor.setUserAccount(userAccount);
 		auditor.setMessages(messages);
-		auditor.setIsSpammer(false);
+
 
 		return auditor;
 
@@ -69,14 +75,39 @@ public class AuditorService {
 	
 	
 
+//	public Auditor save(Auditor auditor) {
+//		Assert.notNull(auditor);
+//
+//		final Auditor result = this.auditorRepository.save(auditor);
+//
+//		return result;
+//	}
+//	
+	
 	public Auditor save(Auditor auditor) {
 		Assert.notNull(auditor);
+		
+		Actor principal;
 
-		final Auditor result = this.auditorRepository.save(auditor);
+		// Check principal must be an admin
+		principal = this.actorService.findByPrincipal();
+		Assert.isInstanceOf(Administrator.class, principal);
 
-		return result;
+		if (auditor.getId() == 0) {
+			if (!auditor.getPhoneNumber().startsWith("+")) {
+				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
+				final String phoneNumer = auditor.getPhoneNumber();
+				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
+			}
+		} else {
+			if (!auditor.getPhoneNumber().startsWith("+")) {
+				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
+				final String phoneNumer = auditor.getPhoneNumber();
+				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
+			}
+		}
+		return this.auditorRepository.save(auditor);
 	}
-	
 	
 	
 	/************************************************************************************************/
