@@ -57,7 +57,7 @@ public class SponsorshipService {
 		return result;
 	}
 
-	public Sponsorship save(final Sponsorship sponsorship) {
+	public Sponsorship save(Sponsorship sponsorship) {
 		boolean nuevo = false;
 		Provider principal = this.providerService.findByPrincipal();
 		Assert.notNull(sponsorship);
@@ -67,10 +67,10 @@ public class SponsorshipService {
 		}else
 			Assert.isTrue(principal.getSponsorships().contains(sponsorship));
 
-		final Sponsorship result = this.sponsorshipRepository.save(sponsorship);
+		sponsorship = this.sponsorshipRepository.save(sponsorship);
 		if (nuevo)
 			sponsorship.getProvider().getSponsorships().add(sponsorship);
-		return result;
+		return sponsorship;
 	}
 
 	public void delete(final Sponsorship sponsorship) {
