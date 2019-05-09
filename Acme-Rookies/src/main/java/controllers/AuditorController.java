@@ -83,6 +83,7 @@ public class AuditorController extends AbstractController {
 				this.auditorService.save(auditor);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
+				oops.printStackTrace();
 				result = new ModelAndView("auditor/admin/create");
 				result.addObject("auditor", auditor);
 				if (oops instanceof DataIntegrityViolationException)

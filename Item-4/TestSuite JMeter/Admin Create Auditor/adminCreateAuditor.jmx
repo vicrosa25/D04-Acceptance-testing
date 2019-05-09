@@ -44,16 +44,13 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
-                <elementProp name="Referer" elementType="Header">
-                  <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">http://localhost:8080/Acme-Rookies/administrator/list.do?title=Acme+Rookies%2C+Inc.&amp;logo=https%3A%2F%2Fi.imgur.com%2F7b8lu4b.png+</stringProp>
-                </elementProp>
                 <elementProp name="Accept-Language" elementType="Header">
                   <stringProp name="Header.name">Accept-Language</stringProp>
                   <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -98,6 +95,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -168,6 +166,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
@@ -223,6 +222,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="TestPlan.comments">Detected a redirect from the previous sample</stringProp>
@@ -274,6 +274,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -329,6 +330,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -402,28 +404,28 @@
                 <elementProp name="userAccount.username" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">userAccount.username</stringProp>
-                  <stringProp name="Argument.value">prueba2</stringProp>
+                  <stringProp name="Argument.value">prueba3</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="userAccount.password" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">userAccount.password</stringProp>
-                  <stringProp name="Argument.value">prueba2</stringProp>
+                  <stringProp name="Argument.value">prueba3</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="name" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">name</stringProp>
-                  <stringProp name="Argument.value">prueba2</stringProp>
+                  <stringProp name="Argument.value">prueba3</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="surname" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">surname</stringProp>
-                  <stringProp name="Argument.value">prueba2</stringProp>
+                  <stringProp name="Argument.value">prueba3</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -451,7 +453,7 @@
                 <elementProp name="email" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.name">email</stringProp>
-                  <stringProp name="Argument.value">prueba2@gmail.com</stringProp>
+                  <stringProp name="Argument.value">prueba3@gmail.com</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -490,6 +492,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
@@ -528,6 +531,11 @@
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              <stringProp name="RandomTimer.range">100.0</stringProp>
+            </GaussianRandomTimer>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/Acme-Rookies/auditor/admin/list.do" enabled="false">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -537,14 +545,12 @@
                   <stringProp name="Argument.name">title</stringProp>
                   <stringProp name="Argument.value">Acme Rookies, Inc.</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="logo" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.name">logo</stringProp>
                   <stringProp name="Argument.value">https://i.imgur.com/7b8lu4b.png </stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -560,6 +566,7 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="TestPlan.comments">Detected a redirect from the previous sample</stringProp>
@@ -665,6 +672,39 @@
           </value>
         </objProp>
         <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <fileName>true</fileName>
+          </value>
+        </objProp>
+        <stringProp name="filename">/home/victor/Desktop/result.txt</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
