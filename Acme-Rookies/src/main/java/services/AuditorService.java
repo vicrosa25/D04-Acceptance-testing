@@ -75,17 +75,9 @@ public class AuditorService {
 	
 	
 
-//	public Auditor save(Auditor auditor) {
-//		Assert.notNull(auditor);
-//
-//		final Auditor result = this.auditorRepository.save(auditor);
-//
-//		return result;
-//	}
-//	
-	
 	public Auditor save(Auditor auditor) {
 		Assert.notNull(auditor);
+		Auditor result;
 		
 		Actor principal;
 
@@ -93,22 +85,37 @@ public class AuditorService {
 		principal = this.actorService.findByPrincipal();
 		Assert.isInstanceOf(Administrator.class, principal);
 
-		if (auditor.getId() == 0) {
-			if (!auditor.getPhoneNumber().startsWith("+")) {
-				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
-				final String phoneNumer = auditor.getPhoneNumber();
-				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
-			}
-		} else {
-			if (!auditor.getPhoneNumber().startsWith("+")) {
-				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
-				final String phoneNumer = auditor.getPhoneNumber();
-				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
-			}
-		}
-		return this.auditorRepository.save(auditor);
+		result = this.auditorRepository.save(auditor);
+
+		return result;
 	}
 	
+	
+//	public Auditor save(Auditor auditor) {
+//		Assert.notNull(auditor);
+//		
+//		Actor principal;
+//
+//		// Check principal must be an admin
+//		principal = this.actorService.findByPrincipal();
+//		Assert.isInstanceOf(Administrator.class, principal);
+//
+//		if (auditor.getId() == 0) {
+//			if (!auditor.getPhoneNumber().startsWith("+")) {
+//				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
+//				final String phoneNumer = auditor.getPhoneNumber();
+//				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
+//			}
+//		} else {
+//			if (!auditor.getPhoneNumber().startsWith("+")) {
+//				final String countryCode = this.configurationsService.getConfiguration().getCountryCode();
+//				final String phoneNumer = auditor.getPhoneNumber();
+//				auditor.setPhoneNumber(countryCode.concat(phoneNumer));
+//			}
+//		}
+//		return this.auditorRepository.save(auditor);
+//	}
+//	
 	
 	/************************************************************************************************/
 	// Other business methods

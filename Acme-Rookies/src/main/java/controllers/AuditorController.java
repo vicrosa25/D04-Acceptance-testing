@@ -9,7 +9,6 @@ import javax.validation.Valid;
 
 import org.hibernate.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -86,12 +85,12 @@ public class AuditorController extends AbstractController {
 				oops.printStackTrace();
 				result = new ModelAndView("auditor/admin/create");
 				result.addObject("auditor", auditor);
-				if (oops instanceof DataIntegrityViolationException)
-					result.addObject("auditor", "admin.duplicated.username");
-				else {
-					System.out.println(oops.getCause().toString());
-					result.addObject("auditor", "admin.registration.error");
-				}
+//				if (oops instanceof DataIntegrityViolationException)
+//					result.addObject("auditor", "admin.duplicated.username");
+//				else {
+//					System.out.println(oops.getCause().toString());
+//					result.addObject("auditor", "admin.registration.error");
+//				}
 			}
 		return result;
 	}
