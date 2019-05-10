@@ -30,6 +30,7 @@
 <spring:message code="administrator.status" 		  var="statusHeader" />
 <spring:message code="administrator.moment" 		  var="momentHeader" />
 <spring:message code="administrator.positions" 		  var="positionsHeader" />
+<spring:message code="administrator.position" 		  var="positionHeader" />
 <spring:message code="administrator.applications" 	  var="applicationsHeader" />
 <spring:message code="administrator.position.salary"  var="salaryHeader" />
 <spring:message code="administrator.score" 	  		  var="scoreHeader" />
@@ -62,6 +63,187 @@
 	<link rel="stylesheet" href="styles/charts.css" type="text/css">
 </head>
 
+<!-- ACME HACKER RANK -->
+
+<!-- C level -->
+
+<!-- Query 1 -->
+<table>
+	<caption>
+		<jstl:out value="${query1Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query1[0]}"></jstl:out></td>
+		<td><jstl:out value="${query1[1]}"></jstl:out></td>
+		<td><jstl:out value="${query1[2]}"></jstl:out></td>
+		<td><jstl:out value="${query1[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 2  -->
+<table>
+	<caption>
+		<jstl:out value="${query2Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query2[0]}"></jstl:out></td>
+		<td><jstl:out value="${query2[1]}"></jstl:out></td>
+		<td><jstl:out value="${query2[2]}"></jstl:out></td>
+		<td><jstl:out value="${query2[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 3  -->
+<table>
+	<caption>
+		<jstl:out value="${query3Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${companyHeader}"></jstl:out></th>
+		<th><jstl:out value="${positionsHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query3}" var="row">
+      <tr>
+        	<td>${row.commercialName}</td>
+        	<td>${row.getPositions().size()}</td>
+      </tr>
+   </jstl:forEach>
+</table>
+<br />
+
+<!-- Query 4  -->
+<table>
+	<caption>
+		<jstl:out value="${query4Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${hackerHeader}"></jstl:out></th>
+		<th><jstl:out value="${applicationsHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query4}" var="row">
+      <tr>
+        	<td>${row.name}</td>
+        	<td>${row.getApplications().size()}</td>
+      </tr>
+   </jstl:forEach>
+</table>
+<br />
+
+<!-- Query 5  -->
+<table>
+	<caption>
+		<jstl:out value="${query5Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query5[0]}"></jstl:out></td>
+		<td><jstl:out value="${query5[1]}"></jstl:out></td>
+		<td><jstl:out value="${query5[2]}"></jstl:out></td>
+		<td><jstl:out value="${query5[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 6  -->
+<table>
+	<caption>
+		<jstl:out value="${query6Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${positionHeader}"></jstl:out></th>
+		<th><jstl:out value="${salaryHeader}"></jstl:out></th>
+	</tr>
+	<jstl:forEach items="${query6a}" var="row">
+      <tr>
+        	<td>${row.title}</td>
+        	<td>${row.salary}</td>
+      </tr>
+   </jstl:forEach>
+<!--    <tr> -->
+<%-- 		<th><jstl:out value="${hackerHeader}"></jstl:out></th> --%>
+<%-- 		<th><jstl:out value="${salaryHeader}"></jstl:out></th> --%>
+<!-- 	</tr> -->
+	<jstl:forEach items="${query6b}" var="row">
+      <tr>
+        	<td>${row.title}</td>
+        	<td>${row.salary}</td>
+      </tr>
+   </jstl:forEach>
+</table>
+
+
+<!-- Query 7  -->
+<table>
+	<caption>
+		<jstl:out value="${query7Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query7[0]}"></jstl:out></td>
+		<td><jstl:out value="${query7[1]}"></jstl:out></td>
+		<td><jstl:out value="${query7[2]}"></jstl:out></td>
+		<td><jstl:out value="${query7[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 8 -->
+<table>
+	<caption>
+		<jstl:out value="${query8Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${avgHeader}"></jstl:out></th>
+		<th><jstl:out value="${minHeader}"></jstl:out></th>
+		<th><jstl:out value="${maxHeader}"></jstl:out></th>
+		<th><jstl:out value="${stdHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query8[0]}"></jstl:out></td>
+		<td><jstl:out value="${query8[1]}"></jstl:out></td>
+		<td><jstl:out value="${query8[2]}"></jstl:out></td>
+		<td><jstl:out value="${query8[3]}"></jstl:out></td>
+	</tr>
+</table>
+<br />
+
+<!-- Query 9 -->
+<table>
+	<caption>
+		<jstl:out value="${query9Header}"></jstl:out>
+	</caption>
+	<tr>
+		<th><jstl:out value="${ratioHeader}"></jstl:out></th>
+	</tr>
+	<tr>
+		<td><jstl:out value="${query9}"></jstl:out></td>
+	</tr>
+</table>
+<br />
 
 
 <!-- ACME ROOKIE -->
@@ -172,7 +354,7 @@
 	</caption>
 	<tr>
 		<th><jstl:out value="${providerHeader}"></jstl:out></th>
-		<th><jstl:out value="${itemsSizeHeader}"></jstl:out></th>
+		<th><jstl:out value="${itemsHeader}"></jstl:out></th>
 	</tr>
 	<jstl:forEach items="${query15}" var="row">
       <tr>
@@ -226,14 +408,14 @@
 </table>
 <br />
 
-
+<!-- Query 18 -->
 <table>
 	<caption>
 		<jstl:out value="${query18Header}"></jstl:out>
 	</caption>
 	<tr>
 		<th><jstl:out value="${providerHeader}"></jstl:out></th>
-		<th><jstl:out value="${itemsSizeHeader}"></jstl:out></th>
+		<th><jstl:out value="${itemsHeader}"></jstl:out></th>
 	</tr>
 	<jstl:forEach items="${query18}" var="row">
       <tr>
@@ -241,193 +423,6 @@
         	<td>${row.getItems().size()}</td>
       </tr>
    </jstl:forEach>
-</table>
-<br />
-
-
-
-
-
-
-<!-- ACME HACKER RANK -->
-
-<!-- C level -->
-
-<!-- Query 1 -->
-<table>
-	<caption>
-		<jstl:out value="${query1Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${avgHeader}"></jstl:out></th>
-		<th><jstl:out value="${minHeader}"></jstl:out></th>
-		<th><jstl:out value="${maxHeader}"></jstl:out></th>
-		<th><jstl:out value="${stdHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query1[0]}"></jstl:out></td>
-		<td><jstl:out value="${query1[1]}"></jstl:out></td>
-		<td><jstl:out value="${query1[2]}"></jstl:out></td>
-		<td><jstl:out value="${query1[3]}"></jstl:out></td>
-	</tr>
-</table>
-<br />
-
-<!-- Query 2  -->
-<table>
-	<caption>
-		<jstl:out value="${query2Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${avgHeader}"></jstl:out></th>
-		<th><jstl:out value="${minHeader}"></jstl:out></th>
-		<th><jstl:out value="${maxHeader}"></jstl:out></th>
-		<th><jstl:out value="${stdHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query2[0]}"></jstl:out></td>
-		<td><jstl:out value="${query2[1]}"></jstl:out></td>
-		<td><jstl:out value="${query2[2]}"></jstl:out></td>
-		<td><jstl:out value="${query2[3]}"></jstl:out></td>
-	</tr>
-</table>
-<br />
-
-<!-- Query 3  -->
-<table>
-	<caption>
-		<jstl:out value="${query3Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${companyHeader}"></jstl:out></th>
-		<th><jstl:out value="${positionsHeader}"></jstl:out></th>
-	</tr>
-	<jstl:forEach items="${query3}" var="row">
-      <tr>
-        	<td>${row.commercialName}</td>
-        	<td>${row.getPositions().size()}</td>
-      </tr>
-   </jstl:forEach>
-</table>
-<br />
-
-<!-- Query 4  -->
-<table>
-	<caption>
-		<jstl:out value="${query4Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${hackerHeader}"></jstl:out></th>
-		<th><jstl:out value="${applicationsHeader}"></jstl:out></th>
-	</tr>
-	<jstl:forEach items="${query4}" var="row">
-      <tr>
-        	<td>${row.name}</td>
-        	<td>${row.getApplications().size()}</td>
-      </tr>
-   </jstl:forEach>
-</table>
-<br />
-
-<!-- Query 5  -->
-<table>
-	<caption>
-		<jstl:out value="${query5Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${avgHeader}"></jstl:out></th>
-		<th><jstl:out value="${minHeader}"></jstl:out></th>
-		<th><jstl:out value="${maxHeader}"></jstl:out></th>
-		<th><jstl:out value="${stdHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query5[0]}"></jstl:out></td>
-		<td><jstl:out value="${query5[1]}"></jstl:out></td>
-		<td><jstl:out value="${query5[2]}"></jstl:out></td>
-		<td><jstl:out value="${query5[3]}"></jstl:out></td>
-	</tr>
-</table>
-<br />
-
-<!-- Query 6  -->
-<table>
-	<caption>
-		<jstl:out value="${query6Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${hackerHeader}"></jstl:out></th>
-		<th><jstl:out value="${salaryHeader}"></jstl:out></th>
-	</tr>
-	<jstl:forEach items="${query6a}" var="row">
-      <tr>
-        	<td>${row.title}</td>
-        	<td>${row.salary}</td>
-      </tr>
-   </jstl:forEach>
-   <tr>
-		<th><jstl:out value="${hackerHeader}"></jstl:out></th>
-		<th><jstl:out value="${salaryHeader}"></jstl:out></th>
-	</tr>
-	<jstl:forEach items="${query6b}" var="row">
-      <tr>
-        	<td>${row.title}</td>
-        	<td>${row.salary}</td>
-      </tr>
-   </jstl:forEach>
-</table>
-
-
-<!-- Query 7  -->
-<table>
-	<caption>
-		<jstl:out value="${query7Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${avgHeader}"></jstl:out></th>
-		<th><jstl:out value="${minHeader}"></jstl:out></th>
-		<th><jstl:out value="${maxHeader}"></jstl:out></th>
-		<th><jstl:out value="${stdHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query7[0]}"></jstl:out></td>
-		<td><jstl:out value="${query7[1]}"></jstl:out></td>
-		<td><jstl:out value="${query7[2]}"></jstl:out></td>
-		<td><jstl:out value="${query7[3]}"></jstl:out></td>
-	</tr>
-</table>
-<br />
-
-<!-- Query 8 -->
-<table>
-	<caption>
-		<jstl:out value="${query8Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${avgHeader}"></jstl:out></th>
-		<th><jstl:out value="${minHeader}"></jstl:out></th>
-		<th><jstl:out value="${maxHeader}"></jstl:out></th>
-		<th><jstl:out value="${stdHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query8[0]}"></jstl:out></td>
-		<td><jstl:out value="${query8[1]}"></jstl:out></td>
-		<td><jstl:out value="${query8[2]}"></jstl:out></td>
-		<td><jstl:out value="${query8[3]}"></jstl:out></td>
-	</tr>
-</table>
-<br />
-
-<!-- Query 9 -->
-<table>
-	<caption>
-		<jstl:out value="${query9Header}"></jstl:out>
-	</caption>
-	<tr>
-		<th><jstl:out value="${ratioHeader}"></jstl:out></th>
-	</tr>
-	<tr>
-		<td><jstl:out value="${query9}"></jstl:out></td>
-	</tr>
 </table>
 <br />
 
