@@ -36,4 +36,4 @@
 	
 </display:table>
 <br>
-<acme:back code="hacker.goback"/>
+<acme:back code="rookie.goback"/>
