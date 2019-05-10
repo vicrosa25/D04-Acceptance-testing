@@ -21,8 +21,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+
+
+# Mac
+.DS_Store
+
 ###################
-Acme-Hacker-Rank/.classpath
-Acme-Hacker-Rank/.settings
-Acme-Hacker-Rank/.idea
-Acme-Hacker-Rank/src/main/resources/Entities.map
+Acme-Rookies/.classpath
+Acme-Rookies/.settings
+Acme-Rookies/.idea
+Acme-Rookies/src/main/resources/Entities.map
