@@ -42,7 +42,7 @@
 	
 	<!-- Tags -->
 	<spring:message code="message.tags" var="tagsHeader" />
-	<display:column title="${tagsHeader}" sortable="false">
+	<display:column title="${tagsHeader}" sortable="true">
 		<jstl:forEach var="tag" items="${row.tags}" varStatus="loop">
 			${tag}${!loop.last ? ',' : ''}&nbsp
 		</jstl:forEach>
