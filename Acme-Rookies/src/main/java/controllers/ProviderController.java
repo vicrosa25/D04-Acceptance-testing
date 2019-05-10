@@ -117,6 +117,7 @@ public class ProviderController extends AbstractController {
 		ModelAndView result;
 		Provider provider;
 		String password;
+		ProviderForm bug = providerForm;
 
 		provider = this.providerService.reconstruct(providerForm, binding);
 
@@ -127,7 +128,7 @@ public class ProviderController extends AbstractController {
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 
-			result = this.createEditModelAndView(providerForm);
+			result = this.createEditModelAndView(bug);
 		}
 
 		else
@@ -144,9 +145,9 @@ public class ProviderController extends AbstractController {
 				result = this.createEditModelAndView(providerForm);
 
 				if (oops instanceof DataIntegrityViolationException)
-					result = this.createEditModelAndView(providerForm, "provider.duplicated.username");
+					result = this.createEditModelAndView(bug, "provider.duplicated.username");
 				else
-					result = this.createEditModelAndView(providerForm, "provider.registration.error");
+					result = this.createEditModelAndView(bug, "provider.registration.error");
 			}
 		return result;
 	}
@@ -191,6 +192,7 @@ public class ProviderController extends AbstractController {
 	public ModelAndView saveEdit(final Provider prune, final BindingResult binding) {
 		ModelAndView result;
 		final Provider provider;
+		Provider bug = prune;
 
 		provider = this.providerService.reconstruct(prune, binding);
 
@@ -200,7 +202,7 @@ public class ProviderController extends AbstractController {
 				System.out.println(e.toString());
 
 			result = new ModelAndView("provider/edit");
-			result.addObject("provider", prune);
+			result.addObject("provider", bug);
 		}
 
 		else
@@ -212,7 +214,7 @@ public class ProviderController extends AbstractController {
 				System.out.println(oops.getMessage());
 				System.out.println(oops.getClass());
 				System.out.println(oops.getCause());
-				result = this.editModelAndView(provider, "provider.registration.error");
+				result = this.editModelAndView(bug, "provider.registration.error");
 			}
 		return result;
 	}
@@ -234,7 +236,7 @@ public class ProviderController extends AbstractController {
 
 			this.actorService.generatePersonalInformationPDF(provider, temperotyFilePath + "\\" + fileName);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			baos = convertPDFToByteArrayOutputStream(temperotyFilePath + "\\" + fileName);
+			baos = this.convertPDFToByteArrayOutputStream(temperotyFilePath + "\\" + fileName);
 			OutputStream os = response.getOutputStream();
 			baos.writeTo(os);
 			os.flush();

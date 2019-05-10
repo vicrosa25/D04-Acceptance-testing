@@ -51,7 +51,7 @@ public class AuditController extends AbstractController {
 		Collection<Audit> audits;
 		try {
 			Auditor principal =this.auditorService.findByPrincipal();
-			audits = principal.getAudits();
+			audits = this.auditService.findAll();
 
 			result = new ModelAndView("audit/auditor/list");
 			result.addObject("audits", audits);

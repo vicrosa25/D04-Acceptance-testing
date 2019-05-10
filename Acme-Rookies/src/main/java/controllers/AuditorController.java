@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Auditor;
 import services.AuditorService;
 import utilities.Md5;
+import domain.Auditor;
 
 @Controller
 @RequestMapping("/auditor")
@@ -69,13 +69,14 @@ public class AuditorController extends AbstractController {
 	@RequestMapping(value = "/admin/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Auditor auditor, final BindingResult binding) {
 		ModelAndView result;
+		Auditor bug = auditor;
 		String password;
 		if (binding.hasErrors()) {
 			final List<ObjectError> errors = binding.getAllErrors();
 			for (final ObjectError e : errors)
 				System.out.println(e.toString());
 			result = new ModelAndView("auditor/admin/create");
-			result.addObject("auditor", auditor);
+			result.addObject("auditor", bug);
 		} else
 			try {
 				password = Md5.encodeMd5(auditor.getUserAccount().getPassword());
@@ -85,7 +86,7 @@ public class AuditorController extends AbstractController {
 			} catch (final Throwable oops) {
 				oops.printStackTrace();
 				result = new ModelAndView("auditor/admin/create");
-				result.addObject("auditor", auditor);
+				result.addObject("auditor", bug);
 				if (oops instanceof DataIntegrityViolationException)
 					result.addObject("auditor", "admin.duplicated.username");
 				else {

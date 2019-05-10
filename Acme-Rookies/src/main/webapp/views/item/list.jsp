@@ -33,10 +33,10 @@
 	<display:column property="link" title="${linkHeader}" />
 		
 	<!-- Provider -->
-	<spring:message code="item.provider" var="providerHeader" />
+<%-- 	<spring:message code="item.provider" var="providerHeader" />
 	<display:column title="${ providerHeader }">
 		<a href="provider/display.do?providerId=${row.provider.id}">${row.provider.name}</a>
-	</display:column>
+	</display:column> --%>
 	
 	<!-- Display -->
 	<spring:message code="item.display.item" var="dispalyHeader" />

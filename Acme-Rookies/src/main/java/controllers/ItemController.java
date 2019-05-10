@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ItemService;
+import services.ProviderService;
 import domain.Item;
 import domain.Provider;
 import domain.Url;
-import services.ItemService;
-import services.ProviderService;
 
 @Controller
 @RequestMapping("/item")
@@ -135,7 +135,7 @@ public class ItemController extends AbstractController {
 			result = this.createEditModelAndView(item);
 		else
 			try {
-				this.itemService.save(item);
+				//this.itemService.save(item);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
 				oops.printStackTrace();
@@ -153,7 +153,7 @@ public class ItemController extends AbstractController {
 			Provider principal = this.providerService.findByPrincipal();
 			Assert.notNull(item);
 			Assert.isTrue(principal.getItems().contains(item));
-			this.itemService.delete(item);
+			//this.itemService.delete(item);
 			result = new ModelAndView("redirect:list.do");
 		} catch (Throwable oops) {
 			result = this.editModelAndView(item, "item.commit.error");

@@ -144,7 +144,7 @@ public class SponsorshipController extends AbstractController {
 		return result;
 	}
 
-	// Display -------------------------------------------------------------
+	// Delete -------------------------------------------------------------
 	@RequestMapping(value = "/provider/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int sponsorshipId) {
 		ModelAndView result;
@@ -154,7 +154,7 @@ public class SponsorshipController extends AbstractController {
 			final Provider principal = this.providerService.findByPrincipal();
 			sponsorship = this.sponsorshipService.findOne(sponsorshipId);
 			Assert.isTrue(this.sponsorshipService.findByProvider(principal.getId()).contains(sponsorship));
-			this.sponsorshipService.delete(sponsorship);
+			//this.sponsorshipService.delete(sponsorship);
 
 			result = new ModelAndView("redirect:/sponsorship/provider/list.do");
 		} catch (final Throwable oops) {
