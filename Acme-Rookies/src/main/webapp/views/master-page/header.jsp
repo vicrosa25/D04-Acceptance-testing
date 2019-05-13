@@ -116,7 +116,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.positions" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>				
+					<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
+					<li><a href="position/browse.do"><spring:message code="master.page.position.browse" /></a></li>	
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.companies" /></a>
@@ -160,10 +161,11 @@
 			<li><a class="fNiv"><spring:message	code="master.page.positions" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>	
+					<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 					<security:authorize access="hasRole('COMPANY')">
 						<li><a href="position/company/list.do"><spring:message code="master.page.position.company.list" /></a></li>
-					</security:authorize>			
+					</security:authorize>
+					<li><a href="position/browse.do"><spring:message code="master.page.position.browse" /></a></li>			
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.providers" /></a>
