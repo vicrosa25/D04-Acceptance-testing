@@ -1051,7 +1051,7 @@
 		<property name="finderMaxResult" value="10" />
 		<property name="countryCode" value="+34" />
 		<property name="title" value="Acme Rookies, Inc." />
-		<property name="logo" value="https://i.imgur.com/7b8lu4b.png " />
+		<property name="logo" value="https://i.imgur.com/qAigF6Y.jpg" />
 		<property name="spanishMessage" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="englishMessage" value="Welcome to Acme Rookies! We're IT rookie's favourite job marketplace!" />
 		<property name="isNotifiedRebranding" value="false" />
