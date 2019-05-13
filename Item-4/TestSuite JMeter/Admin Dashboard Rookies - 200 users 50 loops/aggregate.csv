@@ -1,0 +1,6 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
+/,10000,49,4,55,2,6196,0.0,57.45442427794152,278.2537293307709
+/security/login.do,10000,81,4,110,1,6664,0.0,57.537068256224075,212.53397384077192
+/j_spring_security_check,10000,106,8,148,3,9042,0.0,57.6352266505288,351.92353066194056
+/administrator/dashboard.do,10000,143,40,204,19,8308,0.0,57.59539236861051,579.5761564074874
+TOTAL,40000,95,9,132,1,9042,0.0,225.66868452082076,1393.8333740007108
