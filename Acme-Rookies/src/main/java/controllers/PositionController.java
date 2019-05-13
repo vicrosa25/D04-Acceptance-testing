@@ -109,6 +109,7 @@ public class PositionController extends AbstractController {
 
 			result = new ModelAndView("position/list");
 			result.addObject("positions", positions);
+			result.addObject("keyword", browser.getKeyword());
 			result.addObject("requestURI", "position/list.do");
 
 		} catch (final Throwable oops) {

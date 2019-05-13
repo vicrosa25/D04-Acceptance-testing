@@ -150,7 +150,7 @@ public class FinderService {
 	}
 
 	public Collection<Position> filterByKeyword(String keyword) {
-		Collection<Position> result = this.finderRepository.filterByKeyword(keyword);
+		Collection<Position> result = this.finderRepository.filterByKeyword("%"+keyword+"%");
 		Assert.notNull(result);
 		return result;
 	}
