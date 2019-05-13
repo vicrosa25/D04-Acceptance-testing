@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Position;
-import domain.Sponsorship;
 import services.AuditorService;
 import services.CompanyService;
 import services.PositionService;
 import services.ProblemService;
 import services.SponsorshipService;
+import domain.Position;
+import domain.Sponsorship;
+import forms.Browser;
 
 @Controller
 @RequestMapping("/position")
@@ -62,6 +63,53 @@ public class PositionController extends AbstractController {
 
 			result = new ModelAndView("position/list");
 			result.addObject("positions", positions);
+			result.addObject("requestURI", "position/list.do");
+
+		} catch (final Throwable oops) {
+			System.out.println(oops.getMessage());
+			System.out.println(oops.getClass());
+			System.out.println(oops.getCause());
+			result = this.forbiddenOpperation();
+
+		}
+
+		return result;
+	}
+
+	// Browse -------------------------------------------------------------
+	@RequestMapping(value = "/browse", method = RequestMethod.GET)
+	public ModelAndView browse() {
+		ModelAndView result;
+		Browser browser;
+		try {
+
+			browser = new Browser();
+
+			result = new ModelAndView("position/browse");
+			result.addObject("browser", browser);
+
+		} catch (final Throwable oops) {
+			System.out.println(oops.getMessage());
+			System.out.println(oops.getClass());
+			System.out.println(oops.getCause());
+			result = this.forbiddenOpperation();
+
+		}
+
+		return result;
+	}
+
+	// Browse -------------------------------------------------------------
+	@RequestMapping(value = "/browse", method = RequestMethod.POST, params = "search")
+	public ModelAndView search(Browser browser, BindingResult binding) {
+		ModelAndView result;
+		Collection<Position> positions;
+		try {
+			positions = this.positionService.findByKeyword(browser.getKeyword());
+
+			result = new ModelAndView("position/list");
+			result.addObject("positions", positions);
+			result.addObject("keyword", browser.getKeyword());
 			result.addObject("requestURI", "position/list.do");
 
 		} catch (final Throwable oops) {

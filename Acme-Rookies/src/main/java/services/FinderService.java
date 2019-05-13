@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import repositories.FinderRepository;
 import domain.Finder;
 import domain.Position;
 import domain.Rookie;
-import repositories.FinderRepository;
 
 @Service
 @Transactional
@@ -147,5 +147,11 @@ public class FinderService {
 
 		return this.save(finder);
 
+	}
+
+	public Collection<Position> filterByKeyword(String keyword) {
+		Collection<Position> result = this.finderRepository.filterByKeyword("%"+keyword+"%");
+		Assert.notNull(result);
+		return result;
 	}
 }

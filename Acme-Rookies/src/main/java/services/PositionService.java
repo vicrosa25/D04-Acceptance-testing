@@ -263,4 +263,15 @@ public class PositionService {
 	public void flush(){
 		this.positionRepository.flush();
 	}
+
+	public Collection<Position> findByKeyword(String keyword) {
+		Collection<Position> result;
+		if(keyword.isEmpty()){
+			result = this.findAllFinal();
+		}else{
+			result = this.finderService.filterByKeyword(keyword);
+		}
+		Assert.notNull(result);
+		return result;
+	}
 }

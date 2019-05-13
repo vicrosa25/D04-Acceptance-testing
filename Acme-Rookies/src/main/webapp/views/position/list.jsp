@@ -6,6 +6,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
+<jstl:if test="${not empty keyword}">
+<spring:message code="position.search.result"/> ${keyword}<br>
+</jstl:if>
 <!-- Listing Grid -->
 <display:table name="positions" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
