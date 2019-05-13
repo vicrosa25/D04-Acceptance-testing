@@ -1,0 +1,4 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
+/,2600,50,6,183,1,1514,0.0,71.432496291005,345.58260412660036
+/company/create.do,5200,92,32,212,2,1416,0.0,142.25140199699084,949.4919630949938
+TOTAL,7800,78,19,201,1,1514,0.0,205.51735040708243,1245.9408830905988

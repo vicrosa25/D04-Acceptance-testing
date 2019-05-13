@@ -1,0 +1,7 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
+/,2000,5,4,11,1,70,0.0,22.237294166045878,107.58159697128055
+/security/login.do,2000,6,7,9,1,71,0.0,22.186969592758174,81.8783679126499
+/j_spring_security_check,2000,14,16,21,2,78,0.0,22.188200315072447,120.19330776143246
+/item/provider/list.do,2000,10,12,15,2,60,0.0,22.19829739059014,104.24962124155078
+/item/provider/edit.do,4000,11,9,21,3,88,0.0,44.28943143442396,234.249570946133
+TOTAL,12000,10,8,19,1,88,0.0,126.78556335051982,617.4388837455625
