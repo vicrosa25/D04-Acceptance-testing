@@ -1,4 +1,4 @@
 sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
-/Acme-Hacker-Rank/message/display.do,30000,8,8,11,1,95,0.0,196.1386831248815,687.1837455276294
-/Acme-Hacker-Rank/message/delete.do,15000,7,8,11,1,92,0.0,98.95503483217226,340.24618646880606
-TOTAL,45000,8,8,11,1,95,0.0,294.2080246873223,1024.3845714655808
+/message/display.do,6000,404,127,1223,1,7404,0.0,113.85631333257429,447.63067309836237
+/message/delete.do,3000,503,156,1572,2,8518,0.0,58.55600882243866,226.8119729959206
+TOTAL,9000,437,142,1329,1,8518,0.0,170.78446999886143,668.1372921825781
