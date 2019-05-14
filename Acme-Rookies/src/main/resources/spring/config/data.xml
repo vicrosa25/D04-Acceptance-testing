@@ -30,14 +30,14 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		
 <!-- 		Clever Cloud  -->
-		<property name="jdbcUrl" value="jdbc:mysql://bqk1gwcmnu4attv6iqw8-mysql.services.clever-cloud.com:3306/bqk1gwcmnu4attv6iqw8" />
-		<property name="user" value="uxtvtk72asbqrf7b" />
- 		<property name="password" value="FHyS0mPzdelXdrSoYPrD" />		
+<!-- 		<property name="jdbcUrl" value="jdbc:mysql://bqk1gwcmnu4attv6iqw8-mysql.services.clever-cloud.com:3306/bqk1gwcmnu4attv6iqw8" /> -->
+<!-- 		<property name="user" value="uxtvtk72asbqrf7b" /> -->
+<!--  		<property name="password" value="FHyS0mPzdelXdrSoYPrD" />		 -->
 		
 		<!-- Normal -->
-<!--   		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-Rookies" />  -->
-<!--  		<property name="user" value="acme-user" /> -->
-<!--  		<property name="password" value="ACME-Us3r-P@ssw0rd" />  -->
+  		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-Rookies" /> 
+ 		<property name="user" value="acme-user" />
+ 		<property name="password" value="ACME-Us3r-P@ssw0rd" /> 
 		
 		
 		<property name="minPoolSize" value="1" />
