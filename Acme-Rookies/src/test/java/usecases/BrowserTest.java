@@ -46,9 +46,9 @@ public class BrowserTest extends AbstractTest {
 	public void driver() {
 		final Object testingData[][] = {
 			{
-				null, "", this.positionService.findAll()
+				null, "", this.positionService.findAllFinal().size()
 			}, {
-				null, "wepgojmaveaoifkngvmoeiptñodjgmbpevaofmaoepprgkf", 0
+				null, "qweqweqweqweqwe", 0
 			}, {
 				null, "Programador en  javascript", 1
 			}
@@ -69,7 +69,6 @@ public class BrowserTest extends AbstractTest {
 			super.unauthenticate();
 
 			result = this.positionService.findByKeyword(keyword);
-
 
 			Assert.isTrue(result.size() == results);
 		} catch (Throwable oops) {
