@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,7 +33,7 @@ public abstract class Actor extends DomainEntity {
 	private Integer	vat;
 	private String	cardNumber;
 	private String	photo;
-	private String	email;
+	//private String	email;
 	private String	phoneNumber;
 	private String	address;
 	private Boolean	isSpammer;
@@ -77,15 +76,15 @@ public abstract class Actor extends DomainEntity {
 	}
 
 //	@Email
-	@NotBlank
-	@Pattern(regexp = "^[\\w\\s]+(\\s*)\\<\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}\\>|\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(final String email) {
-		this.email = email;
-	}
+//	@NotBlank
+//	@Pattern(regexp = "^[\\w\\s]+(\\s*)\\<\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}\\>|\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")
+//	public String getEmail() {
+//		return this.email;
+//	}
+//
+//	public void setEmail(final String email) {
+//		this.email = email;
+//	}
 
 	public String getPhoneNumber() {
 		return this.phoneNumber;

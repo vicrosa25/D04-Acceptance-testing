@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -16,7 +17,9 @@ public class Company extends Actor {
 
 	// Attributes -------------------------------------------------------------
 	private String					commercialName;
-	private Double					score;					
+	private Double					score;
+	private String 					email;
+	
 
 	// Relationships ----------------------------------------------------------
 	private Collection<Position>	positions;
@@ -24,6 +27,16 @@ public class Company extends Actor {
 
 
 	// ------------------------------------------------------------
+	@NotBlank
+	@Pattern(regexp = "^[\\w\\s]+(\\s*)\\<\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}\\>|\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+	
 	@NotBlank
 	public String getCommercialName() {
 		return this.commercialName;
