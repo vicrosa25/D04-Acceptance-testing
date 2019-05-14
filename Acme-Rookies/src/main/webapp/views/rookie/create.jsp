@@ -63,11 +63,11 @@
 
 			var phoneNumber = document.getElementById("phoneNumber").value;
 
-			var patternCCACPN = /^(\+[1-9][0-9]{0,2}) (\([1-9][0-9]{0,2}\)) (\d{3}\d+)/
+			var patternCCACPN = /^([+]\d{1,3}[(]\d{1,3}[)]\d{4,})/
 			$;
-			var patternCCPN = /^(\+[1-9][0-9]{0,2}) (\d{3}\d+)/
+			var patternCCPN = /^([+]\d{1,3}\d{4,})/
 			$;
-			var patternPN = /^(\d{3}\d+)/
+			var patternPN = /^(\d{4,})/
 			$;
 
 			if (patternCCACPN.test(phoneNumber))
@@ -77,7 +77,7 @@
 			else if (patternPN.test(phoneNumber))
 				return true;
 			else
-				return confirm('<spring:message code="administrator.confirm"/>');
+				return confirm('<spring:message code="rookie.confirm"/>');
 		}
 	</script>
 
