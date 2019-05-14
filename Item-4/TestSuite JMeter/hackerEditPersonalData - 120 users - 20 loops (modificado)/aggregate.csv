@@ -1,6 +1,0 @@
-sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
-/,2400,437,208,1094,2,9883,0.0,17.085377052914836,82.67303616048864
-/security/login.do,2400,697,247,1907,2,14734,0.0,17.073222784215805,62.990855155046205
-/j_spring_security_check,2400,1285,651,3280,4,16683,0.0,17.073222784215805,70.5771016070171
-/hacker/edit.do,4800,540,211,1492,2,15881,0.0,34.18559931628801,131.70135674097287
-TOTAL,12000,700,226,1924,2,16683,0.0,83.6866770810087,340.8916314194655
