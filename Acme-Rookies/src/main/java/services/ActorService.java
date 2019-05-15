@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.ActorRepository;
-import security.LoginService;
-import security.UserAccount;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Phrase;
@@ -22,6 +18,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import domain.Actor;
 import domain.Company;
+import repositories.ActorRepository;
+import security.LoginService;
+import security.UserAccount;
 
 @Service
 @Transactional
@@ -133,8 +132,8 @@ public class ActorService {
 			table.addCell(new PdfPCell(new Phrase(actor.getCardNumber())));
 			table.addCell(new PdfPCell(new Phrase("Photo")));
 			table.addCell(new PdfPCell(new Phrase(actor.getPhoto())));
-			table.addCell(new PdfPCell(new Phrase("Email")));
-			table.addCell(new PdfPCell(new Phrase(actor.getEmail())));
+//			table.addCell(new PdfPCell(new Phrase("Email")));
+//			table.addCell(new PdfPCell(new Phrase(actor.getEmail())));
 			table.addCell(new PdfPCell(new Phrase("Phone number")));
 			table.addCell(new PdfPCell(new Phrase(actor.getPhoneNumber())));
 			table.addCell(new PdfPCell(new Phrase("Address")));
