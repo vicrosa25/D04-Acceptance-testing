@@ -21,7 +21,6 @@
 	</bean>
 
 
-
 	<!-- Administrators *************************************************************************** -->
 	<bean id="admin" class="domain.Administrator">
 		<property name="name" value="admin" />
@@ -33,6 +32,10 @@
 		<property name="phoneNumber" value="+34656256697" />
 		<property name="address" value="admin 18" />
 		<property name="UserAccount" ref="userAccount1" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -45,10 +48,12 @@
 		<property name="cacheTime" value="1" />
 		<property name="finderMaxResult" value="10" />
 		<property name="countryCode" value="+34" />
-		<property name="title" value="Acme Hacker Rank Co., Inc." />
-		<property name="logo" value="https://i.imgur.com/7b8lu4b.png " />
-		<property name="spanishMessage" value="¡Bienvenidos a Acme Hacker Rank! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
-		<property name="englishMessage" value="Welcome to Acme hacker Rank! We’re IT hacker’s favourite job marketplace!" />
+		<property name="title" value="Acme Rookies, Inc." />
+		<property name="logo" value="https://i.imgur.com/qAigF6Y.jpg" />
+		<property name="spanishMessage" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="englishMessage" value="Welcome to Acme Rookies! We're IT rookie's favourite job marketplace!" />
+		<property name="isNotifiedRebranding" value="false" />
+		<property name="vat" value="0.21" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>
@@ -63,8 +68,4 @@
 			</list>
 		</property>
 	</bean>
-	
-
-
-
 </beans>
