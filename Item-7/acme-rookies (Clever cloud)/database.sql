@@ -1,7 +1,7 @@
 start transaction;
 
-CREATE DATABASE  IF NOT EXISTS `acme-rookies` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `acme-rookies`;
+CREATE DATABASE  IF NOT EXISTS `bqk1gwcmnu4attv6iqw8` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `bqk1gwcmnu4attv6iqw8`;
 
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
