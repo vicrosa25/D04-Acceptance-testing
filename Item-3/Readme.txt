@@ -1,4 +1,4 @@
-##Deploy instructions
+## HTTPS and Jacoco instructions
 
 Due to https implementation, to deploy in the developer machine, is necessary to make some changes.
 
@@ -33,3 +33,13 @@ By this: (change the password field with yours)
 	    port="8443" keystoreFile="C:/Documents and Settings/Boss/.keystore" keystorePass="password"
 	    protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https"
 	    secure="true" sslProtocol="TLS" />
+
+
+#Functional testing
+
+Se ha automatizado el analisis de la cobertura de los test mediante la libreria jacoco
+
+Se pueden volver a conseguir los resultados ejecutando el siguiente comando en
+la carpeta del proyecto: "mvn test"
+
+los resultados se encuentran en target/site/jacoco-ut/index.html
