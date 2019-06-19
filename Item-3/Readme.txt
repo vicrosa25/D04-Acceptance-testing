@@ -1,17 +1,19 @@
 ## HTTPS and Jacoco instructions
 
-Due to https implementation, to deploy in the developer machine, is necessary to make some changes.
+Due to https implementation, to deploy in the developer machine is necessary to make some changes.
 
 	1- Generate a keystore
-	2- Modify server.xml
+	2- Modify tomcat configuration: server.xml
 
 #Generate keystore
 
-Open a command promp and go to the java folder (cd %JAVA_HOME%/bin)
-In the bin folder inside, execute the following
-	keytool -genkey -alias tomcat -keyalg RSA
+Open a command promp and go to the installed java folder (< cd %JAVA_HOME%/bin >)
+In the bin folder inside, execute the following command:
 
-Then you will have to answer some questions, do it, do not forget the password.
+	< keytool -genkey -alias tomcat -keyalg RSA >
+
+Then you will have to answer some questions, do it and do not forget the password.
+
 
 #Server.xml
 
